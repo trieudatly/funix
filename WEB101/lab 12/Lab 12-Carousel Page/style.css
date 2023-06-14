@@ -1,0 +1,23 @@
+.bg-img1 {
+  background-color: #000;
+  background-size: cover;
+  background-image: url("img/starry-galaxy-sky-night-ruols69oxjfa4u4y.jpg");
+}
+.bg-img2 {
+  background-color: #000;
+  background-size: cover;
+  background-image: url("img/full-moon-night-sea-9nngmbvce2sn0x9h.jpg");
+}
+.bg-img3 {
+  background-color: #000;
+  background-size: cover;
+  background-image: url("img/lake-reflecting-night-sky-r0axvgmtj596wpif.jpg");
+}
+
+.carousel-item {
+  height: 32rem;
+}
+
+footer {
+  margin-top: 500px;
+}
