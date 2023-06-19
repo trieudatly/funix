@@ -1,68 +1,22 @@
+/* css general */
 * {
   box-sizing: border-box;
 }
 
 .cv-document {
-  box-sizing: border-box;
-  border: none;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  vertical-align: baseline;
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
   font-family: sans-serif, arial, tahoma;
-  font-size: 10pt;
+  font-size: 15px;
 }
 
 .cv-page {
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-  text-decoration: none;
   width: 900px;
-  min-height: 900px;
   margin: 0 auto;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
   background-color: #fff;
   position: relative;
-
   padding: 40px;
 }
 
-/* THÔNG TIN CÁ NHÂN */
-
-.row-info {
-  padding: 5px 0;
-}
-
-#info {
-  position: relative;
-}
-.row-info > strong {
-  width: 100px;
-  display: inline-block;
-}
-
-#info img {
-  position: absolute;
-  width: 113px;
-  height: 113px;
-  right: 0px;
-}
-
-#info h1 {
-  color: #0e2452;
-  border-bottom: none;
-  font-size: 30px;
-  margin-bottom: 0;
-}
-
-/* css general */
 h2 {
   text-transform: uppercase;
 }
@@ -96,6 +50,34 @@ ul {
   padding-left: 20px;
 }
 
+/* THÔNG TIN CÁ NHÂN */
+
+.row-info {
+  padding: 5px 0;
+}
+
+#info {
+  position: relative;
+}
+.row-info > strong {
+  width: 100px;
+  display: inline-block;
+}
+
+#info img {
+  position: absolute;
+  width: 113px;
+  height: 113px;
+  right: 0px;
+}
+
+#info h1 {
+  color: #0e2452;
+  border-bottom: none;
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
 /* KINH NGHIỆM LÀM VIỆC */
 .work-experience {
   list-style-type: " - ";
@@ -115,7 +97,6 @@ ul {
 
 .time-line > li {
   position: relative;
-  margin: 0;
   padding-bottom: 1px;
   padding-left: 20px;
 }
@@ -123,48 +104,24 @@ ul {
 /*vertical line*/
 .time-line > li:before {
   content: "";
-  background-color: black;
+  border-left: 1px solid black;
   position: absolute;
   bottom: 0;
   top: 0;
   left: 3px;
-  width: 1px;
 }
 
 /*black dot*/
 .time-line > li::after {
   content: "";
   position: absolute;
-  background-color: black;
   border: 4px solid black;
   border-radius: 50%;
   left: 0;
-  top: 10px;
-  height: 5px;
-  width: 5px;
+  top: 5px;
 }
 
 /* LIÊN HỆ */
 a {
   text-decoration: none;
 }
-
-/* unused */
-
-/* .row-info {
-    display: flex;
-    padding: 5px;
-  }
-  
-  .row-info > b {
-    width: 100px;
-  } */
-
-/* .row {
-    display: flex;
-    gap: 30px;
-  } */
-
-/* [class*="col-"] {
-    display: inline-block;
-  } */
