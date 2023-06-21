@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab 18.5</title>
+  </head>
+  <body>
+    <script>
+      const worldPopulation = 7900;
+      function percentageOfWorld1(population) {
+        return (population / worldPopulation) * 100;
+      }
+      const populations = [6, 8, 99, 1441];
+      const percentages2 = [];
+      for (let i = 0; i < populations.length; i++) {
+        percentages2.push(percentageOfWorld1(populations[i]));
+      }
+      console.log(percentages2);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab 18.8.1</title>
+  </head>
+  <body>
+    <script>
+      const markMiller = {
+        fullName: "Mark Miller",
+        mass: 78,
+        height: 1.69,
+        calcBMI: function () {
+          this.BMI = this.mass / this.height ** 2;
+          return this.BMI;
+        },
+      };
+      const johnSmith = {
+        fullName: "John Smith",
+        mass: 92,
+        height: 1.95,
+        calcBMI: function () {
+          this.BMI = this.mass / this.height ** 2;
+          return this.BMI;
+        },
+      };
+      if (johnSmith.calcBMI() > markMiller.calcBMI()) {
+        console.log(
+          `John's BMI (${johnSmith.calcBMI()}) is higher than Mark's (${markMiller.calcBMI()})!`
+        );
+      } else {
+        console.log(
+          ` Mark's BMI (${markMiller.calcBMI()}) is higher than John's (${johnSmith.calcBMI()})!`
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab 18.6</title>
+  </head>
+  <body>
+    <script>
+      const listOfNeighbours = [
+        ["Canada", "Mexico"],
+        ["Spain"],
+        ["Norway", "Sweden", "Russia"],
+      ];
+      for (let i = 0; i < listOfNeighbours.length; i++) {
+        if (listOfNeighbours[i].length >= 2) {
+          for (let x = 1; x < listOfNeighbours[i].length; x++) {
+            console.log(listOfNeighbours[i][x]);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
