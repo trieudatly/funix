@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab 17.2</title>
+  </head>
+  <body>
+    <script>
+      const worldPopulation = 7900000000;
+      function percentageOfWorld1(population) {
+        return (population / worldPopulation) * 100;
+      }
+      let china = percentageOfWorld1(1441000000);
+      let vietnam = percentageOfWorld1(99000000);
+      let finland = percentageOfWorld1(6000000);
+      console.log(`
+      vietnam= ${vietnam} %
+      china= ${china} %
+      finland= ${finland} %`);
+
+      const percentageOfWorld2 = function (population) {
+        return (population / worldPopulation) * 100;
+      };
+      china = percentageOfWorld2(1441000000);
+      vietnam = percentageOfWorld2(99000000);
+      finland = percentageOfWorld2(6000000);
+      console.log(`
+      finland= ${finland} %
+      vietnam= ${vietnam} %
+      china= ${china} %`);
+    </script>
+  </body>
+</html>

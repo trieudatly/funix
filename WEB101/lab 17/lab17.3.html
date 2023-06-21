@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab 17.2</title>
+  </head>
+  <body>
+    <script>
+      const worldPopulation = 7900000000;
+      const percentageOfWorld3 = (population) =>
+        (population / worldPopulation) * 100;
+      let china = percentageOfWorld3(1441000000);
+      let vietnam = percentageOfWorld3(99000000);
+      let finland = percentageOfWorld3(6000000);
+      console.log(`
+      vietnam= ${vietnam} %
+      china= ${china} %
+      finland= ${finland} %`);
+    </script>
+  </body>
+</html>

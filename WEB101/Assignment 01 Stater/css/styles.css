@@ -125,3 +125,6 @@ ul {
 a {
   text-decoration: none;
 }
+ol {
+  padding: 20px;
+}

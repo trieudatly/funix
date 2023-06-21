@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab 17.1</title>
+  </head>
+  <body>
+    <script>
+      function describeCountry(country, population, capitalCity) {
+        return `${country} has ${population} million people and its capital city is ${capitalCity}`;
+      }
+
+      const vietnam = describeCountry("Vietnam", 99, "Hanoi");
+      const england = describeCountry("England", 9, "London");
+      const finland = describeCountry("Finland", 6, "Helsinki");
+
+      console.log(`
+      ${vietnam}
+      ${england}
+      ${finland}`);
+    </script>
+  </body>
+</html>

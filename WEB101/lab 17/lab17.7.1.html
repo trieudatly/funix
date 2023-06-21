@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab 17.7.1</title>
+  </head>
+  <body>
+    <script>
+      "use strick";
+      //let Dolphins = [44, 23, 71];
+      //let Koalas = [65, 54, 49];
+      let Dolphins = [85, 54, 41];
+      let Koalas = [23, 34, 27];
+      const calcAverage = (score) => (score[0] + score[1] + score[2]) / 3;
+      const checkWinner = function (avgDolphins, avgKoalas) {
+        if (avgDolphins > avgKoalas * 2) {
+          console.log(`Dolphins win ( ${avgDolphins} vs ${avgKoalas} )`);
+        } else if (avgDolphins * 2 < avgKoalas) {
+          console.log(`Koalas win (  ${avgKoalas} vs ${avgDolphins} )`);
+        } else {
+          console.log("no winner");
+        }
+      };
+      // console.log(calcAverage(Dolphins));
+      // console.log(calcAverage(Koalas));
+      checkWinner(calcAverage(Dolphins), calcAverage(Koalas));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab15.6.1</title>
+  </head>
+  <body>
+    <script>
+      let markMass = 78;
+      let markHeight = 1.69;
+      let johnMass = 92;
+      let johnHeight = 1.95;
+      let markBMI = markMass / (markHeight * markHeight);
+      console.log(markBMI);
+      let johnBMI = johnMass / johnHeight ** 2;
+      console.log(johnBMI);
+      let markHigherBMI = markBMI > johnBMI;
+      console.log(markHigherBMI);
+      //
+      markMass = 95;
+      markHeight = 1.88;
+      johnMass = 85;
+      johnHeight = 1.76;
+      markBMI = markMass / (markHeight * markHeight);
+      console.log(markBMI);
+      johnBMI = johnMass / johnHeight ** 2;
+      console.log(johnBMI);
+      markHigherBMI = markBMI > johnBMI;
+      console.log(markHigherBMI);
+    </script>
+  </body>
+</html>

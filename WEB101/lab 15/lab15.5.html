@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab15.5</title>
+  </head>
+  <body>
+    <script>
+      const country = "VIET NAM";
+      const continent = "ASIA";
+      const population = 130;
+      console.log(country + " " + continent + " " + population);
+      const isIsland = false;
+      let language;
+      console.log(typeof country);
+      console.log(typeof continent);
+      console.log(typeof population);
+      console.log(typeof isIsland);
+      console.log(typeof language);
+      language = "Vietnamese";
+      //
+      console.log(population / 2);
+      console.log(population + 1);
+      console.log(population > 6);
+      console.log(population < 33);
+      // const description =
+      //   country +
+      //   " and its " +
+      //   population +
+      //   " million people speak " +
+      //   language;
+      // console.log(description);
+      const description = `${country} and its ${population} million people speak ${language}.`;
+      console.log(description);
+      if (population > 33) {
+        console.log(`${country}'s population is above average`);
+      } else {
+        console.log(
+          `${country}'s population is ${33 - population} million below average`
+        );
+      }
+    </script>
+  </body>
+</html>

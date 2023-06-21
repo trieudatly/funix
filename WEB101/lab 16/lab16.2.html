@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab16.2</title>
+  </head>
+  <body>
+    <script>
+      // let numNeighbours = prompt(
+      //   "How many neighbor countries does your country have?"
+      // );
+      // if (numNeighbours == 1) {
+      //   console.log("Only 1 border!");
+      // } else if (numNeighbours > 1) {
+      //   console.log("More than 1 border");
+      // } else {
+      //   console.log("No borders");
+      // }
+      let numNeighbours = prompt(
+        "How many neighbor countries does your country have?"
+      );
+      console.log(typeof numNeighbours);
+      if (Number(numNeighbours) === 1) {
+        console.log("Only 1 border!");
+      } else if (numNeighbours > 1) {
+        console.log("More than 1 border");
+      } else {
+        console.log("No borders");
+      }
+      //6.Thay == thành ===, và kiểm tra lại code với các giá trị 'numNeighbours' tương tự. Điều gì sẽ xảy ra khi numNeighbours = 1? Tại sao lại như vậy?
+
+      /*numNeighbours có kiểu là String, còn 1 là kiểu Number
+      Toán tử === được gọi là toán tử bằng nghiêm ngặt vì nó không thực hiện ép kiểu
+      vì vậy nó chỉ trả về true khi cả 2 giá trị so sánh hoàn toàn giống nhau.*/
+
+      //Hãy nêu lý do chúng ta nên sử dụng toán tử === và chuyển đổi kiểu trong trường hợp này?
+      /*Toán tử === giúp đảm bảo giá trị so sánh thật sự hoàn toàn giống nhau, tránh sai sót.
+      chuyển đổi kiểu dùng để chuyển kiểu String thành Number, từ đó có thể thực hiện toán tử ===*/
+    </script>
+  </body>
+</html>

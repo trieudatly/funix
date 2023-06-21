@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16.6.1</title>
+  </head>
+  <body>
+    <script>
+      let Dolphins = (96 + 108 + 89) / 3;
+      let Koalas = (88 + 91 + 110) / 3;
+      //
+      // let Dolphins = (97 + 112 + 101) / 3;
+      // let Koalas = (109 + 95 + 123) / 3;
+      //
+      // let Dolphins = (97 + 112 + 101) / 3;
+      // let Koalas = (109 + 95 + 106) / 3;
+      console.log("Dolphins= " + Dolphins);
+      console.log("Koalas= " + Koalas);
+      const isFail = Dolphins < 100 && Koalas < 100;
+      if (isFail) {
+        console.log("no winner");
+      } else if (Dolphins > Koalas) {
+        console.log("Dolphins win");
+      } else if (Dolphins < Koalas) {
+        console.log("Koalas win");
+      } else {
+        console.log("draw result");
+      }
+    </script>
+  </body>
+</html>

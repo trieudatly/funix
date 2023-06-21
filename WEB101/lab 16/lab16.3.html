@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab16.3</title>
+  </head>
+  <body>
+    <script>
+      let name = prompt("Name ?");
+      let language = prompt("language ?");
+      let population = prompt("population ?");
+      let isIsland = prompt("Is it an island ?");
+      if (language == "english" && population < 50000000 && isIsland == "no") {
+        console.log(`You should live in ${name} :)`);
+      } else if (name == "canada") {
+        console.log(`You should live in ${name} :)`);
+      } else {
+        console.log(`${name} does not meet your criteria :(`);
+      }
+    </script>
+  </body>
+</html>
