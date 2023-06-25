@@ -7,9 +7,13 @@ function showModel() {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 }
-const modal = document.querySelector(".modal", "div");
+/** @type {HTMLDivElement} */
+const modal = document.querySelector(".modal");
+/** @type {HTMLDivElement} */
 const overlay = document.querySelector(".overlay");
+
 const btnCloseModal = document.querySelector(".close-modal");
+
 const btnsShowmodal = document.querySelectorAll(".show-modal");
 //console.log(btnsShowmodal);
 
