@@ -1,19 +1,111 @@
+/* CSS GENERAL */
+:root {
+  --color-primary: rgb(4, 119, 233);
+}
 * {
-    margin: 0px;
+  box-sizing: border-box;
+  margin: 0px;
+  /* border: red dotted 1px; */
 }
-
+a {
+  text-decoration: none;
+}
+section {
+  display: flex;
+  /* padding: 20px; */
+}
+.section-gap {
+  gap: 20px;
+}
+.section-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+.section-content .title {
+  font-weight: bold;
+}
+/* exp bar */
+.exp-bar {
+  width: 20px;
+  height: 3px;
+  background-color: gray;
+  display: inline-block;
+}
+.fill {
+  background-color: var(--color-primary);
+}
+/* HEADER */
+/* BANNER */
+#banner {
+  position: relative;
+  height: 300px;
+}
+#banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.banner_title {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px gray;
+}
+/* NAVBAR */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+nav > * {
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+nav > *:hover {
+  background-color: orange;
+  color: white;
+}
 .bg-grey {
-    background: #f7f7f7;
+  background: #f7f7f7;
 }
+/* END HEADER */
 
-section > .container{
-    width: 1170px;
-    margin: auto;
-    display: block;
+/* MAIN */
+#info {
+  background-color: pink;
+  flex: 1;
+  padding: 15px;
+}
+#target {
+  flex: 1;
+  padding: 15px;
+  background-color: gray;
+}
+#info,
+#target,
+#experience,
+#skill,
+#langage {
+  padding: 20px;
+}
+/* END MAIN */
+/* section > .container {
+  width: 1170px;
+  margin: auto;
+  display: block;
 
-    padding: 30px 50px;
+  padding: 30px 50px;
 }
 
 #nav-bar {
-    text-align: center;
-}
+  text-align: center;
+} */

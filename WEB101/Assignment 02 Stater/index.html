@@ -1,100 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/font.css">
-	<title>Assignment 02</title>
-</head>
-<body>
-	<div id="banner" style="padding: 50px">
-		<h1>Nguyễn Văn A</h1>
-		<span>Full Stack Developer</span>
-	</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/font.css" />
+    <link rel="stylesheet" href="fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="fontawesome/css/solid.min.css" />
+    <link rel="stylesheet" href="fontawesome/css/brands.min.css" />
+    <title>Assignment 02</title>
+  </head>
+  <body>
+    <header>
+      <div id="banner">
+        <img src="images/banner.jpg" alt="" />
+        <div class="banner_title">
+          <h1>Lý Triệu Đạt</h1>
+          <span>Full Stack Developer</span>
+        </div>
+      </div>
 
-	<section id="nav-bar">
-		<nav class="container">
-			<a href="#">Thông tin</a>
-			<a href="#">Lý lịch</a>
-			<a href="#">Chứng chỉ</a>
-			<a href="#">Dự Án</a>
-		</nav>
-	</section>
+      <section>
+        <nav>
+          <div class="item">
+            <a href="#info">
+              <i class="fa-solid fa-user"></i>
+              Thông tin
+            </a>
+          </div>
+          <div class="item">
+            <a href="#experience">
+              <i class="fa-solid fa-file-lines"></i>
+              Lý lịch
+            </a>
+          </div>
+          <div class="item nav-brand">
+            <a href="#banner">
+              <div class="title">Lý Triệu Đạt</div>
+              <div class="sub-title">Full Stack Developer</div>
+            </a>
+          </div>
+          <div class="item">
+            <a href="#certificate">
+              <i class="fa-solid fa-award"></i>
+              Chứng chỉ
+            </a>
+          </div>
+          <div class="item">
+            <a href="#project">
+              <i class="fa-solid fa-diagram-project"></i>
+              Dự án
+            </a>
+          </div>
+        </nav>
+      </section>
+    </header>
+    <main>
+      <section id="about">
+        <div id="target">
+          <div class="section-title">Mục tiêu nghề nghiệp</div>
+          <div class="section-content" style="margin-top: 20px">
+            Là một sinh viên đã hoàn thành chương trình chứng chỉ Doanh Nghiệp
+            của FUNiX. Em mong muốn mình sẽ được làm việc với vị trí
+            <b>Fullstack Developer</b>
+            , có thể vận dụng những kiến thức đã được trau dồi và không ngừng
+            học hỏi để phát triển bản thân, cũng như hoàn thành tốt nhất công
+            việc được giao.
+          </div>
+        </div>
+        <div id="info">
+          <div class="section-title">Thông tin cá nhân</div>
+          <div class="section-content">
+            <div>
+              <b>Ngày Sinh :</b>
+              07/11/1992
+            </div>
+            <div>
+              <b>Giới tính :</b>
+              Nam
+            </div>
+            <div>
+              <b>Điện thoại :</b>
+              (+84)01234567
+            </div>
+            <div>
+              <b>Email :</b>
+              datltfx22205@funix.edu.vn
+            </div>
+            <div>
+              <b>Địa chỉ :</b>
+              Quận 6,TP. Hồ Chí Minh, Việt Nam
+            </div>
+            <div>
+              <b>Website :</b>
+              http://abc.com
+            </div>
+          </div>
+          <div style="margin-top: 15px; color: rgb(4, 119, 233)">
+            <a href="/" target="_blank">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="/" target="_blank">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="/" target="_blank">
+              <i class="fa-brands fa-google-plus-g"></i>
+            </a>
+            <a href="/" target="_blank">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+          <!-- <ul class="mt-40 info">
+              <li>
+                <span>Giới tính</span>
+                : Nam
+              </li>
+              <li>
+                <span>Ngày sinh</span>
+                : 19/05/2000
+              </li>
+              <li>
+                <span>Điện thoại</span>
+                : (+84) 912398xxx
+              </li>
+              <li>
+                <span>Email</span>
+                : sinhvien@funix.edu.vn
+              </li>
+              <li>
+                <span>Địa chỉ</span>
+                : Số 10, đường 10, Hà Nội
+              </li>
+              <li>
+                <span>Website</span>
+                : https://abc.tech
+              </li>
+            </ul> -->
+        </div>
+      </section>
+      <section class="section-gap">
+        <div class="experience">
+          <div class="section-title">
+            Kinh nghiệm
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <div class="timeline">
+            <div class="section-content">
+              <div class="title">Full Stack Developer - Công ty Y</div>
+              <div class="sub-title">
+                05/2022 -
+                <span class="btn-primary">Hiện tại</span>
+              </div>
+              <div class="content">
+                <p>
+                  - Xây dựng, phát triễn Website dựa trên thiết kế và yêu cầu đã
+                  có.
+                </p>
+                <p>
+                  - Phân tích và thiết kế Database, sử dụng các hệ quản trị CSDL
+                  (MySQL, SQLServer, NoSQL, …) và viết được các câu truy vấn.
+                </p>
+                <p>
+                  - Sử dụng ngôn ngữ server-side (Python, Java, …) để xây dựng
+                  các Web Server.
+                </p>
+              </div>
+            </div>
+            <div class="section-content">
+              <div class="title">Web designer - Công ty X</div>
+              <div class="sub-title">
+                06/2021 -
+                <span class="btn-primary">04/2022</span>
+              </div>
+              <div class="content">
+                <p>- Thiết kế Website dựa trên yêu cầu của khách hàng.</p>
+                <p>- Sử dụng các công cụ: Figma, Canva, PTS.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="education">
+          <div class="section-title">
+            Học vấn
+            <i class="fa-solid fa-pencil-ruler"></i>
+          </div>
+          <div class="timeline">
+            <div class="section-content">
+              <div class="title">FUNiX</div>
+              <div class="sub-title">06/2021 - 05/2022</div>
+              <div class="content">
+                <p>- Tốt nghiệp chứng chỉ doanh nghiệp nhánh Fullstack.</p>
+                <p>- GPA: 9 / 10</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <div class="title">Cử nhân - ĐH FPT</div>
+              <div class="sub-title">08/2016 - 07/2019</div>
+              <div class="content">
+                <p>- Chuyên ngành: Kỹ thuật phần mềm.</p>
+                <p>- GPA: 3.2 / 4</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="activities">
+          <div class="section-title">
+            Hoạt động
+            <i class="fa-solid fa-pencil-ruler"></i>
+          </div>
+          <div class="timeline">
+            <div class="section-content">
+              <div class="title">FPT Edu Hackathon 2019</div>
+              <div class="sub-title">02/2019 - 05/2019</div>
+              <div class="content">
+                <p>- Giải 3 bảng A</p>
+                <p>- Đề tài: Trang web về phân loại rác thải.</p>
+              </div>
+            </div>
+            <div class="section-content">
+              <div class="title">Câu lạc bộ Z</div>
+              <div class="sub-title">08/2016 - 08/2017</div>
+              <div class="content">
+                <p>- Trưởng ban chuyên môn</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="skill">
+          <div class="section-title">
+            Kỹ năng
+            <i class="fa-solid fa-tools"></i>
+          </div>
+          <div class="section-content">
+            <div class="title">HTML/CSS: Fundamental</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+            <div class="exp-bar"></div>
+          </div>
+          <div class="section-content">
+            <div class="title">Javascript: Intermediate</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+          </div>
+          <div class="section-content">
+            <div class="title">NodeJS: Intermediate</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+          </div>
+          <div class="section-content">
+            <div class="title">Bootstrap 5: Fundamental</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+            <div class="exp-bar"></div>
+          </div>
+        </div>
+        <div id="language">
+          <div class="section-title">
+            Ngoại ngữ
+            <i class="fa-solid fa-language"></i>
+          </div>
+          <div class="section-content">
+            <div class="title">Tiếng Anh-IELTS 7.0</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+          </div>
+          <div class="section-content">
+            <div class="title">Tiếng Nhật -JLPT N4</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+            <div class="exp-bar"></div>
+          </div>
+        </div>
+      </section>
+      <!-- <section id="job-info">
+        <div class="container">
+          <div style="margin-top: 20px">
+            <h1>Kinh nghiệm</h1>
+          </div>
+          <div style="margin-top: 20px">
+            <h1>Học vấn</h1>
+          </div>
+          <div style="margin-top: 20px">
+            <h1>Hoạt động</h1>
+          </div>
+          <div style="margin-top: 20px">
+            <h1>Sở thích</h1>
+          </div>
+          <div style="margin-top: 20px">
+            <h1>Ngôn ngữ</h1>
+          </div>
+          <div style="margin-top: 20px">
+            <h1>Kỹ năng</h1>
+          </div>
+        </div>
+      </section> -->
 
-	<section id="about" class="bg-grey">
-		<div class="container">
-			<div id="target">
-				<h1 class="section-title">Mục tiêu nghề nghiệp</h1>
-				<p>
-					Là một sinh viên đã hoàn thành chương trình chứng chỉ Doanh
-					Nghiệp của FUNiX. Em mong muốn mình sẽ được làm việc với vị
-					trí <b>Fullstack Developer</b>, có thể vận dụng những kiến
-					thức đã được trau dồi và không ngừng học hỏi để phát triển
-					bản thân, cũng như hoàn thành tốt nhất công việc được giao.
-				</p>
-			</div>
-			<div id="personal-info" style="margin-top: 20px">
-				<h1 class="section-title">Thông tin cá nhân</h1>
-				<ul class="mt-40 info">
-					<li><span>Giới tính</span> : Nam</li>
-					<li><span>Ngày sinh</span> : 19/05/2000</li>
-					<li><span>Điện thoại</span> : (+84) 912398xxx</li>
-					<li><span>Email</span> : sinhvien@funix.edu.vn</li>
-					<li><span>Địa chỉ</span> : Số 10, đường 10, Hà Nội</li>
-					<li><span>Website</span> : https://abc.tech</li>
-				</ul>
-			</div>
-		</div>
-	</section>
+      <section id="certificate" class="bg-grey">
+        <div class="container">
+          <h1 class="section-title">Chứng chỉ - Giải thưởng</h1>
+        </div>
+      </section>
 
-	<section id="job-info">
-		<div class="container">
-			<div style="margin-top: 20px">
-				<h1>Kinh nghiệm</h1>
-			</div>
-			<div style="margin-top: 20px">
-				<h1>Học vấn</h1>
-			</div>
-			<div style="margin-top: 20px">
-				<h1>Hoạt động</h1>
-			</div>
-			<div style="margin-top: 20px">
-				<h1>Sở thích</h1>
-			</div>
-			<div style="margin-top: 20px">
-				<h1>Ngôn ngữ</h1>
-			</div>
-			<div style="margin-top: 20px">
-				<h1>Kỹ năng</h1>
-			</div>
-		</div>
-	</section>
-	<section id="certificate" class="bg-grey">
-		<div class="container">
-			<h1 class="section-title">
-				Chứng chỉ - Giải thưởng
-			</h1>
-		</div>
-	</section>
+      <section id="project">
+        <div class="container">
+          <h1 class="section-title">Dự án</h1>
+        </div>
+      </section>
+    </main>
 
-	<section id="project">
-		<div class="container">
-			<h1 class="section-title">
-				Dự án
-			</h1>
-		</div>
-	</section>
-
-	<section id="footer" class="bg-grey">
-		<div class="container">
-			<ul>
-				<li>Facebook</li>
-				<li>Linkedin</li>
-				<li>Github</li>
-			</ul>
-		</div>
-	</section>
-</body>
+    <section id="footer" class="bg-grey">
+      <div class="container">
+        <ul>
+          <li>Facebook</li>
+          <li>Linkedin</li>
+          <li>Github</li>
+        </ul>
+      </div>
+    </section>
+  </body>
 </html>
