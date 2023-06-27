@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/font.css" />
-    <title>Assignment 02</title>
+    <title>Assignment 02-LÝ TRIỆU ĐẠT</title>
   </head>
   <body>
+    <!-- HEADER -->
     <header>
+      <!-- TOP BANNER -->
       <div id="banner">
         <img src="images/banner.jpg" alt="" />
         <div class="banner_title">
@@ -17,49 +19,41 @@
           <span>Full Stack Developer</span>
         </div>
       </div>
-
+      <!-- NAV BAR -->
       <section>
         <nav>
-          <div class="item">
-            <a href="#info">
-              <i class="icon-user"></i>
-              Thông tin
-            </a>
-          </div>
-          <div class="item">
-            <a href="#experience">
-              <i class="icon-doc-text-inv"></i>
-              Lý lịch
-            </a>
-          </div>
-          <div class="item nav-brand">
+          <a class="item" href="#info">
+            <i class="icon-user"></i>
+            Thông tin
+          </a>
+          <a class="item" href="#experience">
+            <i class="icon-doc-text-inv"></i>
+            Lý lịch
+          </a>
+          <!-- AVATAR -->
+          <div class="nav-brand">
             <a href="#banner">
-              <img
-                src="images/default-avatar.webp"
-                alt="avatar"
-                class="brand-img" />
+              <img src="images/avatar.jpg" alt="avatar" class="brand-img" />
             </a>
           </div>
-          <div class="item">
-            <a href="#certificate">
-              <i class="icon-mail-alt"></i>
-              Chứng chỉ
-            </a>
-          </div>
-          <div class="item">
-            <a href="#project">
-              <i class="icon-star-1"></i>
-              Dự án
-            </a>
-          </div>
+          <a class="item" href="#certificate">
+            <i class="icon-mail-alt"></i>
+            Chứng chỉ
+          </a>
+          <a class="item" href="#project">
+            <i class="icon-star-1"></i>
+            Dự án
+          </a>
         </nav>
       </section>
     </header>
+    <!-- MAIN -->
     <main>
+      <!-- ABOUT -->
       <section id="about">
         <div id="target">
           <div class="section-title">Mục tiêu nghề nghiệp</div>
-          <div class="section-content" style="margin-top: 20px">
+          <div class="section-content">
             Là một sinh viên đã hoàn thành chương trình chứng chỉ Doanh Nghiệp
             của FUNiX. Em mong muốn mình sẽ được làm việc với vị trí
             <b>Fullstack Developer</b>
@@ -96,17 +90,17 @@
               http://abc.com
             </div>
           </div>
-          <div style="margin-top: 15px; color: rgb(4, 119, 233)">
-            <a href="/" target="_blank">
+          <div class="social-site">
+            <a href="#" target="_blank">
               <i class="icon-twitter"></i>
             </a>
-            <a href="/" target="_blank">
+            <a href="#" target="_blank">
               <i class="icon-facebook"></i>
             </a>
-            <a href="/" target="_blank">
+            <a href="#" target="_blank">
               <i class="icon-gplus"></i>
             </a>
-            <a href="/" target="_blank">
+            <a href="#" target="_blank">
               <i class="icon-linkedin"></i>
             </a>
           </div>
@@ -138,10 +132,12 @@
             </ul> -->
         </div>
       </section>
-      <section class="section-gap">
-        <div class="experience">
+      <!-- SUMMARY -->
+      <section class="section-summary">
+        <!-- EXPERIENCE -->
+        <div id="experience">
           <div class="section-title">
-            Kinh nghiệm
+            <p>Kinh nghiệm</p>
             <i class="ic-toolbox"></i>
           </div>
           <div class="timeline">
@@ -168,10 +164,7 @@
             </div>
             <div class="section-content">
               <div class="title">Web designer - Công ty X</div>
-              <div class="sub-title">
-                06/2021 -
-                <span class="btn-primary">04/2022</span>
-              </div>
+              <div class="sub-title">06/2021 - 04/2022</div>
               <div class="content">
                 <p>- Thiết kế Website dựa trên yêu cầu của khách hàng.</p>
                 <p>- Sử dụng các công cụ: Figma, Canva, PTS.</p>
@@ -179,9 +172,10 @@
             </div>
           </div>
         </div>
-        <div class="education">
+        <!-- EDUCATION -->
+        <div id="education">
           <div class="section-title">
-            Học vấn
+            <p>Học vấn</p>
             <i class="ic-pencil"></i>
           </div>
           <div class="timeline">
@@ -203,9 +197,10 @@
             </div>
           </div>
         </div>
-        <div class="activities">
+        <!-- ACTIVITIES -->
+        <div id="activities">
           <div class="section-title">
-            Hoạt động
+            <p>Hoạt động</p>
             <i class="ic-toolbox"></i>
           </div>
           <div class="timeline">
@@ -226,57 +221,10 @@
             </div>
           </div>
         </div>
-        <div id="skill">
-          <div class="section-title">
-            Kỹ năng
-            <i class="ic-tools-2"></i>
-          </div>
-          <div class="section-content">
-            <div class="title">HTML/CSS: Fundamental</div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar"></div>
-            <div class="exp-bar"></div>
-          </div>
-          <div class="section-content">
-            <div class="title">Javascript: Intermediate</div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar"></div>
-          </div>
-          <div class="section-content">
-            <div class="title">NodeJS: Intermediate</div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar"></div>
-          </div>
-          <div class="section-content">
-            <div class="title">Bootstrap 5: Fundamental</div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar"></div>
-            <div class="exp-bar"></div>
-          </div>
-        </div>
-        <div id="language">
-          <div class="section-title">
-            Ngoại ngữ
-            <i class="ic-mic"></i>
-          </div>
-          <div class="section-content">
-            <div class="title">Tiếng Anh-IELTS 7.0</div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar"></div>
-          </div>
-          <div class="section-content">
-            <div class="title">Tiếng Nhật -JLPT N4</div>
-            <div class="exp-bar fill"></div>
-            <div class="exp-bar"></div>
-            <div class="exp-bar"></div>
-          </div>
-        </div>
+        <!-- HOBBY -->
         <div id="hobby">
           <div class="section-title">
-            Sở thích
+            <p>Sở thích</p>
             <i class="ic-telescope"></i>
           </div>
           <div class="content">
@@ -298,30 +246,58 @@
             </div>
           </div>
         </div>
-      </section>
-      <!-- <section id="job-info">
-        <div class="container">
-          <div style="margin-top: 20px">
-            <h1>Kinh nghiệm</h1>
+        <!-- LANGUAGE -->
+        <div id="language">
+          <div class="section-title">
+            <p>Ngoại ngữ</p>
+            <i class="ic-mic"></i>
           </div>
-          <div style="margin-top: 20px">
-            <h1>Học vấn</h1>
+          <div class="section-content">
+            <div class="title">Tiếng Anh-IELTS 7.0</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
           </div>
-          <div style="margin-top: 20px">
-            <h1>Hoạt động</h1>
-          </div>
-          <div style="margin-top: 20px">
-            <h1>Sở thích</h1>
-          </div>
-          <div style="margin-top: 20px">
-            <h1>Ngôn ngữ</h1>
-          </div>
-          <div style="margin-top: 20px">
-            <h1>Kỹ năng</h1>
+          <div class="section-content">
+            <div class="title">Tiếng Nhật -JLPT N4</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+            <div class="exp-bar"></div>
           </div>
         </div>
-      </section> -->
-
+        <!-- SKILL -->
+        <div id="skill">
+          <div class="section-title">
+            <p>Kỹ năng</p>
+            <i class="ic-tools-2"></i>
+          </div>
+          <div class="section-content">
+            <div class="title">HTML/CSS: Fundamental</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+            <div class="exp-bar"></div>
+          </div>
+          <div class="section-content">
+            <div class="title">Javascript: Intermediate</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+          </div>
+          <div class="section-content">
+            <div class="title">NodeJS: Intermediate</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar fill"></div>
+          </div>
+          <div class="section-content">
+            <div class="title">Bootstrap 5: Fundamental</div>
+            <div class="exp-bar fill"></div>
+            <div class="exp-bar"></div>
+            <div class="exp-bar"></div>
+          </div>
+        </div>
+      </section>
+      <!-- CERTIFICATE -->
       <section id="certificate">
         <div class="section-title">Chứng chỉ - Giải thưởng</div>
         <div class="section-content">
@@ -368,7 +344,7 @@
           </div>
         </div>
       </section>
-
+      <!-- PROJECT -->
       <section id="project">
         <div class="section-title">Dự án</div>
         <div class="section-content">
@@ -380,7 +356,7 @@
             <div class="sub-title">
               <i class="btn-primary">2021</i>
               <i class="icon-user-1"></i>
-              FUNix
+              FUNiX
               <i class="icon-lamp"></i>
               Developer
             </div>
@@ -411,7 +387,7 @@
             <div class="sub-title">
               <i class="btn-primary">2021</i>
               <i class="icon-user-1"></i>
-              FUNix
+              FUNiX
               <i class="icon-lamp"></i>
               Developer
             </div>
@@ -441,7 +417,7 @@
             <div class="sub-title">
               <i class="btn-primary">2021</i>
               <i class="icon-user-1"></i>
-              FUNix
+              FUNiX
               <i class="icon-lamp"></i>
               Developer
             </div>
@@ -466,17 +442,18 @@
         </div>
       </section>
     </main>
+    <!-- FOOTER -->
     <footer>
       <div class="section-content">
-        <a href="#">
+        <a href="#" target="_blank">
           <i class="icon-facebook-circled"></i>
           Facebook
         </a>
-        <a href="#">
+        <a href="#" target="_blank">
           <i class="icon-linkedin-circled"></i>
           Linkedin
         </a>
-        <a href="#">
+        <a href="#" target="_blank">
           <i class="icon-github-circled"></i>
           Github
         </a>

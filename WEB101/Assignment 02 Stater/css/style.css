@@ -1,6 +1,8 @@
 /* CSS GENERAL */
 :root {
-  --color-primary: rgb(4, 119, 233);
+  --color-primary: rgb(25, 156, 219);
+  --color-border: rgb(204, 204, 204);
+  --color-font: grey;
 }
 * {
   box-sizing: border-box;
@@ -8,33 +10,31 @@
   padding: 0;
 }
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--color-font);
 }
 a {
   text-decoration: none;
+  color: var(--color-primary);
 }
 img {
   width: 100%;
 }
 section {
   display: flex;
-  padding: 20px;
-  margin-bottom: 20px;
 }
-.section-gap {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: center;
-}
-.section-title {
-  font-size: 1.3em;
-  font-weight: bold;
+
+.sub-title {
   display: flex;
-  justify-content: space-between;
+  padding: 20px;
+  gap: 10px;
 }
-.section-content .title {
-  font-weight: bold;
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  padding: 0px 5px;
+  color: white;
 }
 
 /* CSS TIMELINE */
@@ -50,19 +50,23 @@ section {
   padding-left: 25px;
   position: relative;
 }
-/* exp bar */
+
+/* EXPERIENCE BAR */
 .exp-bar {
-  width: 20px;
-  height: 3px;
-  background-color: gray;
+  width: 60px;
   display: inline-block;
   padding: 0;
+  border: 3px solid gray;
+  border-radius: 90px/100px;
 }
 .fill {
-  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
+/* END CSS GENERAL */
+
 /* HEADER */
-/* BANNER */
+
+/* TOP BANNER */
 #banner {
   position: relative;
   height: 300px;
@@ -78,66 +82,101 @@ section {
   width: 100%;
   text-align: center;
   color: white;
-  text-shadow: 0 2px gray;
 }
-/* NAVBAR */
+/* NAV BAR */
 nav {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 }
 nav > * {
-  text-align: center;
-  height: 50px;
+  height: 60px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  border-radius: 5px;
+  justify-content: center;
 }
-nav > *:hover {
-  background-color: orange;
+nav > * {
+  padding: 10px;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  width: 200px;
+  text-transform: uppercase;
+}
+nav .item:hover {
+  background-color: var(--color-primary);
   color: white;
 }
 .nav-brand {
   position: relative;
 }
 .brand-img {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 50%;
   border: 5px solid white;
   position: absolute;
   top: -40px;
-  left: -40px;
+  left: 25px;
 }
-/* .bg-grey {
-  background: #f7f7f7;
-} */
+
 /* END HEADER */
 
 /* MAIN */
+/* ABOUT */
 #info {
-  background-color: pink;
+  background-color: rgb(235, 235, 235);
   flex: 1;
-  padding: 15px;
+  padding: 50px;
 }
 #target {
   flex: 1;
-  padding: 15px;
-  background-color: gray;
+  padding: 50px;
+  background-color: rgb(245, 245, 245);
+}
+.social-site {
+  margin-top: 20px;
+}
+.social-site i {
+  color: var(--color-primary);
 }
 
-.experience,
-.education,
-.activities,
+/* SUMMARY */
+#experience,
+#education,
+#activities,
 #skill,
 #language,
 #hobby {
   padding: 20px;
   margin: 10px;
-  border: 2px solid grey;
+  border: 1px solid #ccc;
+}
+.section-summary {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+.section-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.section-content .title {
+  font-weight: bold;
+}
+.section-title i {
+  font-size: larger;
+  flex: 25%;
+}
+.section-title p {
+  flex: 75%;
 }
 section .title {
   font-size: 1.1em;
@@ -146,6 +185,7 @@ section .title {
 section .sub-title {
   font-style: italic;
 }
+
 /* HOBBY */
 #hobby .content {
   display: flex;
@@ -160,29 +200,35 @@ section .sub-title {
 #hobby .content div i {
   color: var(--color-primary);
   display: inline-block;
-  width: 100%;
+  width: 60px;
+  height: 60px;
   flex: 1;
-  padding-bottom: 10px;
+  padding-top: 15px;
   font-size: 1.5em;
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
 }
+
 /* CERTIFICATE */
 #certificate {
+  margin-top: 10px;
+  padding: 20px;
   background-color: rgb(240, 240, 240);
+  display: flex;
+  flex-direction: column;
 }
 #certificate .section-content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
 }
-.card {
+#certificate .card {
   display: flex;
-  gap: 20px;
   font-size: 14px;
+  border-bottom: 1px solid #d6c08d;
+  padding: 20px 0;
+  gap: 20px;
 }
-/* .card img {
-  flex: 0.3;
-  object-fit: contain;
-} */
+
 .card-text {
   flex: 0.7;
 }
@@ -193,9 +239,13 @@ section .sub-title {
   flex: 0.3;
   object-fit: contain;
 }
+
 /* PROJECT */
 #project {
+  margin-top: 20px;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
 }
 #project .section-content {
   display: grid;
@@ -205,18 +255,18 @@ section .sub-title {
 }
 #project .card {
   flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--color-border);
 }
 #project .card img {
   height: 180px;
   object-fit: cover;
 }
-.sub-title {
-  display: flex;
-  gap: 10px;
-}
+
 .card .content > div {
   display: flex;
-  gap: 5px;
+  padding: 10px;
+  border-top: 1px solid var(--color-border);
 }
 .card .content > div p:first-child {
   flex: 0.25;
@@ -227,69 +277,29 @@ section .sub-title {
 #project .content {
   font-size: 12px;
 }
+
+#project h3 {
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
 /* END MAIN */
 
 /* FOOTER */
+footer {
+  background-color: #f7f7f7;
+  margin-top: 20px;
+  padding: 30px;
+}
 footer .section-content {
   text-align: center;
-  height: 100px;
 }
 
-footer .section-content a {
+footer a {
   padding: 10px;
   display: inline-block;
   font-size: 1.5em;
+  color: var(--color-font);
+}
+footer i {
   color: var(--color-primary);
 }
-
-footer .section-content a:hover {
-  background-color: var(--color-primary);
-  color: aliceblue;
-  border-radius: 10px;
-}
-/* section > .container {
-  width: 1170px;
-  margin: auto;
-  display: block;
-
-  padding: 30px 50px;
-}
-
-#nav-bar {
-  text-align: center;
-} */
-
-/* #project {
-  display: flex;
-  flex-wrap: wrap;
-}
-#project .section-title {
-  width: 100%;
-}
-#project .section-content {
-  flex: 1;
-  margin: 0 10px;
-}
-
-#project .section-content > div:first-child {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 230px;
-  z-index: 20;
-  top: 0;
-  margin-bottom: 20px;
-  
-}
-.project-new {
-  background-image: url("images/project_3.png");
-}
-.project-cv {
-  background-image: url("images/project_2.png");
-}
-#project .section-content > div p:last-child {
-  width: 30%;
-}
-#project .section-content > div p:last-child {
-  flex: 1;
-} */
