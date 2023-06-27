@@ -22,7 +22,10 @@ section {
   margin-bottom: 20px;
 }
 .section-gap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  justify-content: center;
 }
 .section-title {
   font-size: 1.3em;
@@ -146,6 +149,7 @@ section .sub-title {
 /* HOBBY */
 #hobby .content {
   display: flex;
+  flex-wrap: wrap;
 }
 #hobby .content div {
   text-align: center;
