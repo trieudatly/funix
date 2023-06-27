@@ -4,15 +4,22 @@
 }
 * {
   box-sizing: border-box;
-  margin: 0px;
-  /* border: red dotted 1px; */
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 a {
   text-decoration: none;
 }
+img {
+  width: 100%;
+}
 section {
   display: flex;
-  /* padding: 20px; */
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .section-gap {
   gap: 20px;
@@ -26,12 +33,27 @@ section {
 .section-content .title {
   font-weight: bold;
 }
+
+/* CSS TIMELINE */
+.timeline .title::before {
+  position: absolute;
+  content: "\2022";
+  font-size: 1.5em;
+  top: 0px;
+  left: 0;
+  color: var(--color-primary);
+}
+.timeline .section-content {
+  padding-left: 25px;
+  position: relative;
+}
 /* exp bar */
 .exp-bar {
   width: 20px;
   height: 3px;
   background-color: gray;
   display: inline-block;
+  padding: 0;
 }
 .fill {
   background-color: var(--color-primary);
@@ -74,9 +96,22 @@ nav > *:hover {
   background-color: orange;
   color: white;
 }
-.bg-grey {
-  background: #f7f7f7;
+.nav-brand {
+  position: relative;
 }
+.brand-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid white;
+  position: absolute;
+  top: -40px;
+  left: -40px;
+}
+/* .bg-grey {
+  background: #f7f7f7;
+} */
 /* END HEADER */
 
 /* MAIN */
@@ -90,14 +125,124 @@ nav > *:hover {
   padding: 15px;
   background-color: gray;
 }
-#info,
-#target,
-#experience,
+
+.experience,
+.education,
+.activities,
 #skill,
-#langage {
+#language,
+#hobby {
   padding: 20px;
+  margin: 10px;
+  border: 2px solid grey;
+}
+section .title {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+section .sub-title {
+  font-style: italic;
+}
+/* HOBBY */
+#hobby .content {
+  display: flex;
+}
+#hobby .content div {
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+  margin: 10px;
+}
+#hobby .content div i {
+  color: var(--color-primary);
+  display: inline-block;
+  width: 100%;
+  flex: 1;
+  padding-bottom: 10px;
+  font-size: 1.5em;
+}
+/* CERTIFICATE */
+#certificate {
+  background-color: rgb(240, 240, 240);
+}
+#certificate .section-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.card {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+/* .card img {
+  flex: 0.3;
+  object-fit: contain;
+} */
+.card-text {
+  flex: 0.7;
+}
+.card h4 {
+  font-weight: 500;
+}
+.card-image {
+  flex: 0.3;
+  object-fit: contain;
+}
+/* PROJECT */
+#project {
+  padding: 0 20px;
+}
+#project .section-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex-direction: column;
+  column-gap: 20px;
+}
+#project .card {
+  flex-direction: column;
+}
+#project .card img {
+  height: 180px;
+  object-fit: cover;
+}
+.sub-title {
+  display: flex;
+  gap: 10px;
+}
+.card .content > div {
+  display: flex;
+  gap: 5px;
+}
+.card .content > div p:first-child {
+  flex: 0.25;
+}
+.card .content > div p:last-child {
+  flex: 0.75;
+}
+#project .content {
+  font-size: 12px;
 }
 /* END MAIN */
+
+/* FOOTER */
+footer .section-content {
+  text-align: center;
+  height: 100px;
+}
+
+footer .section-content a {
+  padding: 10px;
+  display: inline-block;
+  font-size: 1.5em;
+  color: var(--color-primary);
+}
+
+footer .section-content a:hover {
+  background-color: var(--color-primary);
+  color: aliceblue;
+  border-radius: 10px;
+}
 /* section > .container {
   width: 1170px;
   margin: auto;
@@ -108,4 +253,39 @@ nav > *:hover {
 
 #nav-bar {
   text-align: center;
+} */
+
+/* #project {
+  display: flex;
+  flex-wrap: wrap;
+}
+#project .section-title {
+  width: 100%;
+}
+#project .section-content {
+  flex: 1;
+  margin: 0 10px;
+}
+
+#project .section-content > div:first-child {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 230px;
+  z-index: 20;
+  top: 0;
+  margin-bottom: 20px;
+  
+}
+.project-new {
+  background-image: url("images/project_3.png");
+}
+.project-cv {
+  background-image: url("images/project_2.png");
+}
+#project .section-content > div p:last-child {
+  width: 30%;
+}
+#project .section-content > div p:last-child {
+  flex: 1;
 } */
