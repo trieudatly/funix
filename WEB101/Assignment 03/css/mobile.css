@@ -1,6 +1,9 @@
 .nav-bar a {
   text-align: start !important;
+  font-size: medium;
+  font-weight: 600;
 }
-.section-summary {
-  grid-template-columns: minmax(100px, 576px);
+
+.border-left-cer {
+  border-left: none !important;
 }

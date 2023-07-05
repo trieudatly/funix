@@ -1,44 +1,52 @@
-/* CSS GENERAL */
 :root {
-  --color-primary: rgb(25, 156, 219);
-  --color-border: rgb(204, 204, 204);
-  --color-font: grey;
-}
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: var(--color-font);
+  --color-primary: #0d6efd;
+  --color-border: gray;
+  --color-border-cer: #d6c08d;
 }
 a {
   text-decoration: none;
-  color: var(--color-primary);
-}
-img {
-  width: 100%;
-}
-section {
-  display: flex;
+  color: grey;
 }
 
-.sub-title {
-  display: flex;
-  padding: 20px;
-  gap: 10px;
+.border-left-cer {
+  border-left: 1px solid var(--color-border-cer) !important;
+}
+.border-bottom-cer {
+  border-bottom: 1px solid var(--color-border-cer) !important;
 }
 
-.btn-primary {
+.banner {
+  background-image: url("../images/banner.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 300px;
+}
+
+.brand-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid white;
+  position: absolute;
+  left: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.hover-effect:hover {
+  text-decoration: none;
+  color: white !important;
   background-color: var(--color-primary);
-  border-radius: 10px;
-  padding: 0px 5px;
-  color: white;
 }
-#error-email {
-  color: red;
-  font-weight: 700;
+#info .section-content {
+  display: none;
+}
+.card-text {
+  display: none;
+}
+.view-more {
+  display: none;
 }
 /* CSS TIMELINE */
 .timeline .title::before {
@@ -62,145 +70,9 @@ section {
   border: 3px solid gray;
   border-radius: 90px/100px;
 }
-.fill {
-  border-color: var(--color-primary);
+.card {
+  min-height: 125px;
 }
-/* END CSS GENERAL */
-
-/* HEADER */
-
-/* TOP BANNER */
-#banner {
-  position: relative;
-  height: 300px;
-}
-#banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.banner_title {
-  position: absolute;
-  top: 30%;
-  width: 100%;
-  text-align: center;
-  color: white;
-}
-/* NAV BAR */
-nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-nav > * {
-  height: 60px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-nav > * {
-  padding: 10px;
-  border-left: 1px solid var(--color-border);
-  border-right: 1px solid var(--color-border);
-  width: 200px;
-  text-transform: uppercase;
-}
-nav .item:hover {
-  background-color: var(--color-primary);
-  color: white;
-}
-.nav-brand {
-  position: relative;
-}
-.brand-img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid white;
-  position: absolute;
-  top: -40px;
-  left: 25px;
-}
-
-/* END HEADER */
-
-/* MAIN */
-/* ABOUT */
-
-#info {
-  background-color: rgb(235, 235, 235);
-  flex: 1;
-  padding: 50px;
-}
-/* ẩn thông tin user đến khi submit email */
-#info .section-content {
-  display: none;
-}
-#target {
-  flex: 1;
-  padding: 50px;
-  background-color: rgb(245, 245, 245);
-}
-.social-site {
-  margin-top: 20px;
-}
-.social-site i {
-  color: var(--color-primary);
-}
-
-/* SUMMARY */
-#experience,
-#education,
-#activities,
-#skill,
-#language,
-#hobby {
-  padding: 20px;
-  margin: 10px;
-  border: 1px solid #ccc;
-  min-height: 160px;
-}
-.section-summary {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: center;
-}
-.section-title {
-  font-size: 1.5em;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.section-content .title {
-  font-weight: bold;
-}
-.section-title i {
-  font-size: larger;
-  flex: 25%;
-}
-.section-title p {
-  flex: 75%;
-}
-section .title {
-  font-size: 1.1em;
-  font-weight: bold;
-}
-section .sub-title {
-  font-style: italic;
-}
-.view {
-  display: none;
-}
-.view-more {
-  display: none;
-}
-/* HOBBY */
 #hobby .content {
   display: flex;
   flex-wrap: wrap;
@@ -221,99 +93,4 @@ section .sub-title {
   font-size: 1.5em;
   border: 1px solid var(--color-primary);
   border-radius: 50%;
-}
-
-/* CERTIFICATE */
-#certificate {
-  margin-top: 10px;
-  padding: 20px;
-  background-color: rgb(240, 240, 240);
-  display: flex;
-  flex-direction: column;
-}
-#certificate .section-content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-#certificate .card {
-  display: flex;
-  font-size: 14px;
-  border-bottom: 1px solid #d6c08d;
-  padding: 20px 0;
-  gap: 20px;
-}
-
-.card-text {
-  flex: 0.7;
-}
-.card h4 {
-  font-weight: bold;
-}
-.card-image {
-  flex: 0.3;
-  object-fit: contain;
-}
-
-/* PROJECT */
-#project {
-  margin-top: 20px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-}
-#project .section-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  flex-direction: column;
-  column-gap: 20px;
-}
-#project .card {
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--color-border);
-}
-#project .card img {
-  height: 180px;
-  object-fit: cover;
-}
-
-.card .content > div {
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid var(--color-border);
-}
-.card .content > div p:first-child {
-  flex: 0.25;
-}
-.card .content > div p:last-child {
-  flex: 0.75;
-}
-#project .content {
-  font-size: 12px;
-}
-
-#project h3 {
-  padding: 20px;
-  border-bottom: 1px solid var(--color-border);
-}
-/* END MAIN */
-
-/* FOOTER */
-footer {
-  background-color: #f7f7f7;
-  margin-top: 20px;
-  padding: 30px;
-}
-footer .section-content {
-  text-align: center;
-}
-
-footer a {
-  padding: 10px;
-  display: inline-block;
-  font-size: 1.5em;
-  color: var(--color-font);
-}
-footer i {
-  color: var(--color-primary);
 }
