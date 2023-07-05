@@ -31,7 +31,7 @@ function handleOnMouseOut(element) {
   viewMore.style.display = "none";
 }
 function handleViewMore(element) {
-  const view = element.parentNode.parentNode.querySelector(".view");
+  const view = element.parentNode.parentNode.querySelector(".card-text");
   if (view.style.display == "none") {
     view.style.display = "block";
     element.innerText = "View less";

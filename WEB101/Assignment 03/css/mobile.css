@@ -1,2 +1,6 @@
-@media screen and (max-width: 576px) {
+.nav-bar a {
+  text-align: start !important;
+}
+.section-summary {
+  grid-template-columns: minmax(100px, 576px);
 }
