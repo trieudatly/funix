@@ -1,0 +1,23 @@
+:root {
+  --color-primary: #0d6efd;
+  --color-border: gray;
+  --color-border-cer: #d6c08d;
+}
+@media screen and (min-width: 576px) {
+  .goals,
+  .scopes {
+    border-left: none !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  .goals,
+  .scopes,
+  .team-primary,
+  .timeline {
+    border-left: none !important;
+  }
+  .timeline,
+  .team {
+    border-top: solid;
+  }
+}
