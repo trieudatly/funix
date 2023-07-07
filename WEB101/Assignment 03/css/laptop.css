@@ -3,25 +3,30 @@
   --color-border: gray;
   --color-border-cer: #d6c08d;
 }
+/* bỏ gạch chân của thẻ a, đổi thành màu xám */
 a {
   text-decoration: none;
   color: grey;
 }
-
+/* border trái của certificate */
 .border-left-cer {
   border-left: 1px solid var(--color-border-cer) !important;
 }
+/* border bên dưới của certificate */
 .border-bottom-cer {
   border-bottom: 1px solid var(--color-border-cer) !important;
 }
 
+/* BANNER */
+/* ảnh nền cho banner */
 .banner {
   background-image: url("../images/banner.jpg");
   background-position: center;
   background-size: cover;
   height: 300px;
 }
-
+/* NAV-BAR */
+/* ảnh avatar, với viền tròn */
 .brand-img {
   width: 150px;
   height: 150px;
@@ -34,17 +39,27 @@ a {
   transform: translateY(-50%) translateX(-50%);
 }
 
+/* hiểu ứng khi trỏ chuột lên thẻ, đổi màu text thành trắng, nền thành color-primary   */
 .hover-effect:hover {
-  text-decoration: none;
   color: white !important;
   background-color: var(--color-primary);
 }
+/* INFO */
+/* ẩn thông tin cá nhân */
 #info .section-content {
   display: none;
 }
+/* SUMMARY */
+/* chiều cao tối thiểu của tất cả thẻ card, để khi hiện nút view more
+chiều cáo các card vẫn đều nhau */
+.card {
+  min-height: 125px;
+}
+/* ẩn các thẻ trong summary */
 .card-text {
   display: none;
 }
+/* ẩn nút view more */
 .view-more {
   display: none;
 }
@@ -70,9 +85,8 @@ a {
   border: 3px solid gray;
   border-radius: 90px/100px;
 }
-.card {
-  min-height: 125px;
-}
+/* HOBBY */
+/* Các thành phần bên trong tự xuống dòng khi web co giãn */
 #hobby .content {
   display: flex;
   flex-wrap: wrap;
@@ -83,6 +97,7 @@ a {
   white-space: nowrap;
   margin: 10px;
 }
+/* tạo viền tròn cho các hobby */
 #hobby .content div i {
   color: var(--color-primary);
   display: inline-block;

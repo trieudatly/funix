@@ -1,14 +1,15 @@
-:root {
-  --color-primary: #0d6efd;
-  --color-border: gray;
-  --color-border-cer: #d6c08d;
+/* cạnh viền dày 15px */
+.border-15 {
+  border-width: 15px !important;
 }
+/* khi kích thước hiển thị chiều ngang lớn hơn hoặc bằng 576px */
 @media screen and (min-width: 576px) {
   .goals,
   .scopes {
     border-left: none !important;
   }
 }
+/* khi kích thước hiển thị chiều ngang nhỏ hơn hoặc bằng 991px */
 @media screen and (max-width: 991px) {
   .goals,
   .scopes,
@@ -20,4 +21,11 @@
   .team {
     border-top: solid;
   }
+}
+
+.cv,
+.pets,
+.news {
+  /* ẩn tất cả thẻ có class .cv .pets .news */
+  display: none;
 }

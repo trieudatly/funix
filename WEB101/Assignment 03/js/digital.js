@@ -1,20 +1,26 @@
-let title = document.querySelector("h1");
+//kiểm tra nếu nội dung url có bao gồm "project-pets"
 if (document.location.href.includes("project-pets")) {
+  //nếu có
+  //lấy tất cả element của thẻ có class ".pets"
   let all = document.querySelectorAll(".pets");
-  title.innerHTML = "Project - PET WEB";
+  //đổi web title thành "Project - PET WEB"
+  document.title = "Project - PET WEB";
+  //đổi style display tất cả các thẻ có class ".pets" thành "block"
   all.forEach((item) => {
-    item.style.display = "flex";
-  });
+    item.style.display = "block";
+  }); //nếu không
+  //kiểm tra với "project-cv"
 } else if (document.location.href.includes("project-cv")) {
   let all = document.querySelectorAll(".cv");
-  title.innerHTML = "Project - CV WEB";
+  document.title = "Project - CV WEB";
   all.forEach((item) => {
-    item.style.display = "flex";
+    item.style.display = "block";
   });
+  //kiểm tra với "project-news"
 } else if (document.location.href.includes("project-news")) {
   let all = document.querySelectorAll(".news");
-  title.innerHTML = "Project - NEWS WEB";
+  document.title = "Project - NEWS WEB";
   all.forEach((item) => {
-    item.style.display = "flex";
+    item.style.display = "block";
   });
 }
