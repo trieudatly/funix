@@ -9,5 +9,8 @@ public class Main {
         System.out.println(a.add(b));
         System.out.println(a.multiply(b));
 
+
+        }
+
     }
-}
+
