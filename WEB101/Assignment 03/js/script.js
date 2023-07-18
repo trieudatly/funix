@@ -45,7 +45,8 @@ function handleViewMore(element) {
   //lấy element để kiểm soát class ".card-text"
   const view = element.parentNode.parentNode.querySelector(".card-text");
   //nếu style display của ".card-text" là "none", tức là đang ẩn
-  if (view.style.display == "none") {
+  console.log(view.style.display);
+  if (view.style.display == "none" || !view.style.display) {
     //đổi style display thành "block", hiện thông tin cá nhân
     view.style.display = "block";
     //đổi văn bản nút view more thành view less
