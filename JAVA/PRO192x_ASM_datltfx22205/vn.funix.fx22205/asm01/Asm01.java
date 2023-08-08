@@ -268,11 +268,11 @@ public class Asm01 {
         //biến century để lưu thế kỷ của cccd
         int century = 0;
         switch (Integer.parseInt(cccd.substring(3, 4))) {
-            case 1:
+            case 0:
                 gender = "Nam";
                 century = 1900;
                 break;
-            case 0:
+            case 1:
                 gender = "Nu";
                 century = 1900;
                 break;
