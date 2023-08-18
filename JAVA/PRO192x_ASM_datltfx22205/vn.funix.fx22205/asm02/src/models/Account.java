@@ -29,11 +29,14 @@ public class Account {
     }
 
     public boolean isPremium() {
+        if (balance >= 10000000) {
+            return true;
+        }
         return false;
     }
 
     @Override
     public String toString() {
-        return accountNumber + "|" + balance;
+        return accountNumber + "|" + balance + " d";
     }
 }

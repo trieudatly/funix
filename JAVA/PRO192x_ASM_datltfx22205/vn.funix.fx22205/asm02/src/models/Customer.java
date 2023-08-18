@@ -13,15 +13,24 @@ public class Customer extends User {
         return false;
     }
 
-    public void addAcount(Account newAccount) {
+    public void addAcount() {
 
     }
 
-    public void getBanlance() {
-
+    public double getBanlance() {
+        double totalBanlance = 0;
+        for (Account acc : accounts
+        ) {
+            totalBanlance += acc.getBalance();
+        }
+        return totalBanlance;
     }
 
     public void displayinformation() {
-
+        System.out.println(getCustomerId() + " " + getName() + " " + isPremium() + " " + getBanlance());
+        for (Account acc : accounts
+        ) {
+            System.out.println(acc.toString());
+        }
     }
 }
