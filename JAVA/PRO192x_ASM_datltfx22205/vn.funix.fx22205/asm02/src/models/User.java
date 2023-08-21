@@ -12,6 +12,8 @@ public class User {
     private String customerId;
 
     public User() {
+        setName();
+        setCustomerId();
     }
 
     public String getName() {
@@ -23,7 +25,7 @@ public class User {
     }
 
     public void setName() {
-        sc.nextLine();
+        //sc.nextLine();
         System.out.print("Nhap ten: ");
         this.name = sc.nextLine();
     }
@@ -39,7 +41,7 @@ public class User {
     //Xử lý CCCD
     private void setCustomerId() {
         String cccd = "";
-        sc.nextLine();
+        //sc.nextLine();
         while (true) {
             System.out.print("Nhap so CCCD: ");
             //tạo 1 String với pattern dùng dể so khớp

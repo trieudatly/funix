@@ -1,11 +1,63 @@
 package models;
 
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 public class Account {
+    static Scanner sc = new Scanner(System.in);
     private String accountNumber;
     private double balance;
 
     public Account() {
+        String accNum = "";
+        String accBalance = "";
+        //sc.nextLine();
+        while (true) {
+            System.out.print("Nhap so ma tai khoan: ");
+            //tạo 1 String với pattern dùng dể so khớp
+            // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
+            // \\d tức là số bất kì từ 0-9
+            // {12} lặp lại 12 lần vì số CCCD có 12 chữ số
+            String cccdPattern = "^\\d{6}$";
+            //nhập CCCD, cắt bỏ khoảng trắng ở đầu đuôi,tất cả viết thường
+            accNum = sc.nextLine().trim().toLowerCase();
+            if (accNum.compareTo("no") == 0) {
+                //nếu cccd bằng "no" => thoát
+                System.out.println("Bye Bye");
+                System.exit(0);
+            } else if (!Pattern.matches(cccdPattern, accNum)) {
+                //nếu cccd không khớp pattern => in thông báo lỗi
+                System.out.println("So ma tai khoan khong hop le.\nVui long nhap lai hoac 'No' de thoat");
+            } else {
+                //nếu cccd khớp pattern tức là cccd hợp lệ
+                accountNumber = accNum;
+                break;
+            }
+        }
+        while (true) {
+            System.out.print("Nhap so du tai khoan: ");
+            //tạo 1 String với pattern dùng dể so khớp
+            // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
+            // \\d tức là số bất kì từ 0-9
+            // {12} lặp lại 12 lần vì số CCCD có 12 chữ số
+            String cccdPattern = "^\\d+$";
+            //nhập CCCD, cắt bỏ khoảng trắng ở đầu đuôi,tất cả viết thường
+            accBalance = sc.nextLine().trim().toLowerCase();
+            if (accBalance.compareTo("no") == 0) {
+                //nếu cccd bằng "no" => thoát
+                System.out.println("Bye Bye");
+                System.exit(0);
+            } else if (!Pattern.matches(cccdPattern, accBalance)) {
+                //nếu cccd không khớp pattern => in thông báo lỗi
+                System.out.println("So ma tai khoan khong hop le.\nVui long nhap lai hoac 'No' de thoat");
+            } else {
+                //nếu cccd khớp pattern tức là cccd hợp lệ
+                balance = Double.parseDouble(accBalance);
+                break;
+            }
+        }
     }
+
 
     public Account(String accountNumber, double balance) {
         this.accountNumber = accountNumber;
@@ -37,6 +89,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return accountNumber + "|" + balance + " d";
+        return accountNumber + "|" + String.format("%,.0f", balance) + "đ";
     }
 }
