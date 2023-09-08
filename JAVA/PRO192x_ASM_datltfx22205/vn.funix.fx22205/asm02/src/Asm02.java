@@ -1,6 +1,8 @@
+import models.Account;
 import models.Bank;
 import models.Customer;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Asm02 {
@@ -28,15 +30,22 @@ public class Asm02 {
             }
             switch (choice) {
                 case 1:
-                    // Account acc = new Account("123456", 10000000);
-                    //Account acc1 = new Account("123457", 10000000);
-                    Customer customer = new Customer();
-                    //customer.addAcount(acc);
-                    //customer.addAcount(acc1);
-                    customer.displayinformation();
+                    Account acc = new Account("123456", 10000000);
+                    Account acc1 = new Account("123457", 10000000);
+                    Customer customer = new Customer("Dat", "03745689111");
+                    customer.addAcount(acc);
+                    customer.addAcount(acc1);
+                    Bank bk = new Bank();
+                    bk.addCustomer(customer);
+                    List<Customer> list = bk.getCustomers();
+                    for (Customer cus : list
+                    ) {
+                        cus.displayinformation();
+                    }
+
                     break;
                 case 2:
-                    
+
                     break;
                 case 3:
 

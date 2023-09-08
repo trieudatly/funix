@@ -14,7 +14,7 @@ public class Bank {
     }
 
     public void addCustomer(Customer newCustomer) {
-
+        customers.add(newCustomer);
     }
 
     public void addAccount(String customerId, Account account) {

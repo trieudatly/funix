@@ -16,6 +16,11 @@ public class User {
         setCustomerId();
     }
 
+    public User(String name, String customerId) {
+        setName(name);
+        setCustomerId(customerId);
+    }
+
     public String getName() {
         return name;
     }
