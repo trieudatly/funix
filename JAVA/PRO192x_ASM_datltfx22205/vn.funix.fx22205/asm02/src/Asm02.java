@@ -1,6 +1,8 @@
 import models.Bank;
 import models.Customer;
+import models.User;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Asm02 {
@@ -12,6 +14,7 @@ public class Asm02 {
         //tạo 2 hằng lưu tác giả và phiên bản
         final String AUTHOR = "fx22205";
         final String VERSION = "2.0.0";
+        Bank bk = new Bank();
         //biến choice dùng để lưu lựa chọn của user
         int choice;
         //gọi phương thức menu với 2 tham số author và version
@@ -40,15 +43,35 @@ public class Asm02 {
                     //                    ) {
                     //                        cus.displayinformation();
                     //                    }
-                    Bank bk = new Bank();
+
                     bk.addCustomer(new Customer());
 
                     break;
                 case 2:
+                    int customerCheck = 0;
+                    while (customerCheck == 0) {
+                        String cccd = User.getCCCD();
+                        List<Customer> listCus = bk.getCustomers();
+                        for (Customer cus : listCus
+                        ) {
+                            if (cccd.equals(cus.getCustomerId())) {
+                                customerCheck++;
+                                cus.addAccount();
+                                break;
+                            }
+                        }
+                        if (customerCheck == 0) {
+                            System.out.println("Khach hang khong ton tai");
+                        }
+                    }
 
                     break;
                 case 3:
-
+                    List<Customer> list = bk.getCustomers();
+                    for (Customer cus : list
+                    ) {
+                        cus.displayinformation();
+                    }
                     break;
                 case 4:
 

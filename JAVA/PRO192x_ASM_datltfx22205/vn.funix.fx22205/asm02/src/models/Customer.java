@@ -25,18 +25,41 @@ public class Customer extends User {
         return isPremium;
     }
 
-    public void addAcount(Account acc) {
+    public void addAccount() {
+        int accountCheck = 0;
+        String accountInput = "";
+        while (accountCheck == 0) {
+            accountInput = Account.accountInput();
+            if (accounts.size() == 0) {
+                break;
+            }
+            for (Account account : accounts
+            ) {
+                if (accountInput.equals(account.getAccountNumber())) {
+                    System.out.println("tai khoan da ton tai");
+                    accountCheck = 0;
+                    break;
+                } else {
+                    accountCheck++;
+                }
+            }
+        }
+        accounts.add(new Account(accountInput));
+
+    }
+
+    public void addAccount(Account acc) {
         //Account acc = new Account();
         accounts.add(acc);
     }
 
     public double getBanlance() {
-        double totalBanlance = 0;
+        double totalBalance = 0;
         for (Account acc : accounts
         ) {
-            totalBanlance += acc.getBalance();
+            totalBalance += acc.getBalance();
         }
-        return totalBanlance;
+        return totalBalance;
     }
 
     public void displayinformation() {

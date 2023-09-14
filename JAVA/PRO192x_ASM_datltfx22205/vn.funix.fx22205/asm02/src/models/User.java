@@ -43,12 +43,17 @@ public class User {
         this.customerId = customerId;
     }
 
-    //Xử lý CCCD
+
     private void setCustomerId() {
+        customerId = getCCCD();
+    }
+
+    //Xử lý CCCD
+    public static String getCCCD() {
         String cccd = "";
         //sc.nextLine();
         while (true) {
-            System.out.print("Nhap so CCCD: ");
+            System.out.print("Nhap CCCD khach hang: ");
             //tạo 1 String với pattern dùng dể so khớp
             // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
             // \\d tức là số bất kì từ 0-9
@@ -65,8 +70,7 @@ public class User {
                 System.out.println("So CCCD khong hop le.\nVui long nhap lai hoac 'No' de thoat");
             } else {
                 //nếu cccd khớp pattern tức là cccd hợp lệ
-                customerId = cccd;
-                break;
+                return cccd;
             }
         }
     }
