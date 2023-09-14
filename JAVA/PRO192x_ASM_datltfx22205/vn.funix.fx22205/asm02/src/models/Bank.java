@@ -15,6 +15,7 @@ public class Bank {
 
     public void addCustomer(Customer newCustomer) {
         customers.add(newCustomer);
+        System.out.println("da them khach hang " + newCustomer.getCustomerId() + " vao danh sach");
     }
 
     public void addAccount(String customerId, Account account) {
