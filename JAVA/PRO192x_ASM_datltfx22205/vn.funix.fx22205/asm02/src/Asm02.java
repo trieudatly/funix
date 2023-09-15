@@ -26,7 +26,7 @@ public class Asm02 {
             try {
                 choice = Integer.parseInt(sc.next());
             } catch (Exception e) {
-                System.out.println("Nhap 1 hoac 0");
+                System.out.println("Nhap 1 2 3 4 5 0 de chon chuc nang");
                 continue;
             }
             switch (choice) {
@@ -87,7 +87,8 @@ public class Asm02 {
                     break;
                 default:
                     //nếu người dùng nhập một số khác 1 hoặc 0 => in ra thông báo lỗi
-                    System.out.println("Nhap 1 hoac 0");
+                    System.out.println("Nhap 1 2 3 4 5 0 de chon chuc nang");
+                    ;
                     break;
             }
         }

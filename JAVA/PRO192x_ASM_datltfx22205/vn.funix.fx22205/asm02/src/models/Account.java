@@ -37,6 +37,8 @@ public class Account {
             } else if (!Pattern.matches(cccdPattern, accBalance)) {
                 //nếu cccd không khớp pattern => in thông báo lỗi
                 System.out.println("So ma tai khoan khong hop le.\nVui long nhap lai hoac 'No' de thoat");
+            } else if (Double.parseDouble(accBalance) < 50000) {
+                System.out.println("so du phai lon hon hoac bang 50,000VND");
             } else {
                 //nếu cccd khớp pattern tức là cccd hợp lệ
                 return Double.parseDouble(accBalance);
@@ -100,6 +102,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return accountNumber + "|" + String.format("%,.0f", balance) + "đ";
+        return String.format("%s %-20s %,.0f%s", accountNumber, "|", balance, "đ");
     }
 }

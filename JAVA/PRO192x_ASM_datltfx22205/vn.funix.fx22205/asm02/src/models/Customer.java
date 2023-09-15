@@ -64,9 +64,12 @@ public class Customer extends User {
 
     public void displayinformation() {
         System.out.println(getCustomerId() + " | " + getName() + " | " + isPremium() + " | " + String.format("%,.0f", getBanlance()) + "đ");
+        int accCount = 1;
         for (Account acc : accounts
         ) {
-            System.out.println(acc.toString());
+            System.out.format("%-5s %8s", accCount, acc.toString());
+            System.out.println();
+            accCount++;
         }
     }
 }
