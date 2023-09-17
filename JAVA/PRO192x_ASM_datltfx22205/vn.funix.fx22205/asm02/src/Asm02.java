@@ -31,19 +31,6 @@ public class Asm02 {
             }
             switch (choice) {
                 case 1:
-                    //                    Account acc = new Account("123456", 10000000);
-                    //                    Account acc1 = new Account("123457", 10000000);
-                    //                    Customer customer = new Customer("Dat", "03745689111");
-                    //                    customer.addAcount(acc);
-                    //                    customer.addAcount(acc1);
-                    //                    Bank bk = new Bank();
-                    //                    bk.addCustomer(customer);
-                    //                    List<Customer> list = bk.getCustomers();
-                    //                    for (Customer cus : list
-                    //                    ) {
-                    //                        cus.displayinformation();
-                    //                    }
-
                     bk.addCustomer(new Customer());
 
                     break;
@@ -74,10 +61,41 @@ public class Asm02 {
                     }
                     break;
                 case 4:
-
+                    int customerC = 0;
+                    while (customerC == 0) {
+                        String cccd = User.getCCCD();
+                        List<Customer> listCus = bk.getCustomers();
+                        for (Customer cus : listCus
+                        ) {
+                            if (cccd.equals(cus.getCustomerId())) {
+                                customerC++;
+                                cus.displayinformation();
+                                break;
+                            }
+                        }
+                        if (customerC == 0) {
+                            System.out.println("Khach hang khong ton tai");
+                        }
+                    }
                     break;
                 case 5:
-
+                    int customerCh = 0;
+                    System.out.println("Nhap ten khach hang: ");
+                    String name=sc.next();
+                    while (customerCh == 0) {
+                        //String cccd = User.getCCCD();
+                        List<Customer> listCus = bk.getCustomers();
+                        for (Customer cus : listCus
+                        ) {
+                            if (cus.getName().contains(name)) {
+                                customerCh++;
+                                cus.displayinformation();
+                            }
+                        }
+                        if (customerCh == 0) {
+                            System.out.println("Khach hang khong ton tai");
+                        }
+                    }
                     break;
                 case 0:
                     //thông báo tạm biệt
