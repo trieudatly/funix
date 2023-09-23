@@ -36,19 +36,26 @@ public class Asm02 {
                 continue;
             }
             switch (choice) {
+
                 case 1:
+                    //Chức năng thêm khách hàng.
                     //thêm một đối tượng Customer mới vào đối tượng bank
                     bank.addCustomer(new Customer());
                     //làm mới customerList
                     customerList = bank.getCustomers();
                     break;
                 case 2:
+                    //Chức năng thêm tài khoản cho khách hàng.
+                    //nếu bank chưa có khách hàng nào thì thông báo
                     if (customerList.isEmpty()) {
                         System.out.println("Chua co khach hang nao.");
                         break;
                     }
                     while (true) {
+                        //nhập CCCD khách hàng
                         cccd = User.cccdInput();
+                        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
+                        //thoát vòng lặp
                         if (bank.isCustomerExisted(cccd)) {
                             for (Customer customer : customerList
                             ) {
@@ -59,62 +66,76 @@ public class Asm02 {
                             }
                             break;
                         } else {
+                            //nếu khách hàng không tồn tại=>thông báo lỗi
                             System.out.println("Khach hang khong ton tai");
                         }
                     }
                     break;
                 case 3:
+                    //Hiển thị danh sách khách hàng.
                     if (customerList.isEmpty()) {
                         System.out.println("Chua co khach hang nao.");
                         break;
                     }
                     for (Customer customer : customerList
                     ) {
-                        customer.displayinformation();
+                        customer.displayInformation();
                     }
                     break;
                 case 4:
+                    //Tìm theo CCCD.
                     if (customerList.isEmpty()) {
                         System.out.println("Chua co khach hang nao.");
                         break;
                     }
                     while (true) {
+                        //nhập CCCD khách hàng
                         cccd = User.cccdInput();
+                        //nếu khách hàng tồn tại => hiển thị khách hàng.
+                        //thoát vòng lặp
                         if (bank.isCustomerExisted(cccd)) {
                             for (Customer customer : customerList
                             ) {
                                 if (cccd.equals(customer.getCustomerId())) {
-                                    customer.displayinformation();
+                                    customer.displayInformation();
                                     break;
                                 }
                             }
                             break;
                         } else {
+                            //nếu khách hàng không tồn tại=>thông báo
                             System.out.println("Khach hang khong ton tai");
                         }
                     }
 
                     break;
                 case 5:
+                    //Tìm theo tên khách hàng.
                     if (customerList.isEmpty()) {
                         System.out.println("Chua co khach hang nao.");
                         break;
                     }
+                    //tạo biến để đếm số lượng khách hàng tìm thấy
                     int customerCount = 0;
+                    //nhập tên khách hàng
                     System.out.println("Nhap ten khach hang: ");
                     String name = sc.next();
                     for (Customer customer : customerList
                     ) {
                         if (customer.getName().contains(name)) {
+                            //mỗi khách hàng tìm được, biến customerCount sẽ +1 giá trị
                             customerCount++;
-                            customer.displayinformation();
+                            //hiển thị khách hàng.
+                            customer.displayInformation();
                         }
                     }
                     if (customerCount == 0) {
+                        //nếu customerCount=0 thì không tồn tại  khách hàng nào=>thông báo
                         System.out.println("Khach hang khong ton tai");
                     }
                     break;
                 case 0:
+                    //Thoát
                     //thông báo tạm biệt
                     System.out.println("Bye Bye");
                     //thoát chương trình

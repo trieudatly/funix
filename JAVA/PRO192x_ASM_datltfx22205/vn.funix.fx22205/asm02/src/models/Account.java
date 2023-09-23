@@ -21,19 +21,17 @@ public class Account {
     public static double balanceInput() {
         //tạo 1 String với pattern dùng dể so khớp
         // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
-        // \\d tức là số bất kì từ 0-9
-        //final String BALANCE_PATTERN = "^\\d+$";
+        // ? có hoặc không số bất kì từ 0-9, hoặc dấu .
         final String BALANCE_PATTERN = "^([0-9]*[.])?[0-9]+$";
         while (true) {
             System.out.print("Nhap so du tai khoan: ");
             double balance = Double.parseDouble(getInputWithPattern(BALANCE_PATTERN));
-            //System.out.println("balance is: " + balance);
+            // số dư của tài khoản, không được nhỏ hơn 50_000 VNĐ
             if (balance >= 50000) {
                 return balance;
             }
             System.out.println("so du phai lon hon hoac bang 50,000VND");
         }
-
     }
 
     public static String accountNumberInput() {
@@ -61,6 +59,7 @@ public class Account {
     }
 
     public boolean isPremium() {
+        //1 tài khoản là premium nếu như balance tối thiểu 10_000_000 VNĐ
         if (balance >= 10000000) {
             return true;
         }
@@ -69,7 +68,8 @@ public class Account {
 
     @Override
     public String toString() {
-        return String.format("%s %-20s %,.3f%s", accountNumber, "|", balance, "đ");
+        //trả về String thông tin 1 account
+        return String.format("%s %-20s %,.0f%s", accountNumber, "|", balance, "đ");
     }
 
     public Account(String accountNumber, double balance) {

@@ -25,11 +25,6 @@ public class Bank {
             //thông báo thành công
             System.out.println("da them khach hang " + newCustomer.getCustomerId() + " vao danh sach");
         }
-
-    }
-
-    public void addAccount(String customerId, Account account) {
-
     }
 
     public boolean isCustomerExisted(String customerId) {

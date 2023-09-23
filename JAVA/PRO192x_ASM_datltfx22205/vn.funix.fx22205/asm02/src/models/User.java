@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 public class User {
     //tạo scanner dùng chung
     static Scanner sc = new Scanner(System.in);
-    //tạo biến cccd để lưu căn cước nhập vào
 
     private String name;
     private String customerId;
@@ -30,7 +29,6 @@ public class User {
     }
 
     public void setName() {
-        //sc.nextLine();
         System.out.print("Nhap ten: ");
         this.name = sc.nextLine();
     }
@@ -51,7 +49,6 @@ public class User {
     //Xử lý CCCD
     public static String cccdInput() {
         String cccd = "";
-        //sc.nextLine();
         while (true) {
             System.out.print("Nhap CCCD khach hang: ");
             //tạo 1 String với pattern dùng dể so khớp
