@@ -9,8 +9,7 @@ public class Account {
     private double balance;
 
     public Account() {
-        //sc.nextLine();
-        accountNumber = accountInput();
+        accountNumber = accountNumberInput();
         balance = balanceInput();
     }
 
@@ -20,57 +19,58 @@ public class Account {
     }
 
     public static double balanceInput() {
-        String accBalance = "";
+        //tạo 1 String với pattern dùng dể so khớp
+        // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
+        // \\d tức là số bất kì từ 0-9
+        //final String BALANCE_PATTERN = "^\\d+$";
+        final String BALANCE_PATTERN = "^([0-9]*[.])?[0-9]+$";
         while (true) {
             System.out.print("Nhap so du tai khoan: ");
-            //tạo 1 String với pattern dùng dể so khớp
-            // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
-            // \\d tức là số bất kì từ 0-9
-            // {12} lặp lại 12 lần vì số CCCD có 12 chữ số
-            String cccdPattern = "^\\d+$";
-            //nhập CCCD, cắt bỏ khoảng trắng ở đầu đuôi,tất cả viết thường
-            accBalance = sc.nextLine().trim().toLowerCase();
-            if (accBalance.compareTo("no") == 0) {
-                //nếu cccd bằng "no" => thoát
-                System.out.println("Bye Bye");
-                System.exit(0);
-            } else if (!Pattern.matches(cccdPattern, accBalance)) {
-                //nếu cccd không khớp pattern => in thông báo lỗi
-                System.out.println("So ma tai khoan khong hop le.\nVui long nhap lai hoac 'No' de thoat");
-            } else if (Double.parseDouble(accBalance) < 50000) {
-                System.out.println("so du phai lon hon hoac bang 50,000VND");
-            } else {
-                //nếu cccd khớp pattern tức là cccd hợp lệ
-                return Double.parseDouble(accBalance);
+            double balance = Double.parseDouble(getInputWithPattern(BALANCE_PATTERN));
+            //System.out.println("balance is: " + balance);
+            if (balance >= 50000) {
+                return balance;
             }
+            System.out.println("so du phai lon hon hoac bang 50,000VND");
         }
+
     }
 
-    public static String accountInput() {
-        String accNum;
+    public static String accountNumberInput() {
+        //tạo 1 String với pattern dùng dể so khớp
+        // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
+        // \\{6} tức là 6 số bất kì từ 0-9
+        final String ACCOUNT_PATTERN = "^\\d{6}$";
+        System.out.print("Nhap so ma tai khoan(gom 6 chu so): ");
+        return getInputWithPattern(ACCOUNT_PATTERN);
+    }
+
+    private static String getInputWithPattern(String pattern) {
         while (true) {
-            System.out.print("Nhap so ma tai khoan: ");
-            //tạo 1 String với pattern dùng dể so khớp
-            // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
-            // \\d tức là số bất kì từ 0-9
-            // {12} lặp lại 12 lần vì số CCCD có 12 chữ số
-            String cccdPattern = "^\\d{6}$";
-            //nhập CCCD, cắt bỏ khoảng trắng ở đầu đuôi,tất cả viết thường
-            accNum = sc.nextLine().trim().toLowerCase();
-            if (accNum.compareTo("no") == 0) {
-                //nếu cccd bằng "no" => thoát
+            String input = sc.nextLine().trim().toLowerCase();
+            if (input.compareTo("no") == 0) {
                 System.out.println("Bye Bye");
                 System.exit(0);
-            } else if (!Pattern.matches(cccdPattern, accNum)) {
-                //nếu cccd không khớp pattern => in thông báo lỗi
-                System.out.println("So ma tai khoan khong hop le.\nVui long nhap lai hoac 'No' de thoat");
+            }
+            if (!Pattern.matches(pattern, input)) {
+                System.out.print("khong hop le. Vui long nhap lai:");
             } else {
-                //nếu cccd khớp pattern tức là cccd hợp lệ
-                return accNum;
+                return input;
             }
         }
     }
 
+    public boolean isPremium() {
+        if (balance >= 10000000) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %-20s %,.3f%s", accountNumber, "|", balance, "đ");
+    }
 
     public Account(String accountNumber, double balance) {
         this.accountNumber = accountNumber;
@@ -93,15 +93,5 @@ public class Account {
         this.balance = balance;
     }
 
-    public boolean isPremium() {
-        if (balance >= 10000000) {
-            return true;
-        }
-        return false;
-    }
 
-    @Override
-    public String toString() {
-        return String.format("%s %-20s %,.0f%s", accountNumber, "|", balance, "đ");
-    }
 }

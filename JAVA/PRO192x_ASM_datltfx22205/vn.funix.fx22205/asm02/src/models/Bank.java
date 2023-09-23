@@ -14,19 +14,16 @@ public class Bank {
     }
 
     public void addCustomer(Customer newCustomer) {
-        int cusCheck = 0;
-        for (Customer cus : customers
-        ) {
-            if (newCustomer.getCustomerId().equals(cus.getCustomerId())) {
-                cusCheck++;
-                break;
-            }
-        }
-        if (cusCheck == 0) {
-            customers.add(newCustomer);
-            System.out.println("da them khach hang " + newCustomer.getCustomerId() + " vao danh sach");
-        } else {
+        //nếu phương thức isCustomerExisted trả về true
+        //thông báo đã tồn tại customer này trong bank
+        if (isCustomerExisted(newCustomer.getCustomerId())) {
             System.out.println("ID " + newCustomer.getCustomerId() + " da ton tai");
+        } else {
+            //nếu customer chưa tồn tại
+            //thêm newCustomer vào list customers
+            customers.add(newCustomer);
+            //thông báo thành công
+            System.out.println("da them khach hang " + newCustomer.getCustomerId() + " vao danh sach");
         }
 
     }
@@ -36,6 +33,20 @@ public class Bank {
     }
 
     public boolean isCustomerExisted(String customerId) {
+        //nếu list trống thì coi như customer không tồn tại
+        if (customers.isEmpty()) {
+            return false;
+        }
+        //duyệt List customers
+        for (Customer cus : customers
+        ) {
+            //nếu trong list tồn tại đối tượng Customer có ID bằng customerId
+            //=> trả về true
+            if (cus.getCustomerId().equals(customerId)) {
+                return true;
+            }
+        }
+        //còn lại trả về false
         return false;
     }
 
@@ -46,6 +57,4 @@ public class Bank {
     public String getId() {
         return id;
     }
-
-
 }

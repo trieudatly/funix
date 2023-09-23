@@ -6,11 +6,6 @@ import java.util.List;
 public class Customer extends User {
     private List<Account> accounts;
 
-    public Customer(String name, String cusID) {
-        super(name, cusID);
-        this.accounts = new ArrayList<>();
-    }
-
     public Customer() {
         super();
         this.accounts = new ArrayList<>();
@@ -20,37 +15,41 @@ public class Customer extends User {
         return accounts;
     }
 
-    public String isPremium() {
-        String isPremium = getBanlance() >= 10000000 ? "Premium" : "Normal";
-        return isPremium;
-    }
-
     public void addAccount() {
-        int accountCheck = 0;
-        String accountInput = "";
-        while (accountCheck == 0) {
-            accountInput = Account.accountInput();
-            if (accounts.size() == 0) {
+        while (true) {
+            String accountInput = Account.accountNumberInput();
+            if (!isAccountExisted(accountInput)) {
+                accounts.add(new Account(accountInput));
                 break;
-            }
-            for (Account account : accounts
-            ) {
-                if (accountInput.equals(account.getAccountNumber())) {
-                    System.out.println("tai khoan da ton tai");
-                    accountCheck = 0;
-                    break;
-                } else {
-                    accountCheck++;
-                }
+            } else {
+                System.out.println("tai khoan da ton tai");
             }
         }
-        accounts.add(new Account(accountInput));
-
     }
 
-    public void addAccount(Account acc) {
-        //Account acc = new Account();
-        accounts.add(acc);
+    public boolean isAccountExisted(String accountNumber) {
+        if (accounts.isEmpty()) {
+            return false;
+        }
+        for (Account account : accounts
+        ) {
+            if (accountNumber.equals(account.getAccountNumber())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String isPremium() {
+        String isPremium = "Normal";
+        for (Account acc : accounts
+        ) {
+            if (acc.isPremium()) {
+                isPremium = "Premium";
+                return isPremium;
+            }
+        }
+        return isPremium;
     }
 
     public double getBanlance() {
@@ -63,7 +62,7 @@ public class Customer extends User {
     }
 
     public void displayinformation() {
-        System.out.println(getCustomerId() + " | " + getName() + " | " + isPremium() + " | " + String.format("%,.0f", getBanlance()) + "đ");
+        System.out.println(getCustomerId() + " | " + getName() + " | " + isPremium() + " | " + String.format("%,.3f", getBanlance()) + "đ");
         int accCount = 1;
         for (Account acc : accounts
         ) {

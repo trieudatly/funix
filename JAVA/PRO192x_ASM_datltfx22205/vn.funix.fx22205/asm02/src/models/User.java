@@ -45,19 +45,18 @@ public class User {
 
 
     private void setCustomerId() {
-        customerId = getCCCD();
+        customerId = cccdInput();
     }
 
     //Xử lý CCCD
-    public static String getCCCD() {
+    public static String cccdInput() {
         String cccd = "";
         //sc.nextLine();
         while (true) {
             System.out.print("Nhap CCCD khach hang: ");
             //tạo 1 String với pattern dùng dể so khớp
             // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
-            // \\d tức là số bất kì từ 0-9
-            // {12} lặp lại 12 lần vì số CCCD có 12 chữ số
+            // \\d{12} tức là 12 số bất kì từ 0-9 vì số CCCD có 12 chữ số
             String cccdPattern = "^\\d{12}$";
             //nhập CCCD, cắt bỏ khoảng trắng ở đầu đuôi,tất cả viết thường
             cccd = sc.nextLine().trim().toLowerCase();
@@ -65,12 +64,13 @@ public class User {
                 //nếu cccd bằng "no" => thoát
                 System.out.println("Bye Bye");
                 System.exit(0);
-            } else if (!Pattern.matches(cccdPattern, cccd)) {
-                //nếu cccd không khớp pattern => in thông báo lỗi
-                System.out.println("So CCCD khong hop le.\nVui long nhap lai hoac 'No' de thoat");
-            } else {
+            }
+            if (Pattern.matches(cccdPattern, cccd)) {
                 //nếu cccd khớp pattern tức là cccd hợp lệ
                 return cccd;
+            } else {
+                //nếu cccd không khớp pattern => in thông báo lỗi
+                System.out.println("So CCCD khong hop le.\nVui long nhap lai hoac 'No' de thoat");
             }
         }
     }
