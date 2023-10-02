@@ -158,8 +158,8 @@ public class Asm02 {
         System.out.println(" 1.Them khach hang");
         System.out.println(" 2.Them tai khoan cho khach hang");
         System.out.println(" 3.Hien thi danh sach khach hang");
-        System.out.println(" 4.Tim theo ten khach hang");
-        System.out.println(" 5.Tim theo CCCD");
+        System.out.println(" 4.Tim theo CCCD");
+        System.out.println(" 5.Tim theo ten khach hang");
         System.out.println(" 0.Thoat");
         System.out.println("+----------+-------------------+----------+");
     }
