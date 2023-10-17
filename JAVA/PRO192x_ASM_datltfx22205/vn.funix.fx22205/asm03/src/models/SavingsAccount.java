@@ -7,9 +7,7 @@ public class SavingsAccount extends Account implements Withdraw, ReportService {
 
     @Override
     public String toString() {
-
-        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "SAVINGS | ", getBalance(), "đ");
-
+        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| SAVINGS | ", getBalance(), "đ");
     }
 
 
@@ -17,13 +15,13 @@ public class SavingsAccount extends Account implements Withdraw, ReportService {
     public boolean withdraw(double amount) {
         if (isAccepted(amount)) {
             double newBalance = getBalance() - amount;
-            addTransaction(new Transaction(this.getAccountNumber(), amount, true));
+            addTransaction(new Transaction(this.getAccountNumber(), amount, 0, true));
             setBalance(newBalance);
             System.out.println("Giao dich thanh cong");
             //log(amount);
             return true;
         }
-        Transaction transaction = new Transaction(this.getAccountNumber(), amount, false);
+        Transaction transaction = new Transaction(this.getAccountNumber(), amount, 0, false);
         addTransaction(transaction);
         System.out.println("Giao dich khong thanh cong");
         return false;
@@ -56,7 +54,7 @@ public class SavingsAccount extends Account implements Withdraw, ReportService {
     public void log(double amount) {
         System.out.println("+------+-----------------------+------+");
         System.out.println("      BIEN LAI GIAO DICH SAVINGS       ");
-        System.out.printf("NGAY G/D: %28s%n", Utility.getDate());
+        System.out.printf("NGAY G/D: %28s%n", Utility.getDateTime());
         System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2023");
         System.out.printf("SO TK: %31s%n", getAccountNumber());
         System.out.printf("SO TIEN: %29s%n", String.format("%.1f", amount));

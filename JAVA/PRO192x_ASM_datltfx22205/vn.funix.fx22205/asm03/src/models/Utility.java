@@ -25,7 +25,7 @@ public class Utility {
         }
     }
 
-    public static String getDate() {
+    public static String getDateTime() {
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         return dateFormat.format(date);

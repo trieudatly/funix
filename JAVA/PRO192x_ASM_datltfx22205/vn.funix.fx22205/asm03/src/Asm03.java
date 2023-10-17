@@ -1,5 +1,6 @@
 import models.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Asm03 {
@@ -17,11 +18,11 @@ public class Asm03 {
         //tạo 2 hằng lưu tác giả và phiên bản
         final String AUTHOR = "fx22205";
         final String VERSION = "3.0.0";
-        Customer customer = new Customer(CUSTOMER_ID, CUSTOMER_NAME);
-        Customer customer1 = new Customer("001215000002", "dat");
+        Customer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
+        //Customer customer1 = new Customer("001215000002", "dat");
         //System.out.println(customer1.getCustomerId());
         activeBank.addCustomer(customer);
-        activeBank.addCustomer(customer1);
+        //activeBank.addCustomer(customer1);
         //tạo đối tượng bank kiểu Bank
         //Bank bank = new Bank();
         //khai báo 1 danh sách kiểu Customer
@@ -184,14 +185,12 @@ public class Asm03 {
     }
 
     private static void showCustomer() {
-        try {
-            Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
-            if (customer != null) {
-                customer.displayInformation();
-            }
-        } catch (Exception e) {
-            System.out.println("Customer does NOT exiest");
+
+        Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
+        if (customer != null) {
+            customer.displayInformation();
         }
+
     }
 
     private static void addSavingsAccount() {
@@ -224,28 +223,34 @@ public class Asm03 {
     }
 
     private static void withdraw() {
-        System.out.println("Nhap STK muon rut: ");
-        String STK = scanner.nextLine();
+        System.out.println("Nhap ma so tai khoan can rut: ");
+        String accountId = scanner.nextLine();
         System.out.println("Nhap so tien can rut: ");
-        double soTien = input.nextDouble();
-        activeBank.withdraw(CUSTOMER_ID, STK, soTien);
+        double amount = input.nextDouble();
+        activeBank.withdraw(CUSTOMER_ID, accountId, amount);
     }
 
     private static void showLog() {
         Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
-        System.out.println("Tra cuu lich su giao dich: ");
+//        System.out.println("Tra cuu lich su giao dich: ");
         customer.displayInformation();
-        System.out.println("Nhap STK muon sao ke: ");
-        String STK = scanner.nextLine();
-        while (STK.length() != 6) {
-            System.out.println("STK co 6 chu so, vui long nhap lai: ");
-            STK = scanner.nextLine();
+        Account.displayTransactionHeader();
+        List<Account> accountList = customer.getAccounts();
+        for (Account account : accountList
+        ) {
+            account.displayAllTransactions();
         }
-        Account acc = customer.getAccountByAccounNumber(STK);
-        if (acc != null) {
-            acc.displaydisplayAllTransactions();
-        } else {
-            System.out.println("STK khong ton tai!!");
-        }
+//        System.out.println("Nhap STK muon sao ke: ");
+//        String STK = scanner.nextLine();
+//        while (STK.length() != 6) {
+//            System.out.println("STK co 6 chu so, vui long nhap lai: ");
+//            STK = scanner.nextLine();
+//        }
+//        Account acc = customer.getAccountByAccounNumber(STK);
+//        if (acc != null) {
+//            acc.displayAllTransactions();
+//        } else {
+//            System.out.println("STK khong ton tai!!");
+//        }
     }
 }

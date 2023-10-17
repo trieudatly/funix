@@ -41,9 +41,9 @@ public class Account {
     }
 
     public static void displayTransactionHeader() {
-        System.out.println("+-------------------------+---------------------+------------+--------------------------+");
-        System.out.println("|        Thời gian        |    Số tiền + Phí    |   Kết quả  |          Nội dung        |");
-        System.out.println("+-------------------------+---------------------+------------+--------------------------+");
+        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Luong");
+        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 
     private double balanceInput() {
@@ -107,17 +107,15 @@ public class Account {
         this.transactions.add(transaction);
     }
 
-    public void displaydisplayAllTransactions() {
+    public void displayAllTransactions() {
         if (getTransactions() != null) {
             ArrayList<Transaction> transactions = new ArrayList<>(getTransactions());
-            int order = 1;
-            System.out.println("Lich Su GD cua tai khoan " + accountNumber + ": ");
-            displayTransactionHeader();
+
             for (Transaction transaction : transactions) {
-                System.out.println("|" + String.format("%2s", order) + transaction.toString());
-                order++;
+                System.out.println("|" + transaction.toString());
+
             }
-            System.out.println("+-------------------------+---------------------+------------+--------------------------+");
+            System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
         }
     }
 }

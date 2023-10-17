@@ -5,7 +5,7 @@ import java.util.List;
 
 //class Customer kế thừa class User
 public class Customer extends User {
-    private List<Account> accounts;
+    private static List<Account> accounts;
 
     public Customer() {
         super();
@@ -17,15 +17,29 @@ public class Customer extends User {
         this.accounts = new ArrayList<>();
     }
 
+    public static boolean isPremium() {
+        //1 khách hàng là premium nếu có ít nhất 1 tài khoản (Account) là premium
+        //duyệt list nếu có một account là premium thì isPremium = "Premium"
+        //trả về isPremium
+        for (Account acc : accounts
+        ) {
+            if ((acc instanceof SavingsAccount) && acc.isPremium()) {
+                return true;
+            }
+        }
+        //nếu duyệt hết list mà không có account premium thì isPremium = "Normal"
+        return false;
+    }
+
     public List<Account> getAccounts() {
         return accounts;
     }
 
     public Account getAccountByAccounNumber(String accountNumer) {
-        for (Account acc : accounts) {
+        for (Account account : accounts) {
             // Kiem tra account co ton tai hay khong
-            if (acc.getAccountNumber().equals(accountNumer)) {
-                return acc;
+            if (account.getAccountNumber().equals(accountNumer)) {
+                return account;
             }
         }
         return null;
@@ -78,22 +92,6 @@ public class Customer extends User {
         return false;
     }
 
-    public String isPremium() {
-        //1 khách hàng là premium nếu có ít nhất 1 tài khoản (Account) là premium
-        //duyệt list nếu có một account là premium thì isPremium = "Premium"
-        //trả về isPremium
-        String isPremium = "Normal";
-        for (Account acc : accounts
-        ) {
-            if (acc.isPremium()) {
-                isPremium = "Premium";
-                return isPremium;
-            }
-        }
-        //nếu duyệt hết list mà không có account premium thì isPremium = "Normal"
-        return isPremium;
-    }
-
     public double getBalance() {
         //duyệt list và tính tổng tất cả các account balance của khách hàng
         //trả về kết quả
@@ -106,7 +104,11 @@ public class Customer extends User {
     }
 
     public void displayInformation() {
-        System.out.println(getCustomerId() + " | " + getName() + " | " + isPremium() + " | " + String.format("%,.0f", getBalance()) + "đ");
+        String premium = "Normal";
+        if (isPremium()) {
+            premium = "Premium";
+        }
+        System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | " + String.format("%,.0f", getBalance()) + "đ");
         int accCount = 1;
         //duyệt list và hiển thị tất cả account của khách hàng
         for (Account acc : accounts

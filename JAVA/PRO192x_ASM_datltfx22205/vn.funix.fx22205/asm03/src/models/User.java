@@ -15,8 +15,8 @@ public class User {
     }
 
     public User(String userId, String name) {
-        setName(name);
-        setCustomerId(userId);
+        this.customerId = userId;
+        this.name = name;
     }
 
     //Xử lý CCCD
