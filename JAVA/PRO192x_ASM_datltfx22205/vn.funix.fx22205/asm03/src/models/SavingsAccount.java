@@ -1,8 +1,9 @@
 package models;
 
 public class SavingsAccount extends Account implements Withdraw, ReportService {
-    public SavingsAccount(String accountNumber, double balance) {
-        super(accountNumber, balance);
+    
+    public SavingsAccount() {
+        super();
     }
 
     @Override

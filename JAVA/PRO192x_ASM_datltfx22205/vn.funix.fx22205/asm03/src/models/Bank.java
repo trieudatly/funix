@@ -13,17 +13,19 @@ public class Bank {
         this.id = String.valueOf(UUID.randomUUID());
     }
 
-    public void addCustomer(Customer newCustomer) {
+    public boolean addCustomer(Customer newCustomer) {
         //nếu phương thức isCustomerExisted trả về true
         //thông báo đã tồn tại customer này trong bank
         if (isCustomerExisted(newCustomer.getCustomerId())) {
             System.out.println("ID " + newCustomer.getCustomerId() + " da ton tai");
+            return false;
         } else {
             //nếu customer chưa tồn tại
             //thêm newCustomer vào list customers
             customers.add(newCustomer);
             //thông báo thành công
-            System.out.println("da them khach hang " + newCustomer.getCustomerId() + " vao danh sach");
+            //System.out.println("da them khach hang " + newCustomer.getCustomerId() + " vao danh sach");
+            return true;
         }
     }
 
@@ -47,11 +49,11 @@ public class Bank {
             return false;
         }
         //duyệt List customers
-        for (Customer cus : customers
+        for (Customer customer : customers
         ) {
             //nếu trong list tồn tại đối tượng Customer có ID bằng customerId
             //=> trả về true
-            if (customerId.equals(cus.getCustomerId())) {
+            if (customerId.equals(customer.getCustomerId())) {
                 return true;
             }
         }

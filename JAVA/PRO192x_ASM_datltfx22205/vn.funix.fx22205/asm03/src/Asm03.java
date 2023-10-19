@@ -19,14 +19,7 @@ public class Asm03 {
         final String AUTHOR = "fx22205";
         final String VERSION = "3.0.0";
         Customer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
-        //Customer customer1 = new Customer("001215000002", "dat");
-        //System.out.println(customer1.getCustomerId());
         activeBank.addCustomer(customer);
-        //activeBank.addCustomer(customer1);
-        //tạo đối tượng bank kiểu Bank
-        //Bank bank = new Bank();
-        //khai báo 1 danh sách kiểu Customer
-        //List<Customer> customerList = new ArrayList<>();
         //biến choice dùng để lưu lựa chọn của user
         int choice;
         //String cccd;
@@ -47,111 +40,23 @@ public class Asm03 {
             switch (choice) {
 
                 case 1:
-//                    //Chức năng thêm khách hàng.
-//                    //thêm một đối tượng Customer mới vào đối tượng bank
-//                    bank.addCustomer(new Customer());
-//                    //làm mới customerList
-//                    customerList = bank.getCustomers();
-
-
-//                    Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
-//                    if (customer != null) {
-//                        customer.displayInformation();
-//                    }
+                    //hiện thông tin khách hàng
                     showCustomer();
                     break;
-
                 case 2:
-//                    //Chức năng thêm tài khoản cho khách hàng.
-//                    //nếu bank chưa có khách hàng nào thì thông báo
-//                    if (customerList.isEmpty()) {
-//                        System.out.println("Chua co khach hang nao.");
-//                        break;
-//                    }
-//                    while (true) {
-//                        //nhập CCCD khách hàng
-//                        cccd = User.cccdInput();
-//                        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
-//                        //thoát vòng lặp
-//                        if (bank.isCustomerExisted(cccd)) {
-//                            for (Customer customer : customerList
-//                            ) {
-//                                if (cccd.equals(customer.getCustomerId())) {
-//                                    customer.addAccount();
-//                                    break;
-//                                }
-//                            }
-//                            break;
-//                        } else {
-//                            //nếu khách hàng không tồn tại=>thông báo lỗi
-//                            System.out.println("Khach hang khong ton tai");
-//                        }
-//                    }
+                    //Thêm tài khoản Savings cho khách hàng.
                     addSavingsAccount();
                     break;
                 case 3:
-//                    //Hiển thị danh sách khách hàng.
-//                    if (customerList.isEmpty()) {
-//                        System.out.println("Chua co khach hang nao.");
-//                        break;
-//                    }
-//                    for (Customer customer : customerList
-//                    ) {
-//                        customer.displayInformation();
-//                    }
+                    //Thêm tài khoản LOAN cho khách hàng
                     addLoanAccount();
                     break;
                 case 4:
-//                    //Tìm theo CCCD.
-//                    if (customerList.isEmpty()) {
-//                        System.out.println("Chua co khach hang nao.");
-//                        break;
-//                    }
-//                    while (true) {
-//                        //nhập CCCD khách hàng
-//                        cccd = User.cccdInput();
-//                        //nếu khách hàng tồn tại => hiển thị khách hàng.
-//                        //thoát vòng lặp
-//                        if (bank.isCustomerExisted(cccd)) {
-//                            for (Customer customer : customerList
-//                            ) {
-//                                if (cccd.equals(customer.getCustomerId())) {
-//                                    customer.displayInformation();
-//                                    break;
-//                                }
-//                            }
-//                            break;
-//                        } else {
-//                            //nếu khách hàng không tồn tại=>thông báo
-//                            System.out.println("Khach hang khong ton tai");
-//                        }
-//                    }
+                    //Rút tiền
                     withdraw();
                     break;
                 case 5:
-//                    //Tìm theo tên khách hàng.
-//                    if (customerList.isEmpty()) {
-//                        System.out.println("Chua co khach hang nao.");
-//                        break;
-//                    }
-//                    //tạo biến để đếm số lượng khách hàng tìm thấy
-//                    int customerCount = 0;
-//                    //nhập tên khách hàng
-//                    System.out.println("Nhap ten khach hang: ");
-//                    String name = sc.next();
-//                    for (Customer customer : customerList
-//                    ) {
-//                        if (customer.getName().contains(name)) {
-//                            //mỗi khách hàng tìm được, biến customerCount sẽ +1 giá trị
-//                            customerCount++;
-//                            //hiển thị khách hàng.
-//                            customer.displayInformation();
-//                        }
-//                    }
-//                    if (customerCount == 0) {
-//                        //nếu customerCount=0 thì không tồn tại  khách hàng nào=>thông báo
-//                        System.out.println("Khach hang khong ton tai");
-//                    }
+                    //Hiện lịch sử giao dịch tất cả tài khoản SAVING và LOAN của khách hàng
                     showLog();
                     break;
                 case 0:
@@ -184,50 +89,27 @@ public class Asm03 {
         System.out.println("+----------+-------------------+----------+");
     }
 
+    //hiện thông tin khách hàng
     private static void showCustomer() {
-
         Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
         if (customer != null) {
             customer.displayInformation();
         }
-
     }
 
     private static void addSavingsAccount() {
-        System.out.println("Nhap STK gom 6 chu so: ");
-        String STK = scanner.nextLine();
-        while (STK.length() != 6) {
-            System.out.println("STK co 6 chu so, vui long nhap lai: ");
-            STK = scanner.nextLine();
-        }
-        System.out.println("Nhap so du: ");
-        double soDu = input.nextDouble();
-        while (soDu < 50000) {
-            System.out.println("So du phai lon hon hoac bang 50k");
-            System.out.println("Nhap so du: ");
-            soDu = input.nextDouble();
-        }
-        Account savingsAccount = new SavingsAccount(STK, soDu);
+        SavingsAccount savingsAccount = new SavingsAccount();
         activeBank.addAccount(CUSTOMER_ID, savingsAccount);
     }
 
     private static void addLoanAccount() {
-        System.out.println("Nhap STK gom 6 chu so: ");
-        String STK = scanner.nextLine();
-        while (STK.length() != 6) {
-            System.out.println("STK co 6 chu so, vui long nhap lai: ");
-            STK = scanner.nextLine();
-        }
-        Account loanAccount = new LoanAccount(STK);
+        LoanAccount loanAccount = new LoanAccount();
         activeBank.addAccount(CUSTOMER_ID, loanAccount);
     }
 
     private static void withdraw() {
-        System.out.println("Nhap ma so tai khoan can rut: ");
-        String accountId = scanner.nextLine();
-        System.out.println("Nhap so tien can rut: ");
-        double amount = input.nextDouble();
-        activeBank.withdraw(CUSTOMER_ID, accountId, amount);
+        //Rút tiền
+        activeBank.withdraw();
     }
 
     private static void showLog() {

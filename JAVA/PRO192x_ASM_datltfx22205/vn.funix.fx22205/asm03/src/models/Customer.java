@@ -65,7 +65,7 @@ public class Customer extends User {
     public void addAccount(Account newAccount) {
         for (int i = 0; i < accounts.size(); i++) {
             if (newAccount.getAccountNumber().equals(accounts.get(i).getAccountNumber())) {
-                System.out.println("Account number is duplicated");
+                System.out.println("Tai khoan da ton tai");
                 return;
             }
         }
@@ -111,10 +111,10 @@ public class Customer extends User {
         System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | " + String.format("%,.0f", getBalance()) + "đ");
         int accCount = 1;
         //duyệt list và hiển thị tất cả account của khách hàng
-        for (Account acc : accounts
+        for (Account account : accounts
         ) {
-            System.out.format("%-5s %8s", accCount, acc.toString());
-            System.out.println();
+            System.out.format("%-5s %8s\n", accCount, account.toString());
+//            System.out.println();
             accCount++;
         }
     }

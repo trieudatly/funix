@@ -6,13 +6,13 @@ import java.util.List;
 public class Account {
     private String accountNumber;
     private double balance;
-    private String accountType;
+
     private List<Transaction> transactions = new ArrayList<>();
 
     public Account() {
         accountNumber = accountNumberInput();
         balance = balanceInput();
-        this.accountType = accountType;
+
     }
 
     public Account(String accountNumber) {
@@ -28,7 +28,6 @@ public class Account {
     public Account(String accountNumber, double balance, String accountType) {
         this.accountNumber = accountNumber;
         this.balance = balance;
-        this.accountType = accountType;
     }
 
     public static String accountNumberInput() {
@@ -46,19 +45,19 @@ public class Account {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 
-    private double balanceInput() {
+    public static double balanceInput() {
         //tạo 1 String với pattern dùng dể so khớp
         // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
         // ? có hoặc không số bất kì từ 0-9, hoặc dấu .
         final String BALANCE_PATTERN = "^([0-9]*[.])?[0-9]+$";
         while (true) {
-            System.out.print("Nhap so du tai khoan: ");
+            System.out.print("Nhap so tien: ");
             double balance = Double.parseDouble(Utility.getInputWithPattern(BALANCE_PATTERN));
             // số dư của tài khoản, không được nhỏ hơn 50_000 VNĐ
             if (balance >= 50000) {
                 return balance;
             }
-            System.out.println("so du phai lon hon hoac bang 50,000VND");
+            System.out.println("so tien phai lon hon hoac bang 50,000VND");
         }
     }
 

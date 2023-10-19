@@ -41,7 +41,7 @@ public class Transaction {
         return time;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -54,7 +54,7 @@ public class Transaction {
     public String toString() {
         return " [GD] " + getAccountNumber()
                 + " | " + String.format("%s", getTime())
-                + String.format("%s", isStatus() ? " | Thanh cong      " : " | Khong thanh cong")
+                + String.format("%s", getStatus() ? " | Thanh cong      " : " | Khong thanh cong")
                 + " | " + getId() + " | "
                 + String.format("%,.0f", ((-1) * getAmount())) + " đ";
     }

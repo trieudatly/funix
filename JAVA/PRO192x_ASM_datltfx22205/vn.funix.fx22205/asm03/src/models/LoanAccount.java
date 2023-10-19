@@ -3,11 +3,10 @@ package models;
 public class LoanAccount extends Account implements Withdraw, ReportService {
 
     private static final double LOAN_ACCOUNT_MAX_BALANCE = 100000000;
-
-    public LoanAccount(String accountNumber) {
-        super(accountNumber, LOAN_ACCOUNT_MAX_BALANCE);
+    
+    public LoanAccount() {
+        super(accountNumberInput(), LOAN_ACCOUNT_MAX_BALANCE);
     }
-
 
     public double getFee(double amount) {
         if (Customer.isPremium()) {
@@ -20,7 +19,7 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
     @Override
     public String toString() {
 
-        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| LOAN | ", getBalance(), "đ");
+        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| LOAN    | ", getBalance(), "đ");
 
     }
 
