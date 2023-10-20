@@ -3,7 +3,7 @@ package models;
 public class LoanAccount extends Account implements Withdraw, ReportService {
 
     private static final double LOAN_ACCOUNT_MAX_BALANCE = 100000000;
-    
+
     public LoanAccount() {
         super(accountNumberInput(), LOAN_ACCOUNT_MAX_BALANCE);
     }
@@ -25,16 +25,18 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
 
     @Override
     public boolean withdraw(double amount) {
+        String dateTime = Utility.getDateTime();
+        String accountNumber = this.getAccountNumber();
         if (isAccepted(amount)) {
             double fee = getFee(amount);
             double newBalance = getBalance() - amount - fee;
-            addTransaction(new Transaction(this.getAccountNumber(), amount, fee, true));
+            addTransaction(new Transaction(accountNumber, amount, fee, true, dateTime));
             setBalance(newBalance);
             System.out.println("Giao dich thanh cong");
-            //log(amount);
+            log(dateTime, accountNumber, amount, newBalance, fee);
             return true;
         }
-        addTransaction(new Transaction(this.getAccountNumber(), amount, 0, false));
+        addTransaction(new Transaction(accountNumber, amount, 0, false, dateTime));
         System.out.println("Giao dich khong thanh cong");
         return false;
     }
@@ -62,15 +64,15 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
     }
 
     @Override
-    public void log(double amount) {
+    public void log(String dateTime, String accountNumber, double amount, double newBalance, double fee) {
         System.out.println("+------+-----------------------+------+");
         System.out.println("      BIEN LAI GIAO DICH LOAN       ");
-        System.out.printf("NGAY G/D: %28s%n", Utility.getDateTime());
+        System.out.printf("NGAY GIAO DICH: %22s%n", dateTime);
         System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2023");
-        System.out.printf("SO TK: %31s%n", getAccountNumber());
-        System.out.printf("SO TIEN: %29s%n", String.format("%.1f", amount));
-        System.out.printf("SO DU: %31s%n", String.format("%.1f", getBalance()));
-        System.out.printf("PHI + VAT: %27s%n", String.format("%.1f", getFee(amount)));
+        System.out.printf("SO TAI KHOAN LOAN: %19s%n", accountNumber);
+        System.out.printf("SO TIEN: %27s%s%n", String.format("%,.0f", amount), " đ");
+        System.out.printf("SO DU: %29s%s%n", String.format("%,.0f", newBalance), " đ");
+        System.out.printf("PHI + VAT: %25s%s%n", String.format("%,.0f", fee), " đ");
         System.out.println("+------+-----------------------+------+");
     }
 }

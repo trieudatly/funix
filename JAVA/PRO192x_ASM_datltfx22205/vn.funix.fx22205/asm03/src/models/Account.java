@@ -41,7 +41,7 @@ public class Account {
 
     public static void displayTransactionHeader() {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Luong");
+        System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Tien");
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 

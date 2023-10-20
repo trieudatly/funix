@@ -8,7 +8,6 @@ public class Asm03 {
     private static final int EXIT_ERROR_CODE = -1;
     private static final Scanner scanner = new Scanner(System.in);
     private static final Scanner sc = new Scanner(System.in);
-    private static final Scanner input = new Scanner(System.in);
     private static final DigitalBank activeBank = new DigitalBank();
     private static final String CUSTOMER_ID = "001215000001";
     private static final String CUSTOMER_NAME = "FUNIX";

@@ -12,13 +12,13 @@ public class Transaction {
     private boolean status;
 
 
-    public Transaction(String accountNumber, double amount, double transactionFee, boolean status) {
+    public Transaction(String accountNumber, double amount, double transactionFee, boolean status, String dateTime) {
         this.id = String.valueOf(UUID.randomUUID());
         this.accountNumber = accountNumber;
         this.amount = amount;
         this.transactionFee = transactionFee;
         this.status = status;
-        this.time = Utility.getDateTime();
+        this.time = dateTime;
     }
 
     public String getId() {
@@ -45,12 +45,6 @@ public class Transaction {
         return status;
     }
 
-    //    public String toString() {
-//        return "[GD] " + getAccountNumber() + " | Thoi diem: " + String.format("%s", getTime())
-//                + " | So tien: " + String.format("%,.0f", ((-1) * getAmount()))
-//                + "đ | Phi: " + String.format("%,.0f", (getTransactionFee())) + "đ | Trang thai: "
-//                + String.format("%s", isStatus() ? "Thanh cong" : "Khong thanh cong") + " | Ma giao dich: " + getId() + " |\n";
-//    }
     public String toString() {
         return " [GD] " + getAccountNumber()
                 + " | " + String.format("%s", getTime())

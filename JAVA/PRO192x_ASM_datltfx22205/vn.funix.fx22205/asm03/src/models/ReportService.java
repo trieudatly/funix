@@ -1,5 +1,5 @@
 package models;
 
 public interface ReportService {
-    void log(double amount);
+    void log(String dateTime, String accountNumber, double amount, double newBalance, double fee);
 }
