@@ -108,30 +108,23 @@ public class Asm03 {
 
     private static void withdraw() {
         //Rút tiền
-        activeBank.withdraw();
+        activeBank.withdraw(CUSTOMER_ID);
     }
 
     private static void showLog() {
         Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
-//        System.out.println("Tra cuu lich su giao dich: ");
         customer.displayInformation();
-        Account.displayTransactionHeader();
+        displayTransactionHeader();
         List<Account> accountList = customer.getAccounts();
         for (Account account : accountList
         ) {
             account.displayAllTransactions();
         }
-//        System.out.println("Nhap STK muon sao ke: ");
-//        String STK = scanner.nextLine();
-//        while (STK.length() != 6) {
-//            System.out.println("STK co 6 chu so, vui long nhap lai: ");
-//            STK = scanner.nextLine();
-//        }
-//        Account acc = customer.getAccountByAccounNumber(STK);
-//        if (acc != null) {
-//            acc.displayAllTransactions();
-//        } else {
-//            System.out.println("STK khong ton tai!!");
-//        }
+    }
+
+    private static void displayTransactionHeader() {
+        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Tien");
+        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 }

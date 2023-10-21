@@ -9,21 +9,21 @@ public class Customer extends User {
 
     public Customer() {
         super();
-        this.accounts = new ArrayList<>();
+        accounts = new ArrayList<>();
     }
 
     public Customer(String customerId, String name) {
         super(customerId, name);
-        this.accounts = new ArrayList<>();
+        accounts = new ArrayList<>();
     }
 
-    public static boolean isPremium() {
+    public static boolean isCustomerPremium() {
         //1 khách hàng là premium nếu có ít nhất 1 tài khoản (Account) là premium
         //duyệt list nếu có một account là premium thì isPremium = "Premium"
         //trả về isPremium
         for (Account acc : accounts
         ) {
-            if ((acc instanceof SavingsAccount) && acc.isPremium()) {
+            if ((acc instanceof SavingsAccount) && acc.isAccountPremium()) {
                 return true;
             }
         }
@@ -35,7 +35,7 @@ public class Customer extends User {
         return accounts;
     }
 
-    public Account getAccountByAccounNumber(String accountNumer) {
+    public Account getAccountByAccountNumber(String accountNumer) {
         for (Account account : accounts) {
             // Kiem tra account co ton tai hay khong
             if (account.getAccountNumber().equals(accountNumer)) {
@@ -63,8 +63,8 @@ public class Customer extends User {
     }
 
     public void addAccount(Account newAccount) {
-        for (int i = 0; i < accounts.size(); i++) {
-            if (newAccount.getAccountNumber().equals(accounts.get(i).getAccountNumber())) {
+        for (Account account : accounts) {
+            if (newAccount.getAccountNumber().equals(account.getAccountNumber())) {
                 System.out.println("Tai khoan da ton tai");
                 return;
             }
@@ -92,7 +92,7 @@ public class Customer extends User {
         return false;
     }
 
-    public double getBalance() {
+    public double getTotalAccountBalance() {
         //duyệt list và tính tổng tất cả các account balance của khách hàng
         //trả về kết quả
         double totalBalance = 0;
@@ -105,16 +105,15 @@ public class Customer extends User {
 
     public void displayInformation() {
         String premium = "Normal";
-        if (isPremium()) {
+        if (isCustomerPremium()) {
             premium = "Premium";
         }
-        System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | " + String.format("%,.0f", getBalance()) + "đ");
+        System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | " + String.format("%,.0f", getTotalAccountBalance()) + "đ");
         int accCount = 1;
         //duyệt list và hiển thị tất cả account của khách hàng
         for (Account account : accounts
         ) {
             System.out.format("%-5s %8s\n", accCount, account.toString());
-//            System.out.println();
             accCount++;
         }
     }

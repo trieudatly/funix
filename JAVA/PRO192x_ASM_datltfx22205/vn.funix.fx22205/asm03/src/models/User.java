@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class User {
     //tạo scanner dùng chung
@@ -27,6 +28,11 @@ public class User {
         final String CCCD_PATTERN = "^\\d{12}$";
         System.out.print("Nhap CCCD khach hang: ");
         return Utility.getInputWithPattern(CCCD_PATTERN);
+    }
+
+    boolean validateCustomerId(String canCuocCongDan) {
+        final String CCCD_PATTERN = "^\\d{12}$";
+        return Pattern.matches(CCCD_PATTERN, canCuocCongDan);
     }
 
     public String getName() {

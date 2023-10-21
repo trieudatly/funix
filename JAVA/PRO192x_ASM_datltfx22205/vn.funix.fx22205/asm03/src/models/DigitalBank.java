@@ -1,9 +1,6 @@
 package models;
 
 public class DigitalBank extends Bank {
-    //    private static final Scanner sc = new Scanner(System.in);
-//    private static final Scanner input = new Scanner(System.in);
-
 
     public Customer getCustomerById(String customerId) {
         for (Customer customer : getCustomers()
@@ -15,18 +12,18 @@ public class DigitalBank extends Bank {
         return null;
     }
 
-
-    public boolean withdraw(String customerId, String accountNumber, double amount) {
-        Customer customer = getCustomerById(customerId);
+    public boolean withdraw() {
+        Customer customer = getCustomerById(User.cccdInput());
         if (customer == null) {
-            System.out.println("Khong tim thay Id khach hang " + customerId);
+            System.out.println("Khong ton tai khach hang nay");
             return false;
         }
-        Account account = customer.getAccountByAccounNumber(accountNumber);
+        Account account = customer.getAccountByAccountNumber(Account.accountNumberInput());
         if (account == null) {
-            System.out.println("Khong tim thay tai khoan " + accountNumber);
+            System.out.println("Khong ton tai tai khoan nay");
             return false;
         }
+        double amount = Account.balanceInput();
         if (account.getAccountType().equals("savings")) {
             SavingsAccount savingsAccount = (SavingsAccount) account;
             return savingsAccount.withdraw(amount);
@@ -36,13 +33,13 @@ public class DigitalBank extends Bank {
         }
     }
 
-    public boolean withdraw() {
-        Customer customer = getCustomerById(User.cccdInput());
+    public boolean withdraw(String customerId) {
+        Customer customer = getCustomerById(customerId);
         if (customer == null) {
             System.out.println("Khong ton tai khach hang nay");
             return false;
         }
-        Account account = customer.getAccountByAccounNumber(Account.accountNumberInput());
+        Account account = customer.getAccountByAccountNumber(Account.accountNumberInput());
         if (account == null) {
             System.out.println("Khong ton tai tai khoan nay");
             return false;

@@ -18,7 +18,7 @@ public class Utility {
                 System.exit(0);
             }
             if (!Pattern.matches(pattern, input)) {
-                System.out.print("khong hop le. Vui long nhap lai:");
+                System.out.print("Khong hop le. Vui long nhap lai:");
             } else {
                 return input;
             }
@@ -27,7 +27,7 @@ public class Utility {
 
     public static String getDateTime() {
         Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         return dateFormat.format(date);
     }
 }

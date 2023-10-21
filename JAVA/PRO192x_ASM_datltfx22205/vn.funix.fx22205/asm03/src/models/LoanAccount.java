@@ -8,8 +8,16 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
         super(accountNumberInput(), LOAN_ACCOUNT_MAX_BALANCE);
     }
 
+    public LoanAccount(String accountNumber) {
+        super(accountNumber, LOAN_ACCOUNT_MAX_BALANCE);
+    }
+
+    public LoanAccount(String accountNumber, double maxBalance) {
+        super(accountNumber, maxBalance);
+    }
+
     public double getFee(double amount) {
-        if (Customer.isPremium()) {
+        if (Customer.isCustomerPremium()) {
             return LOAN_ACCOUNT_WITHDRAW_PREMIUM_FEE * amount;
         } else {
             return LOAN_ACCOUNT_WITHDRAW_FEE * amount;
@@ -19,7 +27,7 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
     @Override
     public String toString() {
 
-        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| LOAN    | ", getBalance(), "đ");
+        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| LOAN    | ", getBalance(), " đ");
 
     }
 
@@ -70,7 +78,7 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
         System.out.printf("NGAY GIAO DICH: %22s%n", dateTime);
         System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2023");
         System.out.printf("SO TAI KHOAN LOAN: %19s%n", accountNumber);
-        System.out.printf("SO TIEN: %27s%s%n", String.format("%,.0f", amount), " đ");
+        System.out.printf("SO TIEN: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
         System.out.printf("SO DU: %29s%s%n", String.format("%,.0f", newBalance), " đ");
         System.out.printf("PHI + VAT: %25s%s%n", String.format("%,.0f", fee), " đ");
         System.out.println("+------+-----------------------+------+");
