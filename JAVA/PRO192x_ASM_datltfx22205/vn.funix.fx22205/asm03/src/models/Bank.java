@@ -23,8 +23,6 @@ public class Bank {
             //nếu customer chưa tồn tại
             //thêm newCustomer vào list customers
             customers.add(newCustomer);
-            //thông báo thành công
-            //System.out.println("da them khach hang " + newCustomer.getCustomerId() + " vao danh sach");
             return true;
         }
     }

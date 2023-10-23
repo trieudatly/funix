@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 public class AccountTest {
     Account account = new Account("123456", 5000000);
     Account account1 = new Account("123456", 10000000);
-    Account account2 = new Account("123456", 100000000);
+    Account account2 = new Account("654321", 100000000);
 
     @Test
     public void validateAccount() {

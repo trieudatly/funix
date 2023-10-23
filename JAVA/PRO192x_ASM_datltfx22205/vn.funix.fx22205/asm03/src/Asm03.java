@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Asm03 {
     private static final int EXIT_COMMAND_CODE = 0;
     private static final int EXIT_ERROR_CODE = -1;
-    private static final Scanner scanner = new Scanner(System.in);
     private static final Scanner sc = new Scanner(System.in);
     private static final DigitalBank activeBank = new DigitalBank();
     private static final String CUSTOMER_ID = "001215000001";
@@ -17,7 +16,9 @@ public class Asm03 {
         //tạo 2 hằng lưu tác giả và phiên bản
         final String AUTHOR = "fx22205";
         final String VERSION = "3.0.0";
-        Customer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
+//        Customer customer = new Customer(CUSTOMER_ID, CUSTOMER_NAME);
+//        activeBank.addCustomer(customer);
+        DigitalCustomer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
         activeBank.addCustomer(customer);
         //biến choice dùng để lưu lựa chọn của user
         int choice;
@@ -96,11 +97,14 @@ public class Asm03 {
         }
     }
 
+
+    //Thêm tài khoản Savings cho khách hàng.
     private static void addSavingsAccount() {
         SavingsAccount savingsAccount = new SavingsAccount();
         activeBank.addAccount(CUSTOMER_ID, savingsAccount);
     }
 
+    //Thêm tài khoản LOAN cho khách hàng
     private static void addLoanAccount() {
         LoanAccount loanAccount = new LoanAccount();
         activeBank.addAccount(CUSTOMER_ID, loanAccount);
@@ -111,6 +115,7 @@ public class Asm03 {
         activeBank.withdraw(CUSTOMER_ID);
     }
 
+    //Hiện lịch sử giao dịch tất cả tài khoản SAVING và LOAN của khách hàng
     private static void showLog() {
         Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
         customer.displayInformation();
@@ -122,6 +127,7 @@ public class Asm03 {
         }
     }
 
+    //header cho log
     private static void displayTransactionHeader() {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
         System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Tien");

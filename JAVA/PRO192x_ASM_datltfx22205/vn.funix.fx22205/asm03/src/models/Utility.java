@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 public class Utility {
     static Scanner sc = new Scanner(System.in);
 
+    //nhập thông tin từ bàn phím
+    //so khớp theo PATTERN
     public static String getInputWithPattern(String pattern) {
         while (true) {
             String input = sc.nextLine().trim().toLowerCase();
@@ -25,6 +27,7 @@ public class Utility {
         }
     }
 
+    //lấy ngày giờ
     public static String getDateTime() {
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

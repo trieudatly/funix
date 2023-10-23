@@ -11,7 +11,7 @@ public class Transaction {
     private String time;
     private boolean status;
 
-
+    //transaction dùng để lưu lịch sử giao dịch của tài khoản
     public Transaction(String accountNumber, double amount, double transactionFee, boolean status, String dateTime) {
         this.id = String.valueOf(UUID.randomUUID());
         this.accountNumber = accountNumber;

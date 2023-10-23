@@ -16,8 +16,10 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
         super(accountNumber, maxBalance);
     }
 
-    public double getFee(double amount) {
-        if (Customer.isCustomerPremium()) {
+    //lấy phí rút tiền
+    public double getFee(double amount, boolean isPremium) {
+        //tùy theo tài khoản premium hoặc normal tính mức phí tương ứng
+        if (isPremium) {
             return LOAN_ACCOUNT_WITHDRAW_PREMIUM_FEE * amount;
         } else {
             return LOAN_ACCOUNT_WITHDRAW_FEE * amount;
@@ -32,11 +34,15 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
     }
 
     @Override
-    public boolean withdraw(double amount) {
+    public boolean withdraw(double amount, boolean isPremium) {
         String dateTime = Utility.getDateTime();
         String accountNumber = this.getAccountNumber();
-        if (isAccepted(amount)) {
-            double fee = getFee(amount);
+        //nếu khoản rút được chấp nhận
+        //tính toán balance còn lại sau khi rút
+        //tạo một transaction mới với thông tin giao dịch thành công
+        //dùng log để hiện thông tin giao dịch
+        if (isAccepted(amount, isPremium)) {
+            double fee = getFee(amount, isPremium);
             double newBalance = getBalance() - amount - fee;
             addTransaction(new Transaction(accountNumber, amount, fee, true, dateTime));
             setBalance(newBalance);
@@ -44,13 +50,20 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
             log(dateTime, accountNumber, amount, newBalance, fee);
             return true;
         }
+        //nếu khoản rút không được chấp nhận
+        //tạo một transaction mới với thông tin giao dịch không thành công
         addTransaction(new Transaction(accountNumber, amount, 0, false, dateTime));
         System.out.println("Giao dich khong thanh cong");
         return false;
     }
 
+    //kiểm tra khoản rút có hợp lệ hay không
     @Override
-    public boolean isAccepted(double amount) {
+    public boolean isAccepted(double amount, boolean isPremium) {
+        //khoản rút phải >= 50 000
+        //là bội số của 10 000
+        // < 100 000 000
+        //tài khoản phải còn >=50 000 nếu rút thành công
         if (amount % 10000 != 0) {
             System.out.println("So tien rut phai la boi so cua 10 000");
             return false;
@@ -60,10 +73,10 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
             return false;
         }
         if (amount > LOAN_ACCOUNT_MAX_BALANCE) {
-            System.out.println("Khong the rut qua han muc " + LOAN_ACCOUNT_MAX_BALANCE);
+            System.out.printf("Khong the rut qua han muc %,.0f%n", LOAN_ACCOUNT_MAX_BALANCE);
             return false;
         }
-        double newBalance = getBalance() - amount - getFee(amount);
+        double newBalance = getBalance() - amount - getFee(amount, isPremium);
         if (newBalance < ACCOUNT_MIN_BALANCE) {
             System.out.println("So du hien tai khong du");
             return false;

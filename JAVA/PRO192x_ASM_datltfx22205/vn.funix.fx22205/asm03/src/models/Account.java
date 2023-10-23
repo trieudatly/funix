@@ -12,13 +12,13 @@ public class Account {
 
     public Account() {
         accountNumber = accountNumberInput();
-        balance = balanceInput();
+        balance = amountInput();
 
     }
 
     public Account(String accountNumber) {
         this.accountNumber = accountNumber;
-        balance = balanceInput();
+        balance = amountInput();
     }
 
     public Account(String accountNumber, double balance) {
@@ -35,19 +35,19 @@ public class Account {
         return Utility.getInputWithPattern(ACCOUNT_PATTERN);
     }
 
-    public static double balanceInput() {
+    public static double amountInput() {
         //tạo 1 String với pattern dùng dể so khớp
         // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern
         // ? có hoặc không số bất kì từ 0-9, hoặc dấu .
-        final String BALANCE_PATTERN = "^([0-9]*[.])?[0-9]+$";
+        final String AMOUNT_PATTERN = "^([0-9]*[.])?[0-9]+$";
         while (true) {
             System.out.print("Nhap so tien: ");
-            double balance = Double.parseDouble(Utility.getInputWithPattern(BALANCE_PATTERN));
+            double amount = Double.parseDouble(Utility.getInputWithPattern(AMOUNT_PATTERN));
             // số dư của tài khoản, không được nhỏ hơn 50_000 VNĐ
-            if (balance >= 50000) {
-                return balance;
+            if (amount >= 50000 && amount % 10000 == 0) {
+                return amount;
             }
-            System.out.println("so tien phai lon hon hoac bang 50,000");
+            System.out.println("so tien phai lon hon hoac bang 50,000 va la boi so cua 10 000");
         }
     }
 

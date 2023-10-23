@@ -17,13 +17,13 @@ public class Customer extends User {
         accounts = new ArrayList<>();
     }
 
-    public static boolean isCustomerPremium() {
+    public boolean isCustomerPremium() {
         //1 khách hàng là premium nếu có ít nhất 1 tài khoản (Account) là premium
         //duyệt list nếu có một account là premium thì isPremium = "Premium"
         //trả về isPremium
-        for (Account acc : accounts
+        for (Account account : accounts
         ) {
-            if ((acc instanceof SavingsAccount) && acc.isAccountPremium()) {
+            if ((account instanceof SavingsAccount) && account.isAccountPremium()) {
                 return true;
             }
         }
@@ -63,6 +63,8 @@ public class Customer extends User {
     }
 
     public void addAccount(Account newAccount) {
+        //nếu account chưa tồn tại
+        // => thêm account mới vào customer
         for (Account account : accounts) {
             if (newAccount.getAccountNumber().equals(account.getAccountNumber())) {
                 System.out.println("Tai khoan da ton tai");
