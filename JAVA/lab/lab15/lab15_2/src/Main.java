@@ -43,6 +43,8 @@ public class Main {
                     dices.add(dice);
                 }
             }
+        } catch (NoSuchElementException e) {
+            //System.out.println("Error reading dice from file");
         } finally {
             if (scanner != null) {
                 scanner.close();
