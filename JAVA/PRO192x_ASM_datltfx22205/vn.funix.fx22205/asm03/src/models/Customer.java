@@ -110,7 +110,8 @@ public class Customer extends User {
         if (isCustomerPremium()) {
             premium = "Premium";
         }
-        System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | " + String.format("%,.0f", getTotalAccountBalance()) + "đ");
+        System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | "
+                + String.format("%,.0f", getTotalAccountBalance()) + "đ");
         int accCount = 1;
         //duyệt list và hiển thị tất cả account của khách hàng
         for (Account account : accounts
@@ -119,4 +120,5 @@ public class Customer extends User {
             accCount++;
         }
     }
+
 }

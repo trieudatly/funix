@@ -102,7 +102,8 @@ public class Account {
     }
 
     public void displayAllTransactions() {
-        List<Transaction> transactions = new ArrayList<>(getTransactions());
+        List<Transaction> transactions;
+        transactions = new ArrayList<>(getTransactions());
         if (!transactions.isEmpty()) {
             for (Transaction transaction : transactions) {
                 System.out.println("|" + transaction.toString());
