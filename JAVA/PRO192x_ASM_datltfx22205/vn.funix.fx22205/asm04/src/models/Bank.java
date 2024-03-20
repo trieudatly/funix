@@ -27,9 +27,9 @@ public class Bank {
         }
     }
 
-    public void addNewCustomer(String customerId, String name) {
-        customers.add(new Customer(customerId, name));
-    }
+//    public void addNewCustomer(String customerId, String name) {
+//        customers.add(new Customer(customerId, name));
+//    }
 
     public void addAccount(String CCCD, Account account) {
         for (int i = 0; i < customers.size(); i++) {

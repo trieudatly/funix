@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class DigitalBank extends Bank {
 
     public Customer getCustomerById(String customerId) {
@@ -10,6 +12,11 @@ public class DigitalBank extends Bank {
             }
         }
         return null;
+    }
+
+    public List<Customer> getAllCustomer() {
+        List<Customer> customers = this.getCustomers();
+        return customers;
     }
 
     public boolean withdraw() {

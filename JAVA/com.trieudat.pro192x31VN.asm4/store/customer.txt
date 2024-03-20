@@ -1,0 +1,25 @@
+{
+  "id": "1304e50a-f6a6-45ad-ac1b-3b7d7c454073",
+  "customers": [
+    {
+      "accounts": [],
+      "userId": "001215000001",
+      "name": "FUNIX"
+    },
+    {
+      "accounts": [],
+      "userId": "001215000002",
+      "name": "FUNIX"
+    },
+    {
+      "accounts": [],
+      "userId": "001215000003",
+      "name": "FUNIX"
+    },
+    {
+      "accounts": [],
+      "userId": "001215000004",
+      "name": "FUNIX"
+    }
+  ]
+}

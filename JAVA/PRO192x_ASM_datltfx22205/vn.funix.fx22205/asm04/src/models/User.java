@@ -1,9 +1,11 @@
 package models;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
     //tạo scanner dùng chung
     static Scanner sc = new Scanner(System.in);
 
@@ -11,8 +13,8 @@ public class User {
     private String customerId;
 
     public User() {
-        setName();
-        setCustomerId();
+        //setName();
+        //setCustomerId();
     }
 
     public User(String userId, String name) {

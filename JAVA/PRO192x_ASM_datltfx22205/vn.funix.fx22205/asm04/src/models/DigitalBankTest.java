@@ -2,13 +2,17 @@ package models;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class DigitalBankTest {
 
     DigitalBank activeBank = new DigitalBank();
-    Customer customer = new Customer("001215000001", "FUNIX");
+    List<Account> accounts = new ArrayList<>();
+    Customer customer = new Customer("001215000001", "FUNIX", accounts);
 
     @Test
     public void getCustomerById() {

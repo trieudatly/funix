@@ -2,11 +2,15 @@ package models;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 
 public class CustomerTest {
-    Customer customer = new Customer("001215000001", "FUNIX");
+    List<Account> accounts = new ArrayList<>();
+    Customer customer = new Customer("001215000001", "FUNIX", accounts);
     SavingsAccount saving1 = new SavingsAccount("123456", 5000000);
     SavingsAccount saving2 = new SavingsAccount("234567", 10000000);
     LoanAccount loan1 = new LoanAccount("987654");

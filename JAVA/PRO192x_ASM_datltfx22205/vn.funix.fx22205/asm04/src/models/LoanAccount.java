@@ -26,12 +26,6 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
         }
     }
 
-    @Override
-    public String toString() {
-
-        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| LOAN    | ", getBalance(), " đ");
-
-    }
 
     @Override
     public boolean withdraw(double amount, boolean isPremium) {

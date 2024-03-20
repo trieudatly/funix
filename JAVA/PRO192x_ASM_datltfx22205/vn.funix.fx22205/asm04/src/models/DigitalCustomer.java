@@ -1,9 +1,11 @@
 package models;
 
+import java.util.List;
+
 public class DigitalCustomer extends Customer {
 
-    public DigitalCustomer(String customerId, String name) {
-        super(customerId, name);
+    public DigitalCustomer(String customerId, String name, List<Account> accounts) {
+        super(customerId, name, accounts);
     }
 
     public boolean withdraw() {

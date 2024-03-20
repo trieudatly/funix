@@ -21,11 +21,6 @@ public class Account {
         balance = amountInput();
     }
 
-    public Account(String accountNumber, double balance) {
-        this.accountNumber = accountNumber;
-        this.balance = balance;
-    }
-
     public static String accountNumberInput() {
         //tạo 1 String với pattern dùng dể so khớp
         // ^ và $ để khai báo bắt đầu và kết thúc 1 pattern

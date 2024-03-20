@@ -16,7 +16,7 @@ public class LoanAccount extends Account implements Withdraw, ReportService {
         super(accountNumber, maxBalance);
     }
 
-    //lấy phí rút tiền
+
     public double getFee(double amount, boolean isPremium) {
         //tùy theo tài khoản premium hoặc normal tính mức phí tương ứng
         if (isPremium) {

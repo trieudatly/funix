@@ -19,7 +19,13 @@ public class Asm03 {
 //        Customer customer = new Customer(CUSTOMER_ID, CUSTOMER_NAME);
 //        activeBank.addCustomer(customer);
         DigitalCustomer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
+        Customer customer1 = new Customer("001215000002", CUSTOMER_NAME);
+        Customer customer2 = new Customer("001215000003", CUSTOMER_NAME);
+        Customer customer3 = new Customer("001215000004", CUSTOMER_NAME);
         activeBank.addCustomer(customer);
+        activeBank.addCustomer(customer1);
+        activeBank.addCustomer(customer2);
+        activeBank.addCustomer(customer3);
         //biến choice dùng để lưu lựa chọn của user
         int choice;
         //String cccd;
@@ -41,7 +47,7 @@ public class Asm03 {
 
                 case 1:
                     //hiện thông tin khách hàng
-                    showCustomer();
+                    showAllCustomer();
                     break;
                 case 2:
                     //Thêm tài khoản Savings cho khách hàng.
@@ -97,7 +103,6 @@ public class Asm03 {
         }
     }
 
-
     //Thêm tài khoản Savings cho khách hàng.
     private static void addSavingsAccount() {
         SavingsAccount savingsAccount = new SavingsAccount();
@@ -132,5 +137,13 @@ public class Asm03 {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
         System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Tien");
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
+    }
+
+    private static void showAllCustomer() {
+        List<Customer> customers = activeBank.getCustomers();
+        for (Customer customer : customers
+        ) {
+            customer.displayInformation();
+        }
     }
 }

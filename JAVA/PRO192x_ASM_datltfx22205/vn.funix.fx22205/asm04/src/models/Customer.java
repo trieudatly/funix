@@ -1,28 +1,39 @@
 package models;
 
-import java.util.ArrayList;
+import java.io.*;
 import java.util.List;
 
 //class Customer kế thừa class User
-public class Customer extends User {
+public class Customer extends User implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static List<Account> accounts;
 
-    public Customer() {
-        super();
-        accounts = new ArrayList<>();
+//    public Customer(String customerId, String name) {
+//        super(customerId, name);
+//        accounts = new ArrayList<>();
+//    }
+
+    public Customer(String customerId, String name, List<Account> accounts) {
+        super(customerId, name);
+        this.accounts = accounts;
     }
 
-    public Customer(String customerId, String name) {
-        super(customerId, name);
-        accounts = new ArrayList<>();
+    public static <T> void writeFile(String fileName, List<T> objects) {
+        try (ObjectOutputStream file = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)))) {
+            for (T object : objects) {
+                file.writeObject(object);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 
     public boolean isCustomerPremium() {
         //1 khách hàng là premium nếu có ít nhất 1 tài khoản (Account) là premium
         //duyệt list nếu có một account là premium thì isPremium = "Premium"
         //trả về isPremium
-        for (Account account : accounts
-        ) {
+        for (Account account : accounts) {
             if ((account instanceof SavingsAccount) && account.isAccountPremium()) {
                 return true;
             }
@@ -84,8 +95,7 @@ public class Customer extends User {
         //duyệt list
         //nếu có account với accountNumber tương đương tham số
         //trả về true
-        for (Account account : accounts
-        ) {
+        for (Account account : accounts) {
             if (accountNumber.equals(account.getAccountNumber())) {
                 return true;
             }
@@ -98,8 +108,7 @@ public class Customer extends User {
         //duyệt list và tính tổng tất cả các account balance của khách hàng
         //trả về kết quả
         double totalBalance = 0;
-        for (Account acc : accounts
-        ) {
+        for (Account acc : accounts) {
             totalBalance += acc.getBalance();
         }
         return totalBalance;
@@ -110,15 +119,12 @@ public class Customer extends User {
         if (isCustomerPremium()) {
             premium = "Premium";
         }
-        System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | "
-                + String.format("%,.0f", getTotalAccountBalance()) + "đ");
+        System.out.println(getCustomerId() + " | " + getName() + " | " + premium + " | " + String.format("%,.0f", getTotalAccountBalance()) + "đ");
         int accCount = 1;
         //duyệt list và hiển thị tất cả account của khách hàng
-        for (Account account : accounts
-        ) {
+        for (Account account : accounts) {
             System.out.format("%-5s %8s\n", accCount, account.toString());
             accCount++;
         }
     }
-
 }

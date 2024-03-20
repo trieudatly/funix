@@ -1,5 +1,6 @@
 import models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,10 +17,11 @@ public class Asm04 {
         //tạo 2 hằng lưu tác giả và phiên bản
         final String AUTHOR = "fx22205";
         final String VERSION = "3.0.0";
-//        Customer customer = new Customer(CUSTOMER_ID, CUSTOMER_NAME);
-//        activeBank.addCustomer(customer);
-        DigitalCustomer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
+        List<Account> accounts = new ArrayList<>();
+        Customer customer = new Customer(CUSTOMER_ID, CUSTOMER_NAME, accounts);
         activeBank.addCustomer(customer);
+        //DigitalCustomer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
+        //activeBank.addCustomer(customer);
         //biến choice dùng để lưu lựa chọn của user
         int choice;
         //String cccd;
@@ -41,7 +43,8 @@ public class Asm04 {
 
                 case 1:
                     //hiện thông tin khách hàng
-                    showCustomer();
+                    //showCustomerById();
+                    showAllCustomer();
                     break;
                 case 2:
                     //Thêm tài khoản Savings cho khách hàng.
@@ -75,6 +78,7 @@ public class Asm04 {
         }
     }
 
+
     //Menu Chính
 //    private static void mainMenu(String author, String version) {
 //        System.out.println("+----------+-------------------+----------+");
@@ -96,20 +100,35 @@ public class Asm04 {
         System.out.println(" 2.Nhap danh sach khach hang");
         System.out.println(" 3.Them tai khoan ATM");
         System.out.println(" 4.Chuyen tien");
-        System.out.println(" 5.Chuyen tien");
+        System.out.println(" 5.Rut tien");
         System.out.println(" 6.Tra cuu lich su giao dich");
         System.out.println(" 0.Thoat");
         System.out.println("+----------+-------------------+----------+");
     }
 
     //hiện thông tin khách hàng
-    private static void showCustomer() {
+    private static void showCustomerById() {
         Customer customer = activeBank.getCustomerById(CUSTOMER_ID);
         if (customer != null) {
             customer.displayInformation();
         }
     }
 
+    private static void showAllCustomer() {
+        List<Customer> customers = activeBank.getAllCustomer();
+        for (Customer customer : customers
+        ) {
+            customer.displayInformation();
+        }
+        Utility.writeFile("store/customer.dat", customers);
+        // đọc dữ liệu từ file
+        List<Customer> readCustomers = Utility.readFile("store/customer.dat");
+        System.out.println("List customer in file: ");
+        for (Customer customer : readCustomers
+        ) {
+            customer.displayInformation();
+        }
+    }
 
     //Thêm tài khoản Savings cho khách hàng.
     private static void addSavingsAccount() {

@@ -517,7 +517,7 @@ ORDER BY pages DESC
 LIMIT 1;
 
 SELECT 
-    CONCAT_WS(' - ', title, released_year)
+    CONCAT_WS(' - ', title, released_year) AS summary
 FROM
     books
 ORDER BY released_year DESC
@@ -541,14 +541,14 @@ SELECT
     title, author_lname
 FROM
     books
-ORDER BY author_lname , title ASC;
+ORDER BY author_lname , title DESC;
 
 SELECT 
-    CONCAT('my favorite author is ',
+    upper(CONCAT('my favorite author is ',
             author_fname,
             ' ',
             author_lname,
-            ' !') AS 'yell'
+            ' !')) AS yell
 FROM
     books
-ORDER BY author_lname DESC;
+ORDER BY author_lname ASC;
