@@ -1,5 +1,6 @@
 package models;
 
+import exception.CustomerIdNotValidException;
 import service.CustomerIdValidator;
 
 import java.io.Serializable;
@@ -16,14 +17,12 @@ public class Customer extends User implements Serializable {
         this.accounts = accounts;
     }
 
-    public Customer(String customerId, String name) {
-        //super(Id, name);
-        this.setName(name);
-        if(CustomerIdValidator.validateCustomerId(customerId)){
-
-        }else {
-
+    public Customer(String customerId, String name) throws CustomerIdNotValidException {
+        if (!CustomerIdValidator.validateCustomerId(customerId)) {
+            throw new CustomerIdNotValidException("ID khong hop le");
         }
+        this.setUserId(customerId);
+        this.setName(name);
         this.accounts = new ArrayList<>();
     }
 
@@ -31,9 +30,7 @@ public class Customer extends User implements Serializable {
         super();
         this.accounts = new ArrayList<>();
     }
-public Customer(List<String> values){
-        this(values.get(0),values.get(1));
-}
+
     public List<Account> getAccounts() {
         return accounts;
     }
@@ -69,7 +66,8 @@ public Customer(List<String> values){
         }
         return null;
     }
-    public Account getAccountByAccountNumber(List<Account>accounts,String accountNumer) {
+
+    public Account getAccountByAccountNumber(List<Account> accounts, String accountNumer) {
         for (Account account : accounts) {
             // Kiem tra account co ton tai hay khong
             if (account.getAccountNumber().equals(accountNumer)) {
@@ -78,33 +76,36 @@ public Customer(List<String> values){
         }
         return null;
     }
-    public void displayTransactionInformation(){
+
+    public void displayTransactionInformation() {
 
     }
-    public boolean withdraw(Scanner scanner){
-        List<Account> accounts=getAccounts();
-        if(!accounts.isEmpty()){
-            Account account;
-            double amount;
-            do{
-                System.out.println("Nhap so tai khoan: ");
-                account=getAccountByAccountNumber(accounts,scanner.nextLine());
-            }while(account==null);
-            do{
-                System.out.println("Nhap so tien rut: ");
-                amount=Double.parseDouble(scanner.nextLine());
-            }while(amount<=0);
-            if(account instanceof SavingAccount){
-                ((SavingAccount) account).withdraw(amount);
-            }else {
-                System.out.println("Khach hang khong co tai khoan nao, thao tac khong thanh cong");
-            }
-        }
+
+    //    public boolean withdraw(Scanner scanner){
+//        List<Account> accounts=getAccounts();
+//        if(!accounts.isEmpty()){
+//            Account account;
+//            double amount;
+//            do{
+//                System.out.println("Nhap so tai khoan: ");
+//                account=getAccountByAccountNumber(accounts,scanner.nextLine());
+//            }while(account==null);
+//            do{
+//                System.out.println("Nhap so tien rut: ");
+//                amount=Double.parseDouble(scanner.nextLine());
+//            }while(amount<=0);
+//            if(account instanceof SavingAccount){
+//                ((SavingAccount) account).withdraw(amount);
+//            }else {
+//                System.out.println("Khach hang khong co tai khoan nao, thao tac khong thanh cong");
+//            }
+//        }
+//        return false;
+//    }
+    public boolean tranfers(Scanner scanner) {
         return false;
     }
-    public boolean tranfers(Scanner scanner){
-        return false;
-    }
+
     public void addAccount() {
         while (true) {
             //nhập accountNumber thông qua phương thức accountNumberInput() của class Account

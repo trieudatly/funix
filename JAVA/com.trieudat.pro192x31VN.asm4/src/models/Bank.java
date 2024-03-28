@@ -14,6 +14,10 @@ public abstract class Bank {
         this.customers = customers;
     }
 
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
     public Bank() {
         this.customers = new ArrayList<>();
         this.id = String.valueOf(UUID.randomUUID());
@@ -41,12 +45,13 @@ public abstract class Bank {
         //nếu phương thức isCustomerExisted trả về true
         //thông báo đã tồn tại customer này trong bank
         if (isCustomerExisted(newCustomer.getCustomerId())) {
-            System.out.println("ID " + newCustomer.getCustomerId() + " da ton tai");
+            System.out.println("Khach hang " + newCustomer.getCustomerId() + " da ton tai, them khach hang khong thanh cong");
             return false;
         } else {
             //nếu customer chưa tồn tại
             //thêm newCustomer vào list customers
             customers.add(newCustomer);
+            System.out.println("Da them khach hang " + newCustomer.getCustomerId() + " vao danh sach khach hang");
             return true;
         }
     }

@@ -1,17 +1,9 @@
 package models;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class DigitalCustomer extends Customer implements Serializable {
     private static final long serialVersionUID = 1L;
-    public DigitalCustomer(String customerId, String name, List<Account> accounts) {
-        super(customerId, name, accounts);
-    }
-    public DigitalCustomer(String customerId, String name) {
-        super(customerId, name);
-    }
-
 
     public boolean withdraw() {
         //yêu cầu nhập accountNumber

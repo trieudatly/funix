@@ -1,5 +1,8 @@
 package models;
 
+import dao.CustomerDao;
+import file.TextFileService;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,33 +10,45 @@ public class DigitalBank extends Bank {
 
 
     public void showCustomers() {
-
+        System.out.println(CustomerDao.list());
     }
 
     public void addCustomers(String fileName) {
+        List<Customer> txtCustomer = TextFileService.readFile(fileName);
+        if (txtCustomer != null || !txtCustomer.isEmpty()) {
+            for (Customer cus : txtCustomer
+            ) {
+                addCustomer(cus);
+            }
+        }
+    }
+
+    public void addSavingAccount(Scanner scanner, String customerId) {
 
     }
 
-    public void addSavingAccount(Scanner scanner, String customerId){
+    public void withdraw(Scanner scanner, String customerId) {
 
     }
-    public void withdraw(Scanner scanner, String customerId){
+
+    public void tranfers(Scanner scanner, String customerId) {
 
     }
-    public void tranfers(Scanner scanner, String customerId){
 
-    }
-    public boolean isAccountExisted(List<Account> accountsList, Account newAccount){
+    public boolean isAccountExisted(List<Account> accountsList, Account newAccount) {
         return false;
     }
-     public boolean isCustomerExisted(List<Customer> customers, Customer newCustomer){
+
+    public boolean isCustomerExisted(List<Customer> customers, Customer newCustomer) {
         return false;
-     }
+    }
+
     public List<Customer> getAllCustomer() {
         List<Customer> customers = this.getCustomers();
         return customers;
     }
-    public Customer getCustomerById(List<Customer> customerList, String customerId){
+
+    public Customer getCustomerById(List<Customer> customerList, String customerId) {
         return null;
     }
 

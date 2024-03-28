@@ -1,10 +1,13 @@
 package file;
 
+import exception.CustomerIdNotValidException;
 import models.Customer;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 //định nghĩa lớp thao tác với file text
 public class TextFileService {
@@ -17,13 +20,18 @@ public class TextFileService {
         Scanner scanner = null;
         try {
             scanner = new Scanner(new FileReader(fileName));
-            scanner.useDelimiter(",");
+            scanner.useDelimiter(COMMA_DELIMITER);
             while (scanner.hasNextLine()) {
-                String id = scanner.nextLine();
-                scanner.skip(scanner.delimiter());
-                String name = scanner.nextLine();
-                Customer cus = new Customer(id, name);
-                customers.add(cus);
+                String input = scanner.nextLine();
+                String[] data = input.split(COMMA_DELIMITER);
+                String id = data[0];
+                String name = data[1];
+                try {
+                    Customer cus = new Customer(id, name);
+                    customers.add(cus);
+                } catch (CustomerIdNotValidException e) {
+                    System.out.println(e.getMessage() + ": " + id);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

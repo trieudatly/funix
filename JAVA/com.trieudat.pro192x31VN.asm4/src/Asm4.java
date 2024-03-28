@@ -12,6 +12,7 @@ public class Asm4 {
     private static final DigitalBank activeBank = new DigitalBank();
     private static final String CUSTOMER_ID = "001215000001";
     private static final String CUSTOMER_NAME = "FUNIX";
+
     private static void mainMenu(String author, String version) {
         System.out.println("+----------+-------------------+----------+");
         System.out.println("| NGAN HANG DIEN TU | " + author + "@v" + version + "           |");
@@ -25,25 +26,27 @@ public class Asm4 {
         System.out.println(" 0.Thoat");
         System.out.println("+----------+-------------------+----------+");
     }
+
     //hiện thông tin khách hàng
     private static void showCustomerById() {
-       DigitalCustomer customer = activeBank.getCustomerById(CUSTOMER_ID);
+        DigitalCustomer customer = activeBank.getCustomerById(CUSTOMER_ID);
         if (customer != null) {
             customer.displayInformation();
         }
     }
+
     private static void showAllCustomer() {
         List<Customer> customers = activeBank.getCustomers();
-        if(!customers.isEmpty()){
-            for (Customer customer : customers
-            ) {
+        if (!customers.isEmpty()) {
+            for (Customer customer : customers) {
                 customer.displayInformation();
             }
         }
     }
+
     //Thêm tài khoản Savings cho khách hàng.
     private static void addSavingsAccount() {
-        SavingAccount savingsAccount = new SavingAccount(Account.accountNumberInput(),Account.amountInput());
+        SavingAccount savingsAccount = new SavingAccount(Account.accountNumberInput(), Account.amountInput());
         activeBank.addAccount(CUSTOMER_ID, savingsAccount);
     }
 
@@ -64,18 +67,19 @@ public class Asm4 {
         customer.displayInformation();
         displayTransactionHeader();
         List<Account> accountList = customer.getAccounts();
-        for (Account account : accountList
-        ) {
+        for (Account account : accountList) {
             account.displayAllTransactions();
         }
     }
+
     //header cho log
     private static void displayTransactionHeader() {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
         System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Tien");
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
-    private static void SaveAndReadFromFile(){
+
+    private static void SaveAndReadFromFile() {
         List<Customer> customers = activeBank.getCustomers();
 //        if(!customers.isEmpty()){
 //            for (Customer customer : customers
@@ -83,33 +87,22 @@ public class Asm4 {
 //                customer.displayInformation();
 //            }
 //        }
-        FileService.writeToDataFile( customers,"store/customer.dat");
+        FileService.writeToDataFile(customers, "store/customer.dat");
         // đọc dữ liệu từ file
         List<Customer> readCustomers = FileService.readFromDataFile("store/customer.dat");
         System.out.println("List customer in file: ");
-        for (Customer customer : readCustomers
-        ) {
+        for (Customer customer : readCustomers) {
             customer.displayInformation();
         }
     }
+
     public static void main(String[] args) {
         //tạo 2 hằng lưu tác giả và phiên bản
         final String AUTHOR = "fx22205";
-        final String VERSION = "3.0.0";
+        final String VERSION = "4.0.0";
         List<Account> accounts = new ArrayList<>();
-        DigitalCustomer customer = new DigitalCustomer("001215000001", CUSTOMER_NAME);
-        DigitalCustomer customer1 = new DigitalCustomer("001215000002", CUSTOMER_NAME);
-        DigitalCustomer customer2 = new DigitalCustomer("001215000003", CUSTOMER_NAME);
-        DigitalCustomer customer3 = new DigitalCustomer("001215000004", CUSTOMER_NAME);
-        activeBank.addCustomer(customer);
-        activeBank.addCustomer(customer1);
-        activeBank.addCustomer(customer2);
-        activeBank.addCustomer(customer3);
-        //DigitalCustomer customer = new DigitalCustomer(CUSTOMER_ID, CUSTOMER_NAME);
-        //activeBank.addCustomer(customer);
         //biến choice dùng để lưu lựa chọn của user
         int choice;
-        //String cccd;
         //gọi phương thức mainMenu với 2 tham số author và version
         mainMenu(AUTHOR, VERSION);
         while (true) {
@@ -125,31 +118,27 @@ public class Asm4 {
                 continue;
             }
             switch (choice) {
-
                 case 1:
-                    //hiện thông tin khách hàng
-                    //showCustomerById();
-                    showAllCustomer();
+                    //Xem danh sách khách hàng
+                    activeBank.showCustomers();
                     break;
                 case 2:
-                    //Thêm tài khoản Savings cho khách hàng.
-                    addSavingsAccount();
+                    //Nhập danh sách khách hàng
+                    System.out.println("Nhap duong dan den tep:");
+                    sc.nextLine();
+                    activeBank.addCustomers(sc.nextLine());
                     break;
                 case 3:
-                    //Thêm tài khoản LOAN cho khách hàng
-                    addLoanAccount();
+                    //Thêm tài khoản ATM
                     break;
                 case 4:
-                    //Rút tiền
-                    withdraw();
+                    //Chuyển tiền
                     break;
                 case 5:
-                    //Hiện lịch sử giao dịch tất cả tài khoản SAVING và LOAN của khách hàng
-                    showLog();
+                    //Rút tiền
                     break;
                 case 6:
-                    //Hiện lịch sử giao dịch tất cả tài khoản SAVING và LOAN của khách hàng
-                    SaveAndReadFromFile();
+                    //Tra cứu lịch sử giao dịch
                     break;
                 case 0:
                     //Thoát
@@ -159,9 +148,9 @@ public class Asm4 {
                     System.exit(0);
                     break;
                 default:
-                    //nếu người dùng nhập một số khác 1 2 3 4 5 0
-                    // => in ra thông báo lỗi
-                    System.out.println("Nhap 1 2 3 4 5 0 de chon chuc nang");
+                    //nếu người dùng nhập một số khác 1 2 3 4 5 6 0
+                    // => in ra thông báo
+                    System.out.println("Nhap 1 2 3 4 5 6 0 de chon chuc nang");
                     break;
             }
         }
