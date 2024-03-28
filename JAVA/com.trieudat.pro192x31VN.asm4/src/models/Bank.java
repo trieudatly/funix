@@ -6,16 +6,19 @@ import java.util.UUID;
 
 public abstract class Bank {
     private String id;
+    private String name;
     private List<Customer> customers;
 
     public Bank(String id, List<Customer> customers) {
         this.id = id;
         this.customers = customers;
     }
+
     public Bank() {
         this.customers = new ArrayList<>();
         this.id = String.valueOf(UUID.randomUUID());
     }
+
     public boolean isCustomerExisted(String customerId) {
         //nếu list trống thì coi như customer không tồn tại
         if (customers.isEmpty()) {
@@ -33,6 +36,7 @@ public abstract class Bank {
         //còn lại trả về false
         return false;
     }
+
     public boolean addCustomer(Customer newCustomer) {
         //nếu phương thức isCustomerExisted trả về true
         //thông báo đã tồn tại customer này trong bank
@@ -46,6 +50,7 @@ public abstract class Bank {
             return true;
         }
     }
+
     public void addAccount(String customerId, Account account) {
         for (int i = 0; i < customers.size(); i++) {
             if (customerId.equals(customers.get(i).getCustomerId())) {
@@ -58,6 +63,10 @@ public abstract class Bank {
 
     public String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<Customer> getCustomers() {

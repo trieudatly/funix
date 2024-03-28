@@ -11,6 +11,7 @@ public class Transaction implements Serializable {
     private double transactionFee;
     private String time;
     private boolean status;
+    private TransactionType type;
 
     public Transaction(String accountNumber, double amount, double transactionFee, boolean status, String dateTime) {
         this.id = String.valueOf(UUID.randomUUID());
@@ -72,6 +73,7 @@ public class Transaction implements Serializable {
     public boolean getStatus() {
         return status;
     }
+
     public String toString() {
         return " [GD] " + getAccountNumber()
                 + " | " + String.format("%s", getTime())

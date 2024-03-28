@@ -5,9 +5,11 @@ import utility.Validation;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
+    private String customerId;
     private String accountNumber;
     private double balance;
     private List<Transaction> transactions = new ArrayList<>();
@@ -15,17 +17,28 @@ public class Account implements Serializable {
     public Account() {
 
     }
+
     public Account(String accountNumber, double balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
     }
 
+    public Customer getCustomer() {
+        return null;
+    }
 
+    public void displayTransactionsList() {
 
+    }
+public void createTransaction(double amount, String time, boolean status, TransactionType type){
+
+}
+public void input(Scanner scanner){
+
+}
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
-
 
 
     public static String accountNumberInput() {

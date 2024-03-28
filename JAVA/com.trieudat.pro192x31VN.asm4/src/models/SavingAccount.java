@@ -7,6 +7,7 @@ import java.io.Serializable;
 public class SavingAccount extends Account implements Withdraw, ReportService, Serializable {
     public SavingAccount() {
     }
+
     public SavingAccount(String accountNumber, double balance) {
         super(accountNumber, balance);
     }
@@ -41,6 +42,10 @@ public class SavingAccount extends Account implements Withdraw, ReportService, S
         //tạo một transaction mới với thông tin giao dịch không thành công
         addTransaction(new Transaction(accountNumber, amount, 0, false, dateTime));
         System.out.println("Giao dich khong thanh cong");
+        return false;
+    }
+
+    public boolean transfers(Account receiveAccount, double amount) {
         return false;
     }
 
