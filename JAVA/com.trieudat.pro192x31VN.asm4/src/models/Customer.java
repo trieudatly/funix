@@ -136,7 +136,7 @@ public class Customer extends User implements Serializable {
         }
         for (Account account : accounts) {
             if (newAccount.getAccountNumber().equals(account.getAccountNumber())) {
-                System.out.println("Tai khoan da ton tai");
+                System.out.println("Tai khoan da ton tai,them tai khoan khong thanh cong!!");
                 return false;
             }
         }

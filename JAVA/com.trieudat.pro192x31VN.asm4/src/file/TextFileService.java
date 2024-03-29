@@ -20,12 +20,19 @@ public class TextFileService {
         Scanner scanner = null;
         try {
             scanner = new Scanner(new FileReader(fileName));
-            scanner.useDelimiter(COMMA_DELIMITER);
+            //scanner.useDelimiter(COMMA_DELIMITER);
             while (scanner.hasNextLine()) {
-                String input = scanner.nextLine();
-                String[] data = input.split(COMMA_DELIMITER);
-                String id = data[0];
-                String name = data[1];
+                String input = "";
+                String id = "";
+                String name = "";
+                try {
+                    input = scanner.nextLine();
+                    String[] data = input.split(COMMA_DELIMITER);
+                    id = data[0];
+                    name = data[1];
+                } catch (Exception e) {
+                    System.out.println("Loi doc file ");
+                }
                 try {
                     Customer cus = new Customer(id, name);
                     customers.add(cus);
@@ -34,7 +41,7 @@ public class TextFileService {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Loi doc file ");
         } finally {
             if (scanner != null) {
                 scanner.close();

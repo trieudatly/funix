@@ -1,6 +1,9 @@
+import dao.CustomerDao;
 import models.*;
+import service.CustomerIdValidator;
 import utility.FileService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -35,8 +38,16 @@ public class Asm4 {
         }
     }
 
+    private static void saveBank() {
+        try {
+            CustomerDao.save(activeBank.getCustomers());
+        } catch (IOException e) {
+            System.out.println("Loi luu file");
+        }
+    }
+
     private static void showAllCustomer() {
-        List<Customer> customers = activeBank.getCustomers();
+        List<Customer> customers = activeBank.getCustomerFromFile();
         if (!customers.isEmpty()) {
             for (Customer customer : customers) {
                 customer.displayInformation();
@@ -46,8 +57,18 @@ public class Asm4 {
 
     //Thêm tài khoản Savings cho khách hàng.
     private static void addSavingsAccount() {
-        SavingAccount savingsAccount = new SavingAccount(Account.accountNumberInput(), Account.amountInput());
-        activeBank.addAccount(CUSTOMER_ID, savingsAccount);
+        List<Customer> customers = activeBank.getCustomerFromFile();
+        //nhập CCCD khách hàng
+        String cccd = CustomerIdValidator.cccdInput();
+        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
+        if (activeBank.isCustomerExisted(cccd)) {
+            SavingAccount savingsAccount = new SavingAccount(Account.accountNumberInput(), Account.amountInput());
+            activeBank.addAccount(cccd, savingsAccount);
+            saveBank();
+        } else {
+            //nếu khách hàng không tồn tại=>thông báo
+            System.out.println("Khach hang khong ton tai");
+        }
     }
 
     //Thêm tài khoản LOAN cho khách hàng
@@ -120,16 +141,17 @@ public class Asm4 {
             switch (choice) {
                 case 1:
                     //Xem danh sách khách hàng
-                    activeBank.showCustomers();
+                    showAllCustomer();
                     break;
                 case 2:
                     //Nhập danh sách khách hàng
                     System.out.println("Nhap duong dan den tep:");
                     sc.nextLine();
-                    activeBank.addCustomers(sc.nextLine());
+                    activeBank.addCustomersFromTextFile(sc.nextLine());
                     break;
                 case 3:
                     //Thêm tài khoản ATM
+                    addSavingsAccount();
                     break;
                 case 4:
                     //Chuyển tiền

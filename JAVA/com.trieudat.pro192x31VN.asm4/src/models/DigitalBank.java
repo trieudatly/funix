@@ -3,23 +3,30 @@ package models;
 import dao.CustomerDao;
 import file.TextFileService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class DigitalBank extends Bank {
 
-
-    public void showCustomers() {
-        System.out.println(CustomerDao.list());
+    public List<Customer> getCustomerFromFile() {
+        this.setCustomers(CustomerDao.list());
+        return this.getCustomers();
     }
 
-    public void addCustomers(String fileName) {
+    public void addCustomersFromTextFile(String fileName) {
+        this.setCustomers(getCustomerFromFile());
         List<Customer> txtCustomer = TextFileService.readFile(fileName);
-        if (txtCustomer != null || !txtCustomer.isEmpty()) {
+        if (txtCustomer != null && !txtCustomer.isEmpty()) {
             for (Customer cus : txtCustomer
             ) {
                 addCustomer(cus);
             }
+        }
+        try {
+            CustomerDao.save(this.getCustomers());
+        } catch (IOException e) {
+            System.out.println("Loi ghi file" + e.getMessage());
         }
     }
 
@@ -44,8 +51,7 @@ public class DigitalBank extends Bank {
     }
 
     public List<Customer> getAllCustomer() {
-        List<Customer> customers = this.getCustomers();
-        return customers;
+        return this.getCustomers();
     }
 
     public Customer getCustomerById(List<Customer> customerList, String customerId) {
