@@ -1,13 +1,32 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class Bank {
     private String id;
     private String name;
     private List<Customer> customers;
+    private Map<String, String> accountsMap = new HashMap<>();
+
+    public Map<String, String> getAccountsMap() {
+        return accountsMap;
+    }
+
+    public void setAccountsMap(Map<String, String> accountsMap) {
+        this.accountsMap = accountsMap;
+    }
+
+    public void putAccountMap(String accountNumber, String customerId) {
+        accountsMap.put(accountNumber, customerId);
+    }
+
+    public String getCustomerIdByAccountNumber(String AccountNumber) {
+        return accountsMap.get(AccountNumber);
+    }
+
+    public boolean isAccountExited(String accountNumber) {
+        return accountsMap.containsKey(accountNumber);
+    }
 
     public Bank(String id, List<Customer> customers) {
         this.id = id;

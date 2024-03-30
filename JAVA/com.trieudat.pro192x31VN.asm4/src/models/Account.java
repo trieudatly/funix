@@ -14,6 +14,7 @@ public class Account implements Serializable {
     private double balance;
     private List<Transaction> transactions = new ArrayList<>();
 
+
     public Account() {
 
     }
@@ -30,12 +31,19 @@ public class Account implements Serializable {
     public void displayTransactionsList() {
 
     }
-public void createTransaction(double amount, String time, boolean status, TransactionType type){
 
-}
-public void input(Scanner scanner){
+    public void createTransaction(double amount, String time, boolean status, TransactionType type) {
 
-}
+    }
+
+    public void input(Scanner scanner) {
+
+    }
+
+    public boolean isExisted(String accountNumber) {
+        return false;
+    }
+
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }

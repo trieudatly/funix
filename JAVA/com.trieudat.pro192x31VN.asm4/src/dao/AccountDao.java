@@ -33,7 +33,7 @@ public class AccountDao {
         save(updateAccounts);
     }
 
-    //Lưu danh sách Account vào file. Input là danh sách khách hàng.
+    //Lưu danh sách Account vào file. Input là danh sách Account.
     public static void save(List<Account> accounts) throws IOException {
         BinaryFileService.writeFile(FILE_PATH, accounts);
     }
