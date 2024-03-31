@@ -19,13 +19,19 @@ public class Account implements Serializable {
 
     }
 
+    public Account(String customerId, String accountNumber, double balance) {
+        this.customerId = customerId;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
     public Account(String accountNumber, double balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
     }
 
-    public Customer getCustomer() {
-        return null;
+    public String getCustomerId() {
+        return customerId;
     }
 
     public void displayTransactionsList() {

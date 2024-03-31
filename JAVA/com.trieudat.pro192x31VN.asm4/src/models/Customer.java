@@ -17,6 +17,10 @@ public class Customer extends User implements Serializable {
         this.accounts = accounts;
     }
 
+    public Customer(List<String> values) throws CustomerIdNotValidException {
+        this(values.get(0), values.get(1));
+    }
+
     public Customer(String customerId, String name) throws CustomerIdNotValidException {
         if (!CustomerIdValidator.validateCustomerId(customerId)) {
             throw new CustomerIdNotValidException("ID khong hop le");
