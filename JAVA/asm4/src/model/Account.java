@@ -22,6 +22,13 @@ public class Account implements Serializable {
     //Phương thức displayTransactionsList() –
     // lấy ra danh sách transaction từ hàm getTransaction rồi hiển thị ra màn hình.
     public void displayTransactionsList(){
+        List<Transaction> transactions;
+        transactions = new ArrayList<>(getTransactions());
+        if (!transactions.isEmpty()) {
+            for (Transaction transaction : transactions) {
+                System.out.println("|" + transaction.toString());
+            }
+        }
 
     }
     //Phương thức createTransaction(double amount, String time, boolean status, TransactionType type)
@@ -36,7 +43,13 @@ public class Account implements Serializable {
     public boolean input(Scanner scanner){
         return false;
     }
-
+    public boolean isPremium() {
+        //1 tài khoản là premium nếu như balance tối thiểu 10_000_000 VNĐ
+        if (balance >= 10000000) {
+            return true;
+        }
+        return false;
+    }
     public String getAccountNumber() {
         return accountNumber;
     }

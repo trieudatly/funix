@@ -39,7 +39,7 @@ public class AccountDao {
     }
 
     //Lấy ra danh sách Account từ file. Output là danh sách Account .
-    private static List<Account> list() {
+    public static List<Account> list() {
         return BinaryFileService.readFile(FILE_PATH);
     }
 }
