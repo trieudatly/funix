@@ -4,6 +4,7 @@ public class Bank {
     private String bankId;
     private String bankName;
 
+
     public Bank(String bankId, String bankName) {
         this.bankId = bankId;
         this.bankName = bankName;

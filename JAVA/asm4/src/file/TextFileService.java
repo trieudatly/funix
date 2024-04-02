@@ -1,8 +1,5 @@
 package file;
 
-import exception.CustomerIdNotValidException;
-import model.Customer;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ public class TextFileService {
     private static final String COMMA_DELIMITER = ",";
 
     //đọc file text. Đầu vào là đường dẫn đến thư mục, đầu ra là danh sách khách hàng.
-    static List<List<String>> readFiles(String fileName) {
+    public static List<List<String>> readFile(String fileName) {
         List<List<String>> customers = new ArrayList<>();
         Scanner scanner = null;
         try {

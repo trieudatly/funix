@@ -1,9 +1,12 @@
 package model;
 
+import dao.TransactionDao;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
 public class Account implements Serializable {
     //Implements Serializable và thuộc tính
     // static final long serialVersionUID để hỗ trợ đọc/ghi object.
@@ -13,36 +16,43 @@ public class Account implements Serializable {
     //Thêm thuộc tính customerId,
     // để sau khi lưu vào file thì sẽ xác định được account thuộc customer nào.
     private String customerId;
-//Phương thức getTransactions lấy ra các giao dịch thuộc account này.
+
+    //Phương thức getTransactions lấy ra các giao dịch thuộc account này.
 // Phương thức này sẽ lấy ra tất cả các giao dịch
 // và lọc trong danh sách các giao dịch có accountNumber bằng với accountNumber hiện tại.
-    public List<Transaction> getTransactions(){
-        return null;
+    public List<Transaction> getTransactions() {
+        return TransactionDao.list()
+                .stream()
+                .filter(transaction -> transaction.getAccountNumber().equals(accountNumber))
+                .collect(Collectors.toList());
     }
+
     //Phương thức displayTransactionsList() –
     // lấy ra danh sách transaction từ hàm getTransaction rồi hiển thị ra màn hình.
-    public void displayTransactionsList(){
+    public void displayTransactionsList() {
         List<Transaction> transactions;
-        transactions = new ArrayList<>(getTransactions());
-        if (!transactions.isEmpty()) {
+        transactions = getTransactions();
+        if (transactions != null && !transactions.isEmpty()) {
             for (Transaction transaction : transactions) {
                 System.out.println("|" + transaction.toString());
             }
         }
-
     }
+
     //Phương thức createTransaction(double amount, String time, boolean status, TransactionType type)
     // tạo ra thêm một giao dịch cho account và cập nhật số dư tài khoản.
-    public boolean createTransaction(double amount, String time, boolean status, TransactionType type){
+    public boolean createTransaction(double amount, String time, boolean status, TransactionType type) {
         return false;
     }
-//Phương thức input(Scanner scanner) để thêm tài khoản mới vào danh sách.
+
+    //Phương thức input(Scanner scanner) để thêm tài khoản mới vào danh sách.
 // Yêu cầu người dùng nhập số tài khoản và số tiền ban đầu.
 // Kiểm tra tính hợp lệ của giao dịch ban đầu sau đó gọi hàm createTransaction()
 // để tạo ra một giao dịch thêm tiền (DEPOSIT) và thay đổi số dư tài khoản.
-    public boolean input(Scanner scanner){
+    public boolean input(Scanner scanner) {
         return false;
     }
+
     public boolean isPremium() {
         //1 tài khoản là premium nếu như balance tối thiểu 10_000_000 VNĐ
         if (balance >= 10000000) {
@@ -50,6 +60,7 @@ public class Account implements Serializable {
         }
         return false;
     }
+
     public String getAccountNumber() {
         return accountNumber;
     }
