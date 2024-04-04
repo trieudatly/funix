@@ -5,6 +5,7 @@ import exception.CustomerIdNotValidException;
 import service.Validator;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -14,12 +15,12 @@ public class Customer implements Serializable {
     // static final long serialVersionUID để hỗ trợ đọc/ghi object.
     private static final long serialVersionUID = 1L;
     private String id;
-    List<Account> accounts = getAccounts();
+    List<Account> accounts = new ArrayList<>();
     private String name;
 
     public Customer(String customerId, String name) throws CustomerIdNotValidException {
         if (!Validator.validateCustomerId(customerId)) {
-            throw new CustomerIdNotValidException("ID khong hop le");
+            throw new CustomerIdNotValidException("ID: " + customerId + " khong hop le");
         }
         this.id = customerId;
         this.name = name;
@@ -57,6 +58,29 @@ public class Customer implements Serializable {
                 accCount++;
             }
         }
+    }
+
+    public boolean addAccount(Account newAccount) {
+        accounts = getAccounts();
+        //nếu account chưa tồn tại
+        // => thêm account mới vào customer
+        if (accounts == null) {
+            return false;
+        }
+        if (accounts.isEmpty()) {
+            accounts.add(newAccount);
+            System.out.println("Them tai khoan thanh cong!!");
+            return true;
+        }
+        for (Account account : accounts) {
+            if (newAccount.getAccountNumber().equals(account.getAccountNumber())) {
+                System.out.println("Tai khoan da ton tai,them tai khoan khong thanh cong!!");
+                return false;
+            }
+        }
+        accounts.add(newAccount);
+        System.out.println("Them tai khoan thanh cong!!");
+        return true;
     }
 
     //Phương thức getAccountByAccountNumber(List<Account> accounts, String accountNumber)

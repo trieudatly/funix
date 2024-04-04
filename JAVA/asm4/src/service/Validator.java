@@ -24,7 +24,7 @@ public class Validator {
     }
 
     //Xử lý CCCD
-    public static String cccdInput() {
+    public static String customerIdInput() {
         System.out.print("Nhap CCCD khach hang: ");
         return getInputWithPattern(CCCD_PATTERN);
     }

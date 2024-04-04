@@ -17,6 +17,12 @@ public class Account implements Serializable {
     // để sau khi lưu vào file thì sẽ xác định được account thuộc customer nào.
     private String customerId;
 
+    public Account(String accountNumber, double balance, String customerId) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.customerId = customerId;
+    }
+
     //Phương thức getTransactions lấy ra các giao dịch thuộc account này.
 // Phương thức này sẽ lấy ra tất cả các giao dịch
 // và lọc trong danh sách các giao dịch có accountNumber bằng với accountNumber hiện tại.

@@ -3,13 +3,15 @@ package model;
 import dao.CustomerDao;
 import exception.CustomerIdNotValidException;
 import file.TextFileService;
+import service.Validator;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class DigitalBank extends Bank {
-    private List<Customer> customers;
+    private List<Customer> customers = new ArrayList<>();
 
     public List<Customer> getCustomers() {
         return customers;
@@ -24,9 +26,8 @@ public class DigitalBank extends Bank {
     // Nếu không có khách hàng nào trong danh sách
     // thì hiển thị “Chưa có khách hàng nào trong danh sách!”.
     public void showCustomers() {
-        this.setCustomers(CustomerDao.list());
-        List<Customer> customers = this.getCustomers();
-        if (customers != null && !customers.isEmpty()) {
+        customers = CustomerDao.list();
+        if (!customers.isEmpty()) {
             for (Customer customer : customers
             ) {
                 customer.displayInformation();
@@ -43,7 +44,7 @@ public class DigitalBank extends Bank {
 // nếu không hợp lệ hoặc số ID đã tồn tại thì hiển thị đoạn thông báo.
 // Sau đó lưu dữ liệu customer vào file.
     public void addCustomers(String fileName) {
-        this.setCustomers(CustomerDao.list());
+        customers = CustomerDao.list();
         List<List<String>> txtCustomer = TextFileService.readFile(fileName);
         if (txtCustomer != null && !txtCustomer.isEmpty()) {
             for (List<String> list : txtCustomer
@@ -51,10 +52,12 @@ public class DigitalBank extends Bank {
                 try {
                     Customer customer = new Customer(list);
                     addCustomer(customer);
-                } catch (CustomerIdNotValidException e) {
-                    e.getMessage();
+                } catch (IndexOutOfBoundsException | CustomerIdNotValidException e) {
+                    System.out.println(e.getMessage());
                 }
             }
+        } else {
+            System.out.println("Loi doc file");
         }
         try {
             CustomerDao.save(this.getCustomers());
@@ -67,7 +70,7 @@ public class DigitalBank extends Bank {
     public boolean addCustomer(Customer newCustomer) {
         //nếu phương thức isCustomerExisted trả về true
         //thông báo đã tồn tại customer này trong bank
-        if (isCustomerExisted(newCustomer)) {
+        if (isCustomerExisted(newCustomer.getId())) {
             System.out.println("Khach hang " + newCustomer.getId() + " da ton tai, them khach hang khong thanh cong");
             return false;
         } else {
@@ -83,8 +86,27 @@ public class DigitalBank extends Bank {
 // để tạo mới một tài khoản ATM cho một khách hàng và lưu tài khoản vào file.
 // Phương thức này cần kiểm tra customerId hợp lệ,
 // sau đó gọi phương thức thêm tài khoản mới của đối tượng customer.
-    public boolean addSavingAccount(Scanner scanner, String customerId) {
-        return false;
+    public boolean addSavingAccount() {
+        //nhập id khách hàng
+        String id = Validator.customerIdInput();
+        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
+        if (isCustomerExisted(id)) {
+            SavingAccount savingsAccount = new SavingAccount(Validator.accountInput(), Validator.amountInput(), id);
+            for (int i = 0; i < customers.size(); i++) {
+                if (id.equals(customers.get(i).getId())) {
+                    if (customers.get(i).addAccount(savingsAccount)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            //nếu khách hàng không tồn tại=>thông báo
+            System.out.println("Khach hang khong ton tai");
+            return false;
+        }
+
     }
 
     //Phương thức withdraw(Scanner scanner, String customerId) để rút tiền.
@@ -111,7 +133,7 @@ public class DigitalBank extends Bank {
 
     //Phương thức isCustomerExisted( Customer newCustomer)
 // kiểm tra một customer có tồn tại trong mảng hay không.
-    public boolean isCustomerExisted(Customer newCustomer) {
+    public boolean isCustomerExisted(String id) {
         //nếu list trống thì coi như customer không tồn tại
         if (customers.isEmpty()) {
             return false;
@@ -121,7 +143,7 @@ public class DigitalBank extends Bank {
         ) {
             //nếu trong list tồn tại đối tượng Customer có ID bằng customerId
             //=> trả về true
-            if (newCustomer.getId().equals(customer.getId())) {
+            if (id.equals(customer.getId())) {
                 return true;
             }
         }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.UUID;
+
 public class Bank {
     private String bankId;
     private String bankName;
@@ -11,6 +13,7 @@ public class Bank {
     }
 
     public Bank() {
+        this.bankId = String.valueOf(UUID.randomUUID());
     }
 
     public String getBankId() {

@@ -25,10 +25,10 @@ public class TextFileService {
                     String[] data = input.split(COMMA_DELIMITER);
                     customer.add(data[0]);
                     customer.add(data[1]);
+                    customers.add(customer);
                 } catch (Exception e) {
-                    System.out.println("Loi doc file ");
+
                 }
-                customers.add(customer);
             }
         } catch (IOException e) {
             System.out.println("Loi doc file ");

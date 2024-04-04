@@ -10,6 +10,7 @@ public class Asm4 {
     private static final int EXIT_ERROR_CODE = -1;
     private static final Scanner sc = new Scanner(System.in);
     private static final DigitalBank activeBank = new DigitalBank();
+
     public static void main(String[] args) {
         //tạo 2 hằng lưu tác giả và phiên bản
         final String AUTHOR = "fx22205";
@@ -34,11 +35,11 @@ public class Asm4 {
             switch (choice) {
                 case 1:
                     //Xem danh sách khách hàng
-
+                    showCustomers();
                     break;
                 case 2:
                     //Nhập danh sách khách hàng
-
+                    addCustomers();
                     break;
                 case 3:
                     //Thêm tài khoản ATM
@@ -68,6 +69,18 @@ public class Asm4 {
             }
         }
     }
+
+    private static void addCustomers() {
+        System.out.println("Nhap duong dan den tep:");
+        sc.nextLine();
+        activeBank.addCustomers(sc.nextLine());
+    }
+
+    private static void showCustomers() {
+        activeBank.showCustomers();
+    }
+
+
     private static void mainMenu(String author, String version) {
         System.out.println("+----------+-------------------+----------+");
         System.out.println("| NGAN HANG DIEN TU | " + author + "@v" + version + "           |");
@@ -81,6 +94,7 @@ public class Asm4 {
         System.out.println(" 0.Thoat");
         System.out.println("+----------+-------------------+----------+");
     }
+
     //header cho log
     private static void displayTransactionHeader() {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");

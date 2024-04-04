@@ -8,6 +8,11 @@ import java.util.Date;
 
 public class SavingAccount extends Account implements Serializable, Withdraw, ReportService {
 
+
+    public SavingAccount(String accountNumber, double balance, String customerId) {
+        super(accountNumber, balance, customerId);
+    }
+
     //Phương thức withdraw(double amount) kiểm tra điều kiện rút tiền (quy định ở các asm trước),
     // nếu hợp lệ thì gọi phương thức tạo mới giao dịch và cập nhật số dư của tài khoản,
     // nếu không hợp lệ thì trả về thông báo.
