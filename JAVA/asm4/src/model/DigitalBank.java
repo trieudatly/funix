@@ -44,30 +44,6 @@ public class DigitalBank extends Bank {
 // nếu hợp lệ thì thêm vào danh sách,
 // nếu không hợp lệ hoặc số ID đã tồn tại thì hiển thị đoạn thông báo.
 // Sau đó lưu dữ liệu customer vào file.
-    public boolean addCustomerss(String fileName) {
-        customers = CustomerDao.list();
-        List<List<String>> txtCustomer = TextFileService.readFile(fileName);
-        if (!txtCustomer.isEmpty()) {
-            for (List<String> list : txtCustomer
-            ) {
-                try {
-                    Customer customer = new Customer(list);
-                    addCustomer(customer);
-                } catch (IndexOutOfBoundsException | CustomerIdNotValidException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        } else {
-            System.out.println("Loi doc file");
-        }
-        try {
-            CustomerDao.save(customers);
-            return true;
-        } catch (IOException e) {
-            System.out.println("Loi ghi file" + e.getMessage());
-            return false;
-        }
-    }
 
     public void addCustomers(String fileName) {
         customers = CustomerDao.list();
@@ -78,7 +54,7 @@ public class DigitalBank extends Bank {
                 try {
                     Customer customer = new Customer(list);
                     addCustomer(customer);
-                } catch (IndexOutOfBoundsException | CustomerIdNotValidException e) {
+                } catch (CustomerIdNotValidException e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -88,7 +64,7 @@ public class DigitalBank extends Bank {
         try {
             CustomerDao.save(this.getCustomers());
         } catch (IOException e) {
-            System.out.println("Loi ghi file" + e.getMessage());
+            System.out.println("Loi ghi file");
         }
 
     }

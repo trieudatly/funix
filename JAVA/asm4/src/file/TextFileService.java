@@ -1,7 +1,7 @@
 package file;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,12 +11,12 @@ public class TextFileService {
     //định nghĩa dấu phân cách giữa các phần tử trong file.
     private static final String COMMA_DELIMITER = ",";
 
-    //đọc file text. Đầu vào là đường dẫn đến thư mục, đầu ra là danh sách khách hàng.
+    /**
+     * đọc file text. Đầu vào là đường dẫn đến thư mục, đầu ra là danh sách khách hàng.
+     */
     public static List<List<String>> readFile(String fileName) {
         List<List<String>> customers = new ArrayList<>();
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(new FileReader(fileName));
+        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
             while (scanner.hasNextLine()) {
                 String input = "";
                 List<String> customer = new ArrayList<>();
@@ -26,16 +26,12 @@ public class TextFileService {
                     customer.add(data[0]);
                     customer.add(data[1]);
                     customers.add(customer);
-                } catch (Exception e) {
-
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Dong du lieu khong hop le");
                 }
             }
-        } catch (IOException e) {
-            System.out.println("Loi doc file ");
-        } finally {
-            if (scanner != null) {
-                scanner.close();
-            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Khong tim thay file ");
         }
         return customers;
     }
