@@ -1,5 +1,6 @@
 package model;
 
+import dao.AccountDao;
 import dao.CustomerDao;
 import exception.CustomerIdNotValidException;
 import file.TextFileService;
@@ -43,10 +44,35 @@ public class DigitalBank extends Bank {
 // nếu hợp lệ thì thêm vào danh sách,
 // nếu không hợp lệ hoặc số ID đã tồn tại thì hiển thị đoạn thông báo.
 // Sau đó lưu dữ liệu customer vào file.
+    public boolean addCustomerss(String fileName) {
+        customers = CustomerDao.list();
+        List<List<String>> txtCustomer = TextFileService.readFile(fileName);
+        if (!txtCustomer.isEmpty()) {
+            for (List<String> list : txtCustomer
+            ) {
+                try {
+                    Customer customer = new Customer(list);
+                    addCustomer(customer);
+                } catch (IndexOutOfBoundsException | CustomerIdNotValidException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        } else {
+            System.out.println("Loi doc file");
+        }
+        try {
+            CustomerDao.save(customers);
+            return true;
+        } catch (IOException e) {
+            System.out.println("Loi ghi file" + e.getMessage());
+            return false;
+        }
+    }
+
     public void addCustomers(String fileName) {
         customers = CustomerDao.list();
         List<List<String>> txtCustomer = TextFileService.readFile(fileName);
-        if (txtCustomer != null && !txtCustomer.isEmpty()) {
+        if (!txtCustomer.isEmpty()) {
             for (List<String> list : txtCustomer
             ) {
                 try {
@@ -89,23 +115,31 @@ public class DigitalBank extends Bank {
     public boolean addSavingAccount() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();
+        List<Account> accounts = AccountDao.list();
         //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
         if (isCustomerExisted(id)) {
             SavingAccount savingsAccount = new SavingAccount(Validator.accountInput(), Validator.amountInput(), id);
-            for (int i = 0; i < customers.size(); i++) {
-                if (id.equals(customers.get(i).getId())) {
-                    if (customers.get(i).addAccount(savingsAccount)) {
-                        return true;
-                    } else {
+            for (Customer customer : customers) {
+                if (id.equals(customer.getId())) {
+                    if (!customer.addAccount(savingsAccount)) {
                         return false;
+                    } else {
+                        accounts.add(savingsAccount);
+                        try {
+                            AccountDao.save(accounts);
+                            System.out.println("Them tai khoan thanh cong");
+                            return true;
+                        } catch (IOException e) {
+                            System.out.println("Loi ghi file");
+                            return false;
+                        }
                     }
                 }
             }
-        } else {
-            //nếu khách hàng không tồn tại=>thông báo
-            System.out.println("Khach hang khong ton tai");
-            return false;
         }
+        //nếu khách hàng không tồn tại=>thông báo
+        System.out.println("Khach hang khong ton tai");
+        return false;
 
     }
 
@@ -122,12 +156,6 @@ public class DigitalBank extends Bank {
 // sau đó hiển thị các thông tin tài khoản của khách hàng
 // rồi gọi đến phương thức chuyển tiền của đối tượng customer.
     public boolean tranfers(Scanner scanner, String customerId) {
-        return false;
-    }
-
-    //Phương thức isAccountExisted(List<Account> accountsList, Account newAccount)
-// kiểm tra một account đã tồn tại trong mảng không.
-    public boolean isAccountExisted(List<Account> accountsList, Account newAccount) {
         return false;
     }
 

@@ -43,7 +43,7 @@ public class Asm4 {
                     break;
                 case 3:
                     //Thêm tài khoản ATM
-
+                    addAccount();
                     break;
                 case 4:
                     //Chuyển tiền
@@ -68,6 +68,10 @@ public class Asm4 {
                     break;
             }
         }
+    }
+
+    private static void addAccount() {
+        activeBank.addSavingAccount();
     }
 
     private static void addCustomers() {

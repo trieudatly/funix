@@ -14,8 +14,8 @@ public class Customer implements Serializable {
     //Implements Serializable và thuộc tính
     // static final long serialVersionUID để hỗ trợ đọc/ghi object.
     private static final long serialVersionUID = 1L;
-    private String id;
     List<Account> accounts = new ArrayList<>();
+    private String id;
     private String name;
 
     public Customer(String customerId, String name) throws CustomerIdNotValidException {
@@ -44,6 +44,7 @@ public class Customer implements Serializable {
     //Phương thức displayInformation() Hiển thị thông tin của customer,
 // thông tin các tài khoản của customer (lấy tài khoản từ phương thức getAccounts).
     public void displayInformation() {
+        accounts = getAccounts();
         String premium = "Normal";
 
         if (this.isPremium()) {
@@ -64,23 +65,21 @@ public class Customer implements Serializable {
         accounts = getAccounts();
         //nếu account chưa tồn tại
         // => thêm account mới vào customer
-        if (accounts == null) {
-            return false;
-        }
-        if (accounts.isEmpty()) {
+        if (!isAccountExisted(accounts, newAccount.getAccountNumber())) {
             accounts.add(newAccount);
-            System.out.println("Them tai khoan thanh cong!!");
             return true;
         }
-        for (Account account : accounts) {
-            if (newAccount.getAccountNumber().equals(account.getAccountNumber())) {
-                System.out.println("Tai khoan da ton tai,them tai khoan khong thanh cong!!");
-                return false;
-            }
+        System.out.println("Tai khoan da ton tai,them tai khoan khong thanh cong!!");
+        return false;
+    }
+
+    //Phương thức isAccountExisted(List<Account> accountsList, Account newAccount)
+// kiểm tra một account đã tồn tại trong mảng không.
+    public boolean isAccountExisted(List<Account> accountsList, String accountNumber) {
+        if (accountsList != null) {
+            return accountsList.stream().anyMatch(a -> a.getAccountNumber().equals(accountNumber));
         }
-        accounts.add(newAccount);
-        System.out.println("Them tai khoan thanh cong!!");
-        return true;
+        return false;
     }
 
     //Phương thức getAccountByAccountNumber(List<Account> accounts, String accountNumber)

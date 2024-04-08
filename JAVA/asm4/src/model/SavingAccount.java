@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SavingAccount extends Account implements Serializable, Withdraw, ReportService {
-
+    private static final long serialVersionUID = 1L;
 
     public SavingAccount(String accountNumber, double balance, String customerId) {
         super(accountNumber, balance, customerId);
@@ -93,5 +93,10 @@ public class SavingAccount extends Account implements Serializable, Withdraw, Re
         System.out.printf("SO DU: %29s%s%n", String.format("%,.0f", newBalance), " đ");
         System.out.printf("PHI + VAT: %25s%s%n", String.format("%,.0f", fee), " đ");
         System.out.println("+------+-----------------------+------+");
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| SAVINGS | ", getBalance(), " đ");
     }
 }

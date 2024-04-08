@@ -33,12 +33,16 @@ public class AccountDao {
         save(updateAccounts);
     }
 
-    //Lưu danh sách Account vào file. Input là danh sách Account.
+    /**
+     * Lưu danh sách Account vào file. Input là danh sách Account.
+     */
     public static void save(List<Account> accounts) throws IOException {
         BinaryFileService.writeFile(FILE_PATH, accounts);
     }
 
-    //Lấy ra danh sách Account từ file. Output là danh sách Account .
+    /**
+     * Lấy ra danh sách Account từ file. Output là danh sách Account .
+     */
     public static List<Account> list() {
         return BinaryFileService.readFile(FILE_PATH);
     }
