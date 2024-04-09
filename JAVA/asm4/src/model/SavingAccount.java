@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SavingAccount extends Account implements Serializable, Withdraw, ReportService {
+public class SavingAccount extends Account implements Serializable, IWithdraw, IReport {
     private static final long serialVersionUID = 1L;
 
     public SavingAccount(String accountNumber, double balance, String customerId) {
@@ -18,9 +18,7 @@ public class SavingAccount extends Account implements Serializable, Withdraw, Re
     // nếu không hợp lệ thì trả về thông báo.
     @Override
     public boolean withdraw(double amount, boolean isPremium) {
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dateTime = dateFormat.format(date);
+        String dateTime = getDateTime();
         String accountNumber = this.getAccountNumber();
         //nếu khoản rút được chấp nhận
         //tính toán balance còn lại sau khi rút
@@ -32,12 +30,19 @@ public class SavingAccount extends Account implements Serializable, Withdraw, Re
             new Transaction(accountNumber, TransactionType.WITHDRAW, amount, true, dateTime);
             setBalance(newBalance);
             System.out.println("Giao dich thanh cong");
-            log(dateTime, accountNumber, amount, newBalance, fee);
+            log(dateTime, TransactionType.WITHDRAW, accountNumber, "", amount, newBalance, fee);
             return true;
         }
         //nếu khoản rút không được chấp nhận
         System.out.println("Giao dich khong thanh cong");
         return false;
+    }
+
+    private static String getDateTime() {
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dateTime = dateFormat.format(date);
+        return dateTime;
     }
 
     public boolean isAccepted(double amount, boolean isPremium) {
@@ -83,14 +88,14 @@ public class SavingAccount extends Account implements Serializable, Withdraw, Re
     }
 
     @Override
-    public void log(String dateTime, String accountNumber, double amount, double newBalance, double fee) {
+    public void log(String dateTime, TransactionType type, String withdrawAccountNumber, String receiveAccountNumber, double amount, double newBalance, double fee) {
         System.out.println("+------+-----------------------+------+");
         System.out.println("      BIEN LAI GIAO DICH SAVINGS       ");
         System.out.printf("NGAY GIAO DICH: %22s%n", dateTime);
-        System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2023");
-        System.out.printf("SO TAI KHOAN SAVINGS: %16s%n", accountNumber);
-        System.out.printf("SO TIEN: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
-        System.out.printf("SO DU: %29s%s%n", String.format("%,.0f", newBalance), " đ");
+        System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2024");
+        System.out.printf("SO TK: %16s%n", withdrawAccountNumber);
+        System.out.printf("SO TIEN RUT: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+        System.out.printf("SO DU TK: %29s%s%n", String.format("%,.0f", newBalance), " đ");
         System.out.printf("PHI + VAT: %25s%s%n", String.format("%,.0f", fee), " đ");
         System.out.println("+------+-----------------------+------+");
     }

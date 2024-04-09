@@ -1,6 +1,6 @@
 package model;
 
-public interface Withdraw {
+public interface IWithdraw {
     double SAVINGS_ACCOUNT_MAX_WITHDRAW = 5000000;
     double ACCOUNT_MIN_WITHDRAW = 50000;
     double ACCOUNT_MIN_BALANCE = 50000;
