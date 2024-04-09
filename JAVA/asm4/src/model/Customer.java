@@ -4,6 +4,7 @@ import dao.AccountDao;
 import exception.CustomerIdNotValidException;
 import service.Validator;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +90,7 @@ public class Customer implements Serializable {
             if (account.getAccountNumber().equals(accountNumber))
                 return account;
         }
+        System.out.println("Tai khoan khong ton tai");
         return null;
     }
 
@@ -106,7 +108,8 @@ public class Customer implements Serializable {
     //Phương thức withdraw(Scanner scanner) yêu cầu nhập số tài khoản
 // (lấy danh sách accounts từ getAccounts() để kiểm tra xem tài khoản có tồn tại hay không),
 // nhập số tiền rút sau đó gọi hàm rút tiền của account.
-    public boolean withdraw() {
+    public boolean withdraw() throws IOException {
+        displayInformation();
         if (!accounts.isEmpty()) {
             Account account;
             double amount;
@@ -114,17 +117,12 @@ public class Customer implements Serializable {
                 System.out.println("Nhap so tai khoan: ");
                 account = getAccountByAccountNumber(accounts, Validator.accountInput());
             } while (account == null);
-            do {
-                System.out.println("Nhap so tien rut: ");
-                amount = Validator.amountInput();
-            } while (amount <= 0);
+            amount = Validator.amountInput();
             if (account instanceof SavingAccount) {
-                ((SavingAccount) account).withdraw(amount, isPremium());
-                return true;
-            } else {
-                System.out.println("Khach hang khong co tai khoan nao, thao tac khong thanh cong");
+                return ((SavingAccount) account).withdraw(amount, isPremium());
             }
         }
+        System.out.println("Khach hang khong co tai khoan nao");
         return false;
     }
 

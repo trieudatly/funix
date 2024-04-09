@@ -123,10 +123,29 @@ public class DigitalBank extends Bank {
 // Phương thức này cần kiểm tra customerId hợp lệ,
 // sau đó hiển thị các thông tin tài khoản của khách hàng
 // rồi gọi đến phương thức rút tiền của đối tượng customer.
-    public boolean withdraw(Scanner scanner, String customerId) {
+    public boolean withdraw() {
+        //nhập id khách hàng
+        String id = Validator.customerIdInput();
+        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
+        if (isCustomerExisted(id)) {
+            for (Customer customer : customers) {
+                if (id.equals(customer.getId())) {
+                    customer.withdraw();
+                }
+            }
+        }
         return false;
     }
-
+    //rút tiền theo customerId
+//    public boolean withdraw(String customerId) {
+//        DigitalCustomer digitalCustomer = (DigitalCustomer) getCustomerById(customerId);
+//        //nếu customer không tồn tại return false
+//        if (digitalCustomer == null) {
+//            System.out.println("Khong ton tai khach hang nay");
+//            return false;
+//        }
+//        return digitalCustomer.withdraw();
+//    }
     //Phương thức tranfers(Scanner scanner, String customerId) để chuyển tiền giữa 2 tài khoản.
 // Phương thức này cần kiểm tra customerId hợp lệ,
 // sau đó hiển thị các thông tin tài khoản của khách hàng

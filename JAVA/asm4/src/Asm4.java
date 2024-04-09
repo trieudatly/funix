@@ -50,6 +50,7 @@ public class Asm4 {
                     break;
                 case 5:
                     //Rút tiền
+                    withdraw();
                     break;
                 case 6:
                     //Tra cứu lịch sử giao dịch
@@ -68,6 +69,10 @@ public class Asm4 {
                     break;
             }
         }
+    }
+
+    private static void withdraw() {
+        activeBank.withdraw();
     }
 
     private static void addAccount() {

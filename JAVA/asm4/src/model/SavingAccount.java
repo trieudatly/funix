@@ -1,5 +1,8 @@
 package model;
 
+import dao.AccountDao;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,7 +20,7 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
     // nếu hợp lệ thì gọi phương thức tạo mới giao dịch và cập nhật số dư của tài khoản,
     // nếu không hợp lệ thì trả về thông báo.
     @Override
-    public boolean withdraw(double amount, boolean isPremium) {
+    public boolean withdraw(double amount, boolean isPremium) throws IOException {
         String dateTime = getDateTime();
         String accountNumber = this.getAccountNumber();
         //nếu khoản rút được chấp nhận
@@ -27,8 +30,9 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         if (isAccepted(amount, isPremium)) {
             double fee = getFee(amount, isPremium);
             double newBalance = getBalance() - amount - fee;
-            new Transaction(accountNumber, TransactionType.WITHDRAW, amount, true, dateTime);
+         //   new Transaction(accountNumber, TransactionType.WITHDRAW, amount, true, dateTime);
             setBalance(newBalance);
+            AccountDao.update(this);
             System.out.println("Giao dich thanh cong");
             log(dateTime, TransactionType.WITHDRAW, accountNumber, "", amount, newBalance, fee);
             return true;
