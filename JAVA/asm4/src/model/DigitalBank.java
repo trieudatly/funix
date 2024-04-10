@@ -6,7 +6,6 @@ import exception.CustomerIdNotValidException;
 import file.TextFileService;
 import service.Validator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -38,6 +37,17 @@ public class DigitalBank extends Bank {
         }
     }
 
+    public void showTransactions() {
+        customers = CustomerDao.list();
+        if (!customers.isEmpty()) {
+            for (Customer customer : customers
+            ) {
+                customer.displayTransaction();
+            }
+        } else {
+            System.out.println("Chua co khach hang nao trong danh sach");
+        }
+    }
     //Phương thức addCustomers(fileName) sẽ đọc dữ liệu từ file,
 // dữ liệu từ file bao gồm nhiều khách hàng,
 // kiểm tra dữ liệu từng khách hàng có số ID hợp lệ hay không,
@@ -61,12 +71,7 @@ public class DigitalBank extends Bank {
         } else {
             System.out.println("Loi doc file");
         }
-        try {
-            CustomerDao.save(this.getCustomers());
-        } catch (IOException e) {
-            System.out.println("Loi ghi file");
-        }
-
+        CustomerDao.save(this.getCustomers());
     }
 
     public boolean addCustomer(Customer newCustomer) {
@@ -101,14 +106,9 @@ public class DigitalBank extends Bank {
                         return false;
                     } else {
                         accounts.add(savingsAccount);
-                        try {
-                            AccountDao.save(accounts);
-                            System.out.println("Them tai khoan thanh cong");
-                            return true;
-                        } catch (IOException e) {
-                            System.out.println("Loi ghi file");
-                            return false;
-                        }
+                        AccountDao.save(accounts);
+                        System.out.println("Them tai khoan thanh cong");
+                        return true;
                     }
                 }
             }
@@ -130,12 +130,14 @@ public class DigitalBank extends Bank {
         if (isCustomerExisted(id)) {
             for (Customer customer : customers) {
                 if (id.equals(customer.getId())) {
-                    customer.withdraw();
+                    return customer.withdraw();
                 }
             }
         }
+        System.out.println("Khach hang khong ton tai");
         return false;
     }
+
     //rút tiền theo customerId
 //    public boolean withdraw(String customerId) {
 //        DigitalCustomer digitalCustomer = (DigitalCustomer) getCustomerById(customerId);

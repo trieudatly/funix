@@ -4,7 +4,6 @@ import dao.AccountDao;
 import exception.CustomerIdNotValidException;
 import service.Validator;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +61,14 @@ public class Customer implements Serializable {
         }
     }
 
+    public void displayTransaction() {
+        displayInformation();
+        for (Account account : accounts
+        ) {
+            account.displayTransactionsList();
+        }
+    }
+
     public boolean addAccount(Account newAccount) {
         accounts = getAccounts();
         //nếu account chưa tồn tại
@@ -86,9 +93,11 @@ public class Customer implements Serializable {
     //Phương thức getAccountByAccountNumber(List<Account> accounts, String accountNumber)
 // lấy ra account từ trong danh sách.
     public Account getAccountByAccountNumber(List<Account> accounts, String accountNumber) {
-        for (Account account : accounts) {
-            if (account.getAccountNumber().equals(accountNumber))
-                return account;
+        if (accounts != null && !accounts.isEmpty()) {
+            for (Account account : accounts) {
+                if (account.getAccountNumber().equals(accountNumber))
+                    return account;
+            }
         }
         System.out.println("Tai khoan khong ton tai");
         return null;
@@ -108,13 +117,12 @@ public class Customer implements Serializable {
     //Phương thức withdraw(Scanner scanner) yêu cầu nhập số tài khoản
 // (lấy danh sách accounts từ getAccounts() để kiểm tra xem tài khoản có tồn tại hay không),
 // nhập số tiền rút sau đó gọi hàm rút tiền của account.
-    public boolean withdraw() throws IOException {
+    public boolean withdraw() {
         displayInformation();
         if (!accounts.isEmpty()) {
             Account account;
             double amount;
             do {
-                System.out.println("Nhap so tai khoan: ");
                 account = getAccountByAccountNumber(accounts, Validator.accountInput());
             } while (account == null);
             amount = Validator.amountInput();

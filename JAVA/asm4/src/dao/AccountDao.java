@@ -3,7 +3,6 @@ package dao;
 import file.BinaryFileService;
 import model.Account;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class AccountDao {
     /**
      * cập nhật số dư cho tài khoản
      */
-    public static void update(Account editAccount) throws IOException {
+    public static boolean update(Account editAccount) {
         List<Account> accounts = list();
         List<Account> updateAccounts = new ArrayList<>();
         for (Account account : accounts
@@ -27,14 +26,14 @@ public class AccountDao {
                 updateAccounts.add(account);
             }
         }
-        save(updateAccounts);
+        return save(updateAccounts);
     }
 
     /**
      * Lưu danh sách Account vào file. Input là danh sách Account.
      */
-    public static void save(List<Account> accounts) throws IOException {
-        BinaryFileService.writeFile(FILE_PATH, accounts);
+    public static boolean save(List<Account> accounts) {
+        return BinaryFileService.writeFile(FILE_PATH, accounts);
     }
 
     /**

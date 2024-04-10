@@ -30,13 +30,15 @@ public class BinaryFileService {
     }
 
     //ghi file nhị phân.nhận đầu vào là đường dẫn đến thư mục và danh sách đối tượng cần lưu.
-    public static <T> void writeFile(String fileName, List<T> objects) {
+    public static <T> boolean writeFile(String fileName, List<T> objects) {
         try (ObjectOutputStream file = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)))) {
             for (T object : objects) {
                 file.writeObject(object);
             }
+            return true;
         } catch (IOException e) {
             System.out.println("Loi ghi File");
+            return false;
         }
     }
 }

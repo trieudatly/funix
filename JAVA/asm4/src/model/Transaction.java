@@ -18,6 +18,7 @@ public class Transaction implements Serializable {
 
     public Transaction(String accountNumber, TransactionType type, double amount, boolean status, String dateTime) {
         this.id = String.valueOf(UUID.randomUUID());
+        this.type = type;
         this.accountNumber = accountNumber;
         this.amount = amount;
         this.status = status;
