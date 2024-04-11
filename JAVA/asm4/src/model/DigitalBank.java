@@ -8,7 +8,6 @@ import service.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class DigitalBank extends Bank {
     private List<Customer> customers = new ArrayList<>();
@@ -38,11 +37,14 @@ public class DigitalBank extends Bank {
     }
 
     public void showTransactions() {
-        customers = CustomerDao.list();
-        if (!customers.isEmpty()) {
-            for (Customer customer : customers
-            ) {
-                customer.displayTransaction();
+        //nhập id khách hàng
+        String id = Validator.customerIdInput();
+        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
+        if (isCustomerExisted(id)) {
+            for (Customer customer : customers) {
+                if (id.equals(customer.getId())) {
+                    customer.displayTransaction();
+                }
             }
         } else {
             System.out.println("Chua co khach hang nao trong danh sach");
@@ -126,7 +128,6 @@ public class DigitalBank extends Bank {
     public boolean withdraw() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();
-        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
         if (isCustomerExisted(id)) {
             for (Customer customer : customers) {
                 if (id.equals(customer.getId())) {
@@ -138,27 +139,31 @@ public class DigitalBank extends Bank {
         return false;
     }
 
-    //rút tiền theo customerId
-//    public boolean withdraw(String customerId) {
-//        DigitalCustomer digitalCustomer = (DigitalCustomer) getCustomerById(customerId);
-//        //nếu customer không tồn tại return false
-//        if (digitalCustomer == null) {
-//            System.out.println("Khong ton tai khach hang nay");
-//            return false;
-//        }
-//        return digitalCustomer.withdraw();
-//    }
     //Phương thức tranfers(Scanner scanner, String customerId) để chuyển tiền giữa 2 tài khoản.
 // Phương thức này cần kiểm tra customerId hợp lệ,
 // sau đó hiển thị các thông tin tài khoản của khách hàng
 // rồi gọi đến phương thức chuyển tiền của đối tượng customer.
-    public boolean tranfers(Scanner scanner, String customerId) {
+    public boolean tranfer() {
+        //nhập id khách hàng
+        String id = Validator.customerIdInput();
+        if (isCustomerExisted(id)) {
+            for (Customer customer : customers) {
+                if (id.equals(customer.getId())) {
+                    return customer.tranfers();
+                }
+            }
+        }
+        System.out.println("Khach hang khong ton tai");
         return false;
     }
 
-    //Phương thức isCustomerExisted( Customer newCustomer)
-// kiểm tra một customer có tồn tại trong mảng hay không.
+
+    /**
+     * Phương thức isCustomerExisted( Customer newCustomer)
+     * kiểm tra một customer có tồn tại trong mảng hay không.
+     */
     public boolean isCustomerExisted(String id) {
+        customers = CustomerDao.list();
         //nếu list trống thì coi như customer không tồn tại
         if (customers.isEmpty()) {
             return false;

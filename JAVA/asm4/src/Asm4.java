@@ -19,9 +19,9 @@ public class Asm4 {
         List<Account> accounts = new ArrayList<>();
         //biến choice dùng để lưu lựa chọn của user
         int choice;
-        //gọi phương thức mainMenu với 2 tham số author và version
-        mainMenu(AUTHOR, VERSION);
         while (true) {
+            //gọi phương thức mainMenu với 2 tham số author và version
+            mainMenu(AUTHOR, VERSION);
             System.out.print("Chuc nang: ");
             //nhập lựa chọn của user
             //dùng try catch để bắt lỗi, nếu người dùng nhập không phải số
@@ -48,6 +48,7 @@ public class Asm4 {
                     break;
                 case 4:
                     //Chuyển tiền
+                    tranfer();
                     break;
                 case 5:
                     //Rút tiền
@@ -75,6 +76,10 @@ public class Asm4 {
 
     private static void withdraw() {
         activeBank.withdraw();
+    }
+
+    private static void tranfer() {
+        activeBank.tranfer();
     }
 
     private static void addAccount() {

@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SavingAccount extends Account implements Serializable, IWithdraw, IReport {
+public class SavingAccount extends Account implements Serializable, IWithdraw, ITransfer, IReport {
     private static final long serialVersionUID = 1L;
 
     public SavingAccount(String accountNumber, double balance, String customerId) {
@@ -33,6 +33,32 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
             setBalance(newBalance);
             AccountDao.update(this);
             log(dateTime, TransactionType.WITHDRAW, accountNumber, "", amount, newBalance, fee);
+            System.out.println("Giao dich thanh cong");
+            return true;
+        }
+        //nếu khoản rút không được chấp nhận
+        System.out.println("Giao dich khong thanh cong");
+        return false;
+    }
+
+    @Override
+    public boolean transfer(Account receiveAccount, Double amount, boolean isPremium) {
+        String dateTime = getDateTime();
+        String accountNumber = this.getAccountNumber();
+        //nếu khoản rút được chấp nhận
+        //tính toán balance còn lại sau khi rút
+        //tạo một transaction mới với thông tin giao dịch thành công
+        //dùng log để hiện thông tin giao dịch
+        if (isAccepted(amount, isPremium)) {
+            double fee = getFee(amount, isPremium);
+            double newBalance = getBalance() - amount - fee;
+            double newReceiveBalance = receiveAccount.getBalance() + amount;
+            receiveAccount.setBalance(newReceiveBalance);
+            setBalance(newBalance);
+            createTransaction(accountNumber, TransactionType.TRANSFER, amount, true, dateTime);
+            AccountDao.update(receiveAccount);
+            AccountDao.update(this);
+            log(dateTime, TransactionType.TRANSFER, accountNumber, receiveAccount.getAccountNumber(), amount, newBalance, fee);
             System.out.println("Giao dich thanh cong");
             return true;
         }
@@ -97,7 +123,12 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         System.out.printf("NGAY GIAO DICH: %22s%n", dateTime);
         System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2024");
         System.out.printf("SO TK: %16s%n", withdrawAccountNumber);
-        System.out.printf("SO TIEN RUT: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+        if (type.equals(TransactionType.WITHDRAW)) {
+            System.out.printf("SO TIEN RUT: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+        } else {
+            System.out.printf("SO TK NHAN: %16s%n", receiveAccountNumber);
+            System.out.printf("SO TIEN CHUYEN: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+        }
         System.out.printf("SO DU TK: %29s%s%n", String.format("%,.0f", newBalance), " đ");
         System.out.printf("PHI + VAT: %25s%s%n", String.format("%,.0f", fee), " đ");
         System.out.println("+------+-----------------------+------+");
@@ -107,4 +138,6 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
     public String toString() {
         return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| SAVINGS | ", getBalance(), " đ");
     }
+
+
 }

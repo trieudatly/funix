@@ -1,7 +1,5 @@
 package model;
 
-import java.io.IOException;
-
 public interface IWithdraw {
     double SAVINGS_ACCOUNT_MAX_WITHDRAW = 5000000;
     double ACCOUNT_MIN_WITHDRAW = 50000;
@@ -11,7 +9,7 @@ public interface IWithdraw {
     double SAVINGS_ACCOUNT_WITHDRAW_FEE = 0;
     double SAVINGS_ACCOUNT_WITHDRAW_PREMIUM_FEE = 0;
 
-    boolean withdraw(double amount, boolean isPremium) throws IOException;
+    boolean withdraw(double amount, boolean isPremium);
 
     boolean isAccepted(double amount, boolean isPremium);
 }

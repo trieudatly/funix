@@ -7,7 +7,6 @@ import service.Validator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Customer implements Serializable {
@@ -139,7 +138,25 @@ public class Customer implements Serializable {
     // sau đó yêu cầu nhập số tiền rút,
     // xác nhận việc chuyển tiền và sau khi thỏa mãn hết các điều kiện
     // sẽ gọi hàm transfer của account gửi.
-    public boolean tranfers(Scanner scanner) {
+    public boolean tranfers() {
+        displayInformation();
+        if (!accounts.isEmpty()) {
+            Account account;
+            Account receiveAccount;
+            double amount;
+            do {
+                account = getAccountByAccountNumber(accounts, Validator.accountInput());
+            } while (account == null);
+            do {
+                receiveAccount = getAccountByAccountNumber(AccountDao.list(), Validator.accountInput());
+            } while (receiveAccount == null);
+
+            amount = Validator.amountInput();
+            if (account instanceof SavingAccount) {
+                return ((SavingAccount) account).transfer(receiveAccount, amount, isPremium());
+            }
+        }
+        System.out.println("Khach hang khong co tai khoan nao");
         return false;
     }
 
