@@ -22,9 +22,9 @@ public class BinaryFileService {
         } catch (EOFException e) {
             return new ArrayList<>();
         } catch (IOException io) {
-            System.out.println("IO Exception: " + io.getMessage());
+            System.out.println("Khong tim thay file");
         } catch (ClassNotFoundException e) {
-            System.out.println("ClassNotFoundException: " + e.getMessage());
+            System.out.println("Loi doc file");
         }
         return objects;
     }

@@ -32,7 +32,7 @@ public class DigitalBank extends Bank {
                 customer.displayInformation();
             }
         } else {
-            System.out.println("Chua co khach hang nao trong danh sach");
+            System.out.println("Khong tim thay khach hang");
         }
     }
 
@@ -73,7 +73,7 @@ public class DigitalBank extends Bank {
         } else {
             System.out.println("Loi doc file");
         }
-        CustomerDao.save(this.getCustomers());
+
     }
 
     public boolean addCustomer(Customer newCustomer) {
@@ -85,7 +85,8 @@ public class DigitalBank extends Bank {
         } else {
             //nếu customer chưa tồn tại
             //thêm newCustomer vào list customers
-            this.customers.add(newCustomer);
+            customers.add(newCustomer);
+            CustomerDao.save(customers);
             System.out.println("Da them khach hang " + newCustomer.getId() + " vao danh sach khach hang");
             return true;
         }
@@ -116,7 +117,7 @@ public class DigitalBank extends Bank {
             }
         }
         //nếu khách hàng không tồn tại=>thông báo
-        System.out.println("Khach hang khong ton tai");
+        System.out.println("Khong tim thay khach hang " + id);
         return false;
 
     }

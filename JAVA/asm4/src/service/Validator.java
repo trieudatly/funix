@@ -30,7 +30,7 @@ public class Validator {
     }
 
     public static String accountInput() {
-        System.out.print("Nhap ma tai khoan: ");
+        System.out.print("Nhap so tai khoan gom 6 chu so: ");
         return getInputWithPattern(ACCOUNT_PATTERN);
     }
 

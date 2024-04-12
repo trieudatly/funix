@@ -135,7 +135,7 @@ public class Asm03 {
     //header cho log
     private static void displayTransactionHeader() {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Tien");
+        System.out.println("| Tai Khoan   | Loai Giao Dich           | So Tien       | Thoi Gian");
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 

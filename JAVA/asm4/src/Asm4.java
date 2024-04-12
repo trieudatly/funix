@@ -48,7 +48,7 @@ public class Asm4 {
                     break;
                 case 4:
                     //Chuyển tiền
-                    tranfer();
+                    transfer();
                     break;
                 case 5:
                     //Rút tiền
@@ -78,7 +78,7 @@ public class Asm4 {
         activeBank.withdraw();
     }
 
-    private static void tranfer() {
+    private static void transfer() {
         activeBank.tranfer();
     }
 
@@ -112,12 +112,5 @@ public class Asm4 {
         System.out.println(" 6.Tra cuu lich su giao dich");
         System.out.println(" 0.Thoat");
         System.out.println("+----------+-------------------+----------+");
-    }
-
-    //header cho log
-    private static void displayTransactionHeader() {
-        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| Tai Khoan   | Thoi Gian           | Trang Thai       | Ma Giao Dich                         | So Tien");
-        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 }

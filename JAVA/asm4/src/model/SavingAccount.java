@@ -122,14 +122,14 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         System.out.println("      BIEN LAI GIAO DICH SAVINGS       ");
         System.out.printf("NGAY GIAO DICH: %22s%n", dateTime);
         System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2024");
-        System.out.printf("SO TK: %16s%n", withdrawAccountNumber);
+        System.out.printf("SO TK: %31s%n", withdrawAccountNumber);
         if (type.equals(TransactionType.WITHDRAW)) {
-            System.out.printf("SO TIEN RUT: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+            System.out.printf("SO TIEN RUT: %23s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
         } else {
-            System.out.printf("SO TK NHAN: %16s%n", receiveAccountNumber);
-            System.out.printf("SO TIEN CHUYEN: %27s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+            System.out.printf("SO TK NHAN: %26s%n", receiveAccountNumber);
+            System.out.printf("SO TIEN CHUYEN: %20s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
         }
-        System.out.printf("SO DU TK: %29s%s%n", String.format("%,.0f", newBalance), " đ");
+        System.out.printf("SO DU TK: %26s%s%n", String.format("%,.0f", newBalance), " đ");
         System.out.printf("PHI + VAT: %25s%s%n", String.format("%,.0f", fee), " đ");
         System.out.println("+------+-----------------------+------+");
     }

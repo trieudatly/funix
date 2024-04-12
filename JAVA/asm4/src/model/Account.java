@@ -44,10 +44,18 @@ public class Account implements Serializable {
     public void displayTransactionsList() {
         transactions = getTransactions();
         if (transactions != null && !transactions.isEmpty()) {
+            displayTransactionHeader();
             for (Transaction transaction : transactions) {
                 System.out.println("|" + transaction.toString());
             }
         }
+    }
+
+    //header cho log
+    private static void displayTransactionHeader() {
+        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
+        System.out.println("| Tai Khoan   | Giao Dich | So Tien       | Thoi Gian");
+        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 
     /**

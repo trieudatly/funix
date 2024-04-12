@@ -72,7 +72,7 @@ public class Customer implements Serializable {
         accounts = getAccounts();
         //nếu account chưa tồn tại
         // => thêm account mới vào customer
-        if (!isAccountExisted(accounts, newAccount.getAccountNumber())) {
+        if (!isAccountExisted(newAccount.getAccountNumber())) {
             accounts.add(newAccount);
             return true;
         }
@@ -82,11 +82,9 @@ public class Customer implements Serializable {
 
     //Phương thức isAccountExisted(List<Account> accountsList, Account newAccount)
 // kiểm tra một account đã tồn tại trong mảng không.
-    public boolean isAccountExisted(List<Account> accountsList, String accountNumber) {
-        if (accountsList != null) {
-            return accountsList.stream().anyMatch(a -> a.getAccountNumber().equals(accountNumber));
-        }
-        return false;
+    public boolean isAccountExisted(String accountNumber) {
+        List<Account> accountsList = AccountDao.list();
+        return accountsList.stream().anyMatch(a -> a.getAccountNumber().equals(accountNumber));
     }
 
     //Phương thức getAccountByAccountNumber(List<Account> accounts, String accountNumber)
