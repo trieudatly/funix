@@ -120,7 +120,11 @@ public class Customer implements Serializable {
             Account account;
             double amount;
             do {
-                account = getAccountByAccountNumber(accounts, Validator.accountInput());
+                String accountNumber = Validator.accountInput();
+                if (accountNumber.equals("exit")) {
+                    return false;
+                }
+                account = getAccountByAccountNumber(accounts, accountNumber);
             } while (account == null);
             amount = Validator.amountInput();
             if (account instanceof SavingAccount) {
@@ -143,10 +147,19 @@ public class Customer implements Serializable {
             Account receiveAccount;
             double amount;
             do {
-                account = getAccountByAccountNumber(accounts, Validator.accountInput());
+                String accountNumber = Validator.accountInput();
+                if (accountNumber.equals("exit")) {
+                    return false;
+                }
+                account = getAccountByAccountNumber(accounts, accountNumber);
             } while (account == null);
             do {
-                receiveAccount = getAccountByAccountNumber(AccountDao.list(), Validator.accountInput());
+                System.out.println("Nhap so tai khoan nhan(exit de thoat)");
+                String receiveAccountNumber = Validator.accountInput();
+                if (receiveAccountNumber.equals("exit")) {
+                    return false;
+                }
+                receiveAccount = getAccountByAccountNumber(AccountDao.list(), receiveAccountNumber);
             } while (receiveAccount == null);
 
             amount = Validator.amountInput();

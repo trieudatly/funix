@@ -19,24 +19,21 @@ public class Validator {
         return Pattern.matches(CCCD_PATTERN, customerId);
     }
 
-    public static boolean validateAccountNumber(String accountNumber) {
-        return Pattern.matches(ACCOUNT_PATTERN, accountNumber);
-    }
 
     //Xử lý CCCD
     public static String customerIdInput() {
-        System.out.print("Nhap ID khach hang: ");
+        System.out.print("Nhap ID khach hang( exit de thoat ): ");
         return getInputWithPattern(CCCD_PATTERN);
     }
 
     public static String accountInput() {
-        System.out.print("Nhap so tai khoan gom 6 chu so: ");
+        System.out.print("Nhap so tai khoan gom 6 chu so( exit de thoat ): ");
         return getInputWithPattern(ACCOUNT_PATTERN);
     }
 
     public static double amountInput() {
         while (true) {
-            System.out.print("Nhap so tien: ");
+            System.out.print("Nhap so tien >= 50000đ: ");
             double amount = Double.parseDouble(getInputWithPattern(AMOUNT_PATTERN));
             // số dư của tài khoản, không được nhỏ hơn 50_000 VNĐ
             if (amount >= 50000 && amount % 10000 == 0) {
@@ -46,14 +43,15 @@ public class Validator {
         }
     }
 
-    //nhập thông tin từ bàn phím
-    //so khớp theo PATTERN
+    /**
+     * nhập thông tin từ bàn phím
+     * so khớp theo PATTERN
+     */
     public static String getInputWithPattern(String pattern) {
         while (true) {
             String input = sc.nextLine().trim().toLowerCase();
-            if (input.compareTo("no") == 0) {
-                System.out.println("Bye Bye");
-                System.exit(0);
+            if (input.compareTo("exit") == 0) {
+                return input;
             }
             if (!Pattern.matches(pattern, input)) {
                 System.out.print("Khong hop le. Vui long nhap lai:");

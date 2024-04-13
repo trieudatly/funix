@@ -29,12 +29,14 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         if (isAccepted(amount, isPremium)) {
             double fee = getFee(amount, isPremium);
             double newBalance = getBalance() - amount - fee;
-            createTransaction(accountNumber, TransactionType.WITHDRAW, amount, true, dateTime);
             setBalance(newBalance);
-            AccountDao.update(this);
-            log(dateTime, TransactionType.WITHDRAW, accountNumber, "", amount, newBalance, fee);
-            System.out.println("Giao dich thanh cong");
-            return true;
+            if (createTransaction(accountNumber, TransactionType.WITHDRAW, amount, true, dateTime) && AccountDao.update(this)) {
+                log(dateTime, TransactionType.WITHDRAW, accountNumber, "", amount, newBalance, fee);
+                System.out.println("Giao dich thanh cong");
+                return true;
+            }
+            System.out.println("Giao dich khong thanh cong");
+            return false;
         }
         //nếu khoản rút không được chấp nhận
         System.out.println("Giao dich khong thanh cong");
@@ -55,12 +57,13 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
             double newReceiveBalance = receiveAccount.getBalance() + amount;
             receiveAccount.setBalance(newReceiveBalance);
             setBalance(newBalance);
-            createTransaction(accountNumber, TransactionType.TRANSFER, amount, true, dateTime);
-            AccountDao.update(receiveAccount);
-            AccountDao.update(this);
-            log(dateTime, TransactionType.TRANSFER, accountNumber, receiveAccount.getAccountNumber(), amount, newBalance, fee);
-            System.out.println("Giao dich thanh cong");
-            return true;
+            if (createTransaction(accountNumber, TransactionType.TRANSFER, amount, true, dateTime) && AccountDao.update(receiveAccount) && AccountDao.update(this)) {
+                log(dateTime, TransactionType.TRANSFER, accountNumber, receiveAccount.getAccountNumber(), amount, newBalance, fee);
+                System.out.println("Giao dich thanh cong");
+                return true;
+            }
+            System.out.println("Giao dich khong thanh cong");
+            return false;
         }
         //nếu khoản rút không được chấp nhận
         System.out.println("Giao dich khong thanh cong");

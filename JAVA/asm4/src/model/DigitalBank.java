@@ -39,15 +39,17 @@ public class DigitalBank extends Bank {
     public void showTransactions() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();
-        //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
-        if (isCustomerExisted(id)) {
-            for (Customer customer : customers) {
-                if (id.equals(customer.getId())) {
-                    customer.displayTransaction();
+        if (!id.equals("exit")) {
+            //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
+            if (isCustomerExisted(id)) {
+                for (Customer customer : customers) {
+                    if (id.equals(customer.getId())) {
+                        customer.displayTransaction();
+                    }
                 }
+            } else {
+                System.out.println("Chua co khach hang nao trong danh sach");
             }
-        } else {
-            System.out.println("Chua co khach hang nao trong danh sach");
         }
     }
     //Phương thức addCustomers(fileName) sẽ đọc dữ liệu từ file,
@@ -99,10 +101,17 @@ public class DigitalBank extends Bank {
     public boolean addSavingAccount() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();
+        if (id.equals("exit")) {
+            return false;
+        }
         List<Account> accounts = AccountDao.list();
         //nếu khách hàng tồn tại => thêm tài khoản mới vào khách hàng cụ thể
         if (isCustomerExisted(id)) {
-            SavingAccount savingsAccount = new SavingAccount(Validator.accountInput(), Validator.amountInput(), id);
+            String accountNumber = Validator.accountInput();
+            if (accountNumber.equals("exit")) {
+                return false;
+            }
+            SavingAccount savingsAccount = new SavingAccount(accountNumber, Validator.amountInput(), id);
             for (Customer customer : customers) {
                 if (id.equals(customer.getId())) {
                     if (!customer.addAccount(savingsAccount)) {
@@ -129,6 +138,9 @@ public class DigitalBank extends Bank {
     public boolean withdraw() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();
+        if (id.equals("exit")) {
+            return false;
+        }
         if (isCustomerExisted(id)) {
             for (Customer customer : customers) {
                 if (id.equals(customer.getId())) {
@@ -147,6 +159,9 @@ public class DigitalBank extends Bank {
     public boolean tranfer() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();
+        if (id.equals("exit")) {
+            return false;
+        }
         if (isCustomerExisted(id)) {
             for (Customer customer : customers) {
                 if (id.equals(customer.getId())) {

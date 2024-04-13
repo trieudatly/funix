@@ -34,6 +34,7 @@ public class AccountDao {
      */
     public static boolean save(List<Account> accounts) {
         return BinaryFileService.writeFile(FILE_PATH, accounts);
+
     }
 
     /**
