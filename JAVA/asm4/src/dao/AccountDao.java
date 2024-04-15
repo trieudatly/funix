@@ -3,10 +3,20 @@ package dao;
 import file.BinaryFileService;
 import model.Account;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class AccountDao {
+    public class MyRunnable implements Runnable {
+
+        @Override
+        public void run() {
+
+        }
+    }
+
     /**
      * Quy định tên file dùng để lưu dữ liệu
      */
@@ -17,16 +27,34 @@ public class AccountDao {
      */
     public static boolean update(Account editAccount) {
         List<Account> accounts = list();
-        List<Account> updateAccounts = new ArrayList<>();
+        //List<Account> updateAccounts = new ArrayList<>();
+        ExecutorService executor = Executors.newFixedThreadPool(4);
         for (Account account : accounts
         ) {
-            if (account.getAccountNumber().equals(editAccount.getAccountNumber())) {
-                updateAccounts.add(editAccount);
-            } else {
-                updateAccounts.add(account);
-            }
+            executor.execute(() -> {
+                //System.out.println("theard running");
+                int index = checkIndex(editAccount, account, accounts);
+                if (index > -1) {
+                    accounts.set(index, editAccount);
+                    //System.out.println("theard update");
+                    executor.shutdownNow();
+                }
+            });
         }
-        return save(updateAccounts);
+        executor.shutdown();
+        return save(accounts);
+    }
+
+    private static Integer checkIndex(Account editAccount, Account account, List<Account> accounts) {
+        //System.out.println("theard checking");
+        if (account.getAccountNumber().equals(editAccount.getAccountNumber())) {
+            return accounts.indexOf(account);
+        }
+        return -1;
+    }
+
+    private void updateList(List<Account> list, int index, Account account) {
+
     }
 
     /**

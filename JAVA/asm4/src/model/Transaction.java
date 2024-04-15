@@ -82,7 +82,7 @@ public class Transaction implements Serializable {
     public String toString() {
         return " [GD] " + getAccountNumber()
                 + " | " + getType()
-                + " | " + String.format("%,.0f", ((-1) * getAmount())) + " đ"
+                + "  | " + String.format("%,16.0f", getAmount()) + " đ"
                 + " | " + String.format("%s", getTime());
     }
 }

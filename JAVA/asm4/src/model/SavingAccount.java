@@ -30,7 +30,8 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
             double fee = getFee(amount, isPremium);
             double newBalance = getBalance() - amount - fee;
             setBalance(newBalance);
-            if (createTransaction(accountNumber, TransactionType.WITHDRAW, amount, true, dateTime) && AccountDao.update(this)) {
+            if (AccountDao.update(this)) {
+                createTransaction(accountNumber, TransactionType.WITHDRAW, ((-1) * amount), true, dateTime);
                 log(dateTime, TransactionType.WITHDRAW, accountNumber, "", amount, newBalance, fee);
                 System.out.println("Giao dich thanh cong");
                 return true;
@@ -57,7 +58,9 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
             double newReceiveBalance = receiveAccount.getBalance() + amount;
             receiveAccount.setBalance(newReceiveBalance);
             setBalance(newBalance);
-            if (createTransaction(accountNumber, TransactionType.TRANSFER, amount, true, dateTime) && AccountDao.update(receiveAccount) && AccountDao.update(this)) {
+            if (AccountDao.update(receiveAccount) && AccountDao.update(this)) {
+                createTransaction(accountNumber, TransactionType.TRANSFER, ((-1) * amount), true, dateTime);
+                createTransaction(receiveAccount.getAccountNumber(), TransactionType.TRANSFER, amount, true, dateTime);
                 log(dateTime, TransactionType.TRANSFER, accountNumber, receiveAccount.getAccountNumber(), amount, newBalance, fee);
                 System.out.println("Giao dich thanh cong");
                 return true;
@@ -127,10 +130,10 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         System.out.printf("ATM ID: %30s%n", "DIGITAL-BANK-ATM 2024");
         System.out.printf("SO TK: %31s%n", withdrawAccountNumber);
         if (type.equals(TransactionType.WITHDRAW)) {
-            System.out.printf("SO TIEN RUT: %23s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+            System.out.printf("SO TIEN RUT: %,23.0f đ%n", amount);
         } else {
             System.out.printf("SO TK NHAN: %26s%n", receiveAccountNumber);
-            System.out.printf("SO TIEN CHUYEN: %20s%s%n", String.format("%,.0f", ((-1) * amount)), " đ");
+            System.out.printf("SO TIEN CHUYEN: %,20.0f đ%n", amount);
         }
         System.out.printf("SO DU TK: %26s%s%n", String.format("%,.0f", newBalance), " đ");
         System.out.printf("PHI + VAT: %25s%s%n", String.format("%,.0f", fee), " đ");
@@ -139,7 +142,8 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
 
     @Override
     public String toString() {
-        return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| SAVINGS | ", getBalance(), " đ");
+        //return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| SAVINGS | ", getBalance(), " đ");
+        return String.format("%s | SAVINGS              |  %,26.0fđ", getAccountNumber(), getBalance());
     }
 
 

@@ -49,12 +49,13 @@ public class Customer implements Serializable {
         if (this.isPremium()) {
             premium = "Premium";
         }
-        System.out.println(id + " | " + name + " | " + premium + " | " + String.format("%,.0f", getTotalAccountBalance()) + "đ");
+        //System.out.println(id + " | " + name + " | " + premium + " | " + String.format("%,.0f", getTotalAccountBalance()) + "đ");
+        System.out.printf("%s | %-20s | %-7s | %,16.0f đ\n", id, name, premium, getTotalAccountBalance());
         int accCount = 1;
         //duyệt list và hiển thị tất cả account của khách hàng
         if (accounts != null && !accounts.isEmpty()) {
             for (Account account : accounts) {
-                System.out.format("%-5s %8s\n", accCount, account.toString());
+                System.out.format("%-5d %s\n", accCount, account.toString());
                 accCount++;
             }
         }

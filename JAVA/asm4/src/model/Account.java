@@ -3,7 +3,6 @@ package model;
 import dao.TransactionDao;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -14,7 +13,6 @@ public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
     private String accountNumber;
     private double balance;
-    private List<Transaction> transactions = new ArrayList<>();
     //Thêm thuộc tính customerId,
     // để sau khi lưu vào file thì sẽ xác định được account thuộc customer nào.
     private String customerId;
@@ -42,7 +40,7 @@ public class Account implements Serializable {
      * lấy ra danh sách transaction từ hàm getTransaction rồi hiển thị ra màn hình.
      */
     public void displayTransactionsList() {
-        transactions = getTransactions();
+        List<Transaction> transactions = getTransactions();
         if (transactions != null && !transactions.isEmpty()) {
             displayTransactionHeader();
             for (Transaction transaction : transactions) {
@@ -54,7 +52,7 @@ public class Account implements Serializable {
     //header cho log
     private static void displayTransactionHeader() {
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
-        System.out.println("| Tai Khoan   | Giao Dich | So Tien       | Thoi Gian");
+        System.out.println("| Tai Khoan   | Giao Dich | So Tien            | Thoi Gian");
         System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
     }
 
