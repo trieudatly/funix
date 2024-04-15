@@ -9,13 +9,6 @@ import java.util.concurrent.Executors;
 
 
 public class AccountDao {
-    public class MyRunnable implements Runnable {
-
-        @Override
-        public void run() {
-
-        }
-    }
 
     /**
      * Quy định tên file dùng để lưu dữ liệu
