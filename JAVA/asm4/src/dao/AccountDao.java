@@ -3,6 +3,8 @@ package dao;
 import file.BinaryFileService;
 import model.Account;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -62,6 +64,10 @@ public class AccountDao {
      * Lấy ra danh sách Account từ file. Output là danh sách Account .
      */
     public static List<Account> list() {
-        return BinaryFileService.readFile(FILE_PATH);
+        try {
+            return BinaryFileService.readFile(FILE_PATH);
+        } catch (IOException | ClassCastException e) {
+            return new ArrayList<>();
+        }
     }
 }

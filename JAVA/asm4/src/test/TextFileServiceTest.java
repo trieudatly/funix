@@ -1,12 +1,19 @@
 package test;
 
+import file.TextFileService;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.FileNotFoundException;
 
 public class TextFileServiceTest {
 
-    @Test
-    public void readFile() {
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void readWrongFile() throws FileNotFoundException {
+        TextFileService.readFile("src/test/testCustomers.txt");
+    }
+
+    @Test(expected = FileNotFoundException.class)
+    public void FileNotFound() throws FileNotFoundException {
+        TextFileService.readFile("src/test/testCustomers");
     }
 }

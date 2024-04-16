@@ -1,7 +1,6 @@
 import model.Account;
 import model.DigitalBank;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class Asm4 {
     private static final Scanner sc = new Scanner(System.in);
     private static final DigitalBank activeBank = new DigitalBank();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         //tạo 2 hằng lưu tác giả và phiên bản
         final String AUTHOR = "fx22205";
         final String VERSION = "4.0.0";

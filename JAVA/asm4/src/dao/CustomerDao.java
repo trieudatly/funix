@@ -3,6 +3,8 @@ package dao;
 import file.BinaryFileService;
 import model.Customer;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDao {
@@ -14,8 +16,19 @@ public class CustomerDao {
         return BinaryFileService.writeFile(FILE_PATH, customers);
     }
 
-    //Lấy ra danh sách khách hàng từ file. Output là danh sách khách hàng.
+    /**
+     * Lấy ra danh sách khách hàng từ file. Output là danh sách khách hàng.
+     */
     public static List<Customer> list() {
-        return BinaryFileService.readFile(FILE_PATH);
+        try {
+            List<Customer> list = BinaryFileService.readFile(FILE_PATH);
+            if (!list.isEmpty() && list.get(0) instanceof Customer) {
+                return list;
+            } else {
+                return new ArrayList<>();
+            }
+        } catch (IOException e) {
+            return new ArrayList<>();
+        }
     }
 }

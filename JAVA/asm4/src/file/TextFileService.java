@@ -14,7 +14,7 @@ public class TextFileService {
     /**
      * đọc file text. Đầu vào là đường dẫn đến thư mục, đầu ra là danh sách khách hàng.
      */
-    public static List<List<String>> readFile(String fileName) {
+    public static List<List<String>> readFile(String fileName) throws FileNotFoundException {
         List<List<String>> customers = new ArrayList<>();
         try (Scanner scanner = new Scanner(new FileReader(fileName))) {
             while (scanner.hasNextLine()) {
@@ -32,6 +32,7 @@ public class TextFileService {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file ");
+            throw new FileNotFoundException();
         }
         return customers;
     }

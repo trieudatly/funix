@@ -3,6 +3,7 @@ package dao;
 import file.BinaryFileService;
 import model.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionDao {
@@ -16,6 +17,11 @@ public class TransactionDao {
 
     //Lấy ra danh sách Transaction từ file. Output là danh sách Transaction.
     public static List<Transaction> list() {
-        return BinaryFileService.readFile(FILE_PATH);
+//        try {
+//            return BinaryFileService.readFile(FILE_PATH);
+//        } catch (IOException | ClassNotFoundException e) {
+//            return new ArrayList<>();
+//        }
+        return new ArrayList<>();
     }
 }

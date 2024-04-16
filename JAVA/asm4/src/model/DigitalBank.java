@@ -6,6 +6,7 @@ import exception.CustomerIdNotValidException;
 import file.TextFileService;
 import service.Validator;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,9 +60,14 @@ public class DigitalBank extends Bank {
 // nếu không hợp lệ hoặc số ID đã tồn tại thì hiển thị đoạn thông báo.
 // Sau đó lưu dữ liệu customer vào file.
 
-    public void addCustomers(String fileName) {
+    public boolean addCustomers(String fileName) {
         customers = CustomerDao.list();
-        List<List<String>> txtCustomer = TextFileService.readFile(fileName);
+        List<List<String>> txtCustomer;
+        try {
+            txtCustomer = TextFileService.readFile(fileName);
+        } catch (FileNotFoundException e) {
+            return false;
+        }
         if (!txtCustomer.isEmpty()) {
             for (List<String> list : txtCustomer
             ) {
@@ -72,24 +78,25 @@ public class DigitalBank extends Bank {
                     System.out.println(e.getMessage());
                 }
             }
+            return true;
         } else {
             System.out.println("Loi doc file");
+            return false;
         }
-
     }
 
     public boolean addCustomer(Customer newCustomer) {
         //nếu phương thức isCustomerExisted trả về true
         //thông báo đã tồn tại customer này trong bank
         if (isCustomerExisted(newCustomer.getId())) {
-            System.out.println("Khach hang " + newCustomer.getId() + " da ton tai, them khach hang khong thanh cong");
+            System.out.println("Them khach hang " + newCustomer.getId() + "  khong thanh cong");
             return false;
         } else {
             //nếu customer chưa tồn tại
             //thêm newCustomer vào list customers
             customers.add(newCustomer);
             CustomerDao.save(customers);
-            System.out.println("Da them khach hang " + newCustomer.getId() + " vao danh sach khach hang");
+            System.out.println("Them khach hang " + newCustomer.getId() + "  thanh cong");
             return true;
         }
     }
