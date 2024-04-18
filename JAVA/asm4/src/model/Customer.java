@@ -14,6 +14,11 @@ public class Customer implements Serializable {
     // static final long serialVersionUID để hỗ trợ đọc/ghi object.
     private static final long serialVersionUID = 1L;
     List<Account> accounts = new ArrayList<>();
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
     private String id;
     private String name;
 
@@ -50,6 +55,7 @@ public class Customer implements Serializable {
             premium = "Premium";
         }
         //System.out.println(id + " | " + name + " | " + premium + " | " + String.format("%,.0f", getTotalAccountBalance()) + "đ");
+        System.out.println("------------------------------------------------------------------");
         System.out.printf("%s | %-20s | %-7s | %,16.0f đ\n", id, name, premium, getTotalAccountBalance());
         int accCount = 1;
         //duyệt list và hiển thị tất cả account của khách hàng
@@ -73,7 +79,8 @@ public class Customer implements Serializable {
         accounts = getAccounts();
         //nếu account chưa tồn tại
         // => thêm account mới vào customer
-        if (!isAccountExisted(newAccount.getAccountNumber())) {
+        List<Account> accountsList = AccountDao.list();
+        if (!isAccountExisted(accountsList, newAccount.getAccountNumber())) {
             accounts.add(newAccount);
             return true;
         }
@@ -81,23 +88,25 @@ public class Customer implements Serializable {
         return false;
     }
 
-    //Phương thức isAccountExisted(List<Account> accountsList, Account newAccount)
-// kiểm tra một account đã tồn tại trong mảng không.
-    public boolean isAccountExisted(String accountNumber) {
-        List<Account> accountsList = AccountDao.list();
-        return accountsList.stream().anyMatch(a -> a.getAccountNumber().equals(accountNumber));
+    /**
+     * kiểm tra một account đã tồn tại trong mảng không.
+     */
+    public static boolean isAccountExisted(List<Account> accounts, String accountNumber) {
+        return getAccountByAccountNumber(accounts, accountNumber) != null;
     }
 
-    //Phương thức getAccountByAccountNumber(List<Account> accounts, String accountNumber)
-// lấy ra account từ trong danh sách.
-    public Account getAccountByAccountNumber(List<Account> accounts, String accountNumber) {
-        if (accounts != null && !accounts.isEmpty()) {
-            for (Account account : accounts) {
-                if (account.getAccountNumber().equals(accountNumber))
-                    return account;
-            }
+
+    /**
+     * lấy ra account từ trong danh sách.
+     */
+    public static Account getAccountByAccountNumber(List<Account> accounts, String accountNumber) {
+        if (accounts == null || accounts.isEmpty()) {
+            return null;
         }
-        System.out.println("Tai khoan khong ton tai");
+        for (Account account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber))
+                return account;
+        }
         return null;
     }
 

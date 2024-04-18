@@ -18,21 +18,22 @@ public class AccountDao {
     private final static String FILE_PATH = "store/accounts.dat";
 
     /**
-     * cập nhật số dư cho tài khoản
+     * cập nhật số dư cho tài khoản, input la account can update
      */
     public static boolean update(Account editAccount) {
         List<Account> accounts = list();
-        //List<Account> updateAccounts = new ArrayList<>();
-        ExecutorService executor = Executors.newFixedThreadPool(4);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         for (Account account : accounts
         ) {
             executor.execute(() -> {
                 //System.out.println("theard running");
-                int index = checkIndex(editAccount, account, accounts);
+                int index = -1;
+                if (account.getAccountNumber().equals(editAccount.getAccountNumber())) {
+                    index = accounts.indexOf(account);
+                }
                 if (index > -1) {
                     accounts.set(index, editAccount);
                     //System.out.println("theard update");
-                    executor.shutdownNow();
                 }
             });
         }
@@ -40,24 +41,12 @@ public class AccountDao {
         return save(accounts);
     }
 
-    private static Integer checkIndex(Account editAccount, Account account, List<Account> accounts) {
-        //System.out.println("theard checking");
-        if (account.getAccountNumber().equals(editAccount.getAccountNumber())) {
-            return accounts.indexOf(account);
-        }
-        return -1;
-    }
-
-    private void updateList(List<Account> list, int index, Account account) {
-
-    }
 
     /**
      * Lưu danh sách Account vào file. Input là danh sách Account.
      */
     public static boolean save(List<Account> accounts) {
         return BinaryFileService.writeFile(FILE_PATH, accounts);
-
     }
 
     /**
@@ -65,8 +54,13 @@ public class AccountDao {
      */
     public static List<Account> list() {
         try {
-            return BinaryFileService.readFile(FILE_PATH);
-        } catch (IOException | ClassCastException e) {
+            List<Account> list = BinaryFileService.readFile(FILE_PATH);
+            if (!list.isEmpty() && list.get(0) instanceof Account) {
+                return list;
+            } else {
+                return new ArrayList<>();
+            }
+        } catch (IOException e) {
             return new ArrayList<>();
         }
     }

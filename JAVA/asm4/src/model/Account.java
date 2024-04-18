@@ -4,7 +4,6 @@ import dao.TransactionDao;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Account implements Serializable {
@@ -51,9 +50,9 @@ public class Account implements Serializable {
 
     //header cho log
     private static void displayTransactionHeader() {
-        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
+        System.out.println("+-------------------------------------------------------------------+");
         System.out.println("| Tai Khoan   | Giao Dich | So Tien            | Thoi Gian");
-        System.out.println("+-----------------------------------------------------------------------------------------------------------------+");
+        System.out.println("+-------------------------------------------------------------------+");
     }
 
     /**
@@ -63,14 +62,6 @@ public class Account implements Serializable {
         List<Transaction> transactionFile = TransactionDao.list();
         transactionFile.add(new Transaction(accountNumber, type, amount, status, dateTime));
         return TransactionDao.save(transactionFile);
-    }
-
-    //Phương thức input(Scanner scanner) để thêm tài khoản mới vào danh sách.
-// Yêu cầu người dùng nhập số tài khoản và số tiền ban đầu.
-// Kiểm tra tính hợp lệ của giao dịch ban đầu sau đó gọi hàm createTransaction()
-// để tạo ra một giao dịch thêm tiền (DEPOSIT) và thay đổi số dư tài khoản.
-    public boolean input(Scanner scanner) {
-        return false;
     }
 
     public boolean isPremium() {

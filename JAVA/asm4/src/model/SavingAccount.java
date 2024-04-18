@@ -143,7 +143,7 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
     @Override
     public String toString() {
         //return String.format("%s %-20s %,.0f%s", getAccountNumber(), "| SAVINGS | ", getBalance(), " đ");
-        return String.format("%s | SAVINGS              |  %,26.0fđ", getAccountNumber(), getBalance());
+        return String.format("%s | SAVINGS              |  %,16.0f đ", getAccountNumber(), getBalance());
     }
 
 

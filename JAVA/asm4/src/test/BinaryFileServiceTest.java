@@ -16,10 +16,14 @@ public class BinaryFileServiceTest {
         BinaryFileService.readFile("src/test/fileNotFound.dat");
     }
 
+    @Test(expected = IOException.class)
+    public void readNotDataFile() throws IOException {
+        BinaryFileService.readFile("src/test/testCustomers.txt");
+    }
+
     @Test
     public void writeFile() {
-        assertTrue(BinaryFileService.writeFile("src/test/testCustomers.dat", new ArrayList<>()));
+        assertTrue(BinaryFileService.writeFile("src/test/testWriteFile.dat", new ArrayList<>()));
         assertFalse(BinaryFileService.writeFile("src/test/", new ArrayList<>()));
-        assertTrue(BinaryFileService.writeFile("src/test/testCustomers.txt", new ArrayList<>()));
     }
 }
