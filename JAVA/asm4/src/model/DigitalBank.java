@@ -90,14 +90,14 @@ public class DigitalBank extends Bank {
         //thông báo đã tồn tại customer này trong bank
         customers = CustomerDao.list();
         if (isCustomerExisted(customers, newCustomer.getId())) {
-            System.out.println("Them khach hang " + newCustomer.getId() + "  khong thanh cong");
+            System.out.println("Khach hang " + newCustomer.getId() + " da ton tai");
             return false;
         } else {
             //nếu customer chưa tồn tại
             //thêm newCustomer vào list customers
             customers.add(newCustomer);
             CustomerDao.save(customers);
-            System.out.println("Them khach hang " + newCustomer.getId() + "  thanh cong");
+            System.out.println("Khach hang " + newCustomer.getId() + " them thanh cong");
             return true;
         }
     }

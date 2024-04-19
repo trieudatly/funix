@@ -27,7 +27,7 @@ public class TextFileService {
                     customer.add(data[1]);
                     customers.add(customer);
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Dong du lieu khong hop le");
+                    //System.out.println("Dong du lieu khong hop le");
                 }
             }
         } catch (FileNotFoundException e) {
