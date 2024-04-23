@@ -60,4 +60,18 @@ public class Validator {
             }
         }
     }
+
+    public static String confirm() {
+        while (true) {
+            String input = sc.nextLine().trim().toLowerCase();
+            if (input.compareTo("exit") == 0) {
+                return input;
+            }
+            if (input.equals("no") || input.equals("yes")) {
+                return input;
+            } else {
+                System.out.print("Khong hop le. Vui long nhap lai:");
+            }
+        }
+    }
 }

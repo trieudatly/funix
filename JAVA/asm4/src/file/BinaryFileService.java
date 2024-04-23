@@ -4,10 +4,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//File BinaryFileService định nghĩa lớp có chức năng cung cấp các dịch vụ đọc/ghi file nhị phân.
+/**
+ * File BinaryFileService định nghĩa lớp có chức năng cung cấp các dịch vụ đọc/ghi file nhị phân.
+ */
 public class BinaryFileService {
     /**
-     * đọc file nhị phân. Đầu vào là đường dẫn đến thư mục, đầu ra là danh sách đối tượng.
+     * Đọc file nhị phân.
+     * Đầu vào là đường dẫn đến thư mục,
+     * đầu ra là danh sách đối tượng.
      */
     public static <T> List<T> readFile(String fileName) throws IOException {
         List<T> objects = new ArrayList<>();
@@ -33,7 +37,10 @@ public class BinaryFileService {
     }
 
     /**
-     * ghi file nhị phân.nhận đầu vào là đường dẫn đến thư mục và danh sách đối tượng cần lưu.
+     * Ghi file nhị phân,
+     * nhận đầu vào là đường dẫn đến thư mục và danh sách đối tượng cần lưu.
+     * trả về true khi ghi file thành công,
+     * trả về false khi có lỗi xảy ra.
      */
     public static <T> boolean writeFile(String fileName, List<T> objects) {
         try (ObjectOutputStream file = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)))) {

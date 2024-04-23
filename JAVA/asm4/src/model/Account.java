@@ -48,7 +48,9 @@ public class Account implements Serializable {
         }
     }
 
-    //header cho log
+    /**
+     * header cho log
+     */
     private static void displayTransactionHeader() {
         System.out.println("+-------------------------------------------------------------------+");
         System.out.println("| Tai Khoan   | Giao Dich | So Tien            | Thoi Gian");
@@ -56,7 +58,7 @@ public class Account implements Serializable {
     }
 
     /**
-     * tạo ra thêm một giao dịch cho account và cập nhật số dư tài khoản.
+     * tạo ra thêm một giao dịch cho account và lưu vào file.
      */
     public boolean createTransaction(String accountNumber, TransactionType type, double amount, boolean status, String dateTime) {
         List<Transaction> transactionFile = TransactionDao.list();
@@ -64,9 +66,12 @@ public class Account implements Serializable {
         return TransactionDao.save(transactionFile);
     }
 
+    /**
+     * Kiểm tra account có phải loại Premium không
+     * 1 account là premium nếu như balance tối thiểu 10_000_000 VNĐ
+     */
     public boolean isPremium() {
-        //1 tài khoản là premium nếu như balance tối thiểu 10_000_000 VNĐ
-        if (balance >= 10000000) {
+        if (balance >= 10_000_000) {
             return true;
         }
         return false;

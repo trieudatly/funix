@@ -14,14 +14,14 @@ public class Customer implements Serializable {
     // static final long serialVersionUID để hỗ trợ đọc/ghi object.
     private static final long serialVersionUID = 1L;
     List<Account> accounts = new ArrayList<>();
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-
     private String id;
     private String name;
 
+    /**
+     * Hàm tạo Customer,
+     * kiểm tra id có hợp lệ hay không,
+     * nếu không thì ném exception CustomerIdNotValidException
+     */
     public Customer(String customerId, String name) throws CustomerIdNotValidException {
         if (!Validator.validateCustomerId(customerId)) {
             throw new CustomerIdNotValidException("ID: " + customerId + " khong hop le");
@@ -30,14 +30,38 @@ public class Customer implements Serializable {
         this.name = name;
     }
 
-    //Tạo một hàm khởi tạo Customer(List<String> values)
-    // để phục vụ việc đọc dữ liệu từ file text
+    /**
+     * Tạo một hàm khởi tạo để phục vụ việc đọc dữ liệu từ file text
+     */
     public Customer(List<String> values) throws CustomerIdNotValidException {
         this(values.get(0), values.get(1));
     }
 
-    //Phương thức getAccounts() lấy ra những account có customerId bằng customerId hiện tại.
-// Phương thức này sử dụng stream.filter để lọc từ danh sách account lấy từ file.
+    /**
+     * kiểm tra một account đã tồn tại trong mảng không.
+     */
+    public static boolean isAccountExisted(List<Account> accounts, String accountNumber) {
+        return getAccountByAccountNumber(accounts, accountNumber) != null;
+    }
+
+    /**
+     * Lấy ra account theo accountNumber từ trong danh sách .
+     */
+    public static Account getAccountByAccountNumber(List<Account> accounts, String accountNumber) {
+        if (accounts == null || accounts.isEmpty()) {
+            return null;
+        }
+        for (Account account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber))
+                return account;
+        }
+        return null;
+    }
+
+    /**
+     * Lấy ra những account có customerId bằng customerId hiện tại.
+     * phương thức này sử dụng stream.filter để lọc từ danh sách account lấy từ file.
+     */
     public List<Account> getAccounts() {
         return AccountDao.list()
                 .stream()
@@ -45,12 +69,17 @@ public class Customer implements Serializable {
                 .collect(Collectors.toList());
     }
 
-    //Phương thức displayInformation() Hiển thị thông tin của customer,
-// thông tin các tài khoản của customer (lấy tài khoản từ phương thức getAccounts).
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    /**
+     * Hiển thị thông tin của customer,
+     * thông tin các tài khoản của customer (lấy tài khoản từ phương thức getAccounts).
+     */
     public void displayInformation() {
         accounts = getAccounts();
         String premium = "Normal";
-
         if (this.isPremium()) {
             premium = "Premium";
         }
@@ -67,6 +96,9 @@ public class Customer implements Serializable {
         }
     }
 
+    /**
+     * Hiển thị thông tin của transaction
+     */
     public void displayTransaction() {
         displayInformation();
         for (Account account : accounts
@@ -75,6 +107,9 @@ public class Customer implements Serializable {
         }
     }
 
+    /**
+     * Thêm 1 account mới customer, lưu vào file
+     */
     public boolean addAccount(Account newAccount) {
         accounts = getAccounts();
         //nếu account chưa tồn tại
@@ -89,29 +124,9 @@ public class Customer implements Serializable {
     }
 
     /**
-     * kiểm tra một account đã tồn tại trong mảng không.
+     * Hiển thị thông tin customer,
+     * thông tin các tài khoản và thông tin các giao dịch của khách hàng hiện tại.
      */
-    public static boolean isAccountExisted(List<Account> accounts, String accountNumber) {
-        return getAccountByAccountNumber(accounts, accountNumber) != null;
-    }
-
-
-    /**
-     * lấy ra account từ trong danh sách.
-     */
-    public static Account getAccountByAccountNumber(List<Account> accounts, String accountNumber) {
-        if (accounts == null || accounts.isEmpty()) {
-            return null;
-        }
-        for (Account account : accounts) {
-            if (account.getAccountNumber().equals(accountNumber))
-                return account;
-        }
-        return null;
-    }
-
-    //Phương thức displayTransactionInformation() hiển thị thông tin customer,
-// thông tin các tài khoản và thông tin các giao dịch của khách hàng hiện tại.
     public void displayTransactionInformation() {
         displayInformation();
         if (accounts != null && !accounts.isEmpty()) {
@@ -121,9 +136,10 @@ public class Customer implements Serializable {
         }
     }
 
-    //Phương thức withdraw(Scanner scanner) yêu cầu nhập số tài khoản
-// (lấy danh sách accounts từ getAccounts() để kiểm tra xem tài khoản có tồn tại hay không),
-// nhập số tiền rút sau đó gọi hàm rút tiền của account.
+    /**
+     * Chức năng rút tiền, yêu cầu nhập số tài khoản
+     * nhập số tiền rút sau đó gọi hàm rút tiền của account.
+     */
     public boolean withdraw() {
         displayInformation();
         if (!accounts.isEmpty()) {
@@ -145,11 +161,13 @@ public class Customer implements Serializable {
         return false;
     }
 
-    //Phương thức tranfers(Scanner scanner) yêu cầu nhập tài khoản dùng để chuyển tiền,
-    // nhập tài khoản nhận tiền (kiểm tra tính hợp lệ của từng tài khoản),
-    // sau đó yêu cầu nhập số tiền rút,
-    // xác nhận việc chuyển tiền và sau khi thỏa mãn hết các điều kiện
-    // sẽ gọi hàm transfer của account gửi.
+    /**
+     * chức năng chuyển tiền, yêu cầu nhập tài khoản dùng để chuyển tiền,
+     * nhập tài khoản nhận tiền ,
+     * sau đó yêu cầu nhập số tiền rút,
+     * xác nhận việc chuyển tiền và sau khi thỏa mãn hết các điều kiện
+     * sẽ gọi hàm transfer của account gửi.
+     */
     public boolean tranfers() {
         displayInformation();
         if (!accounts.isEmpty()) {
@@ -171,20 +189,25 @@ public class Customer implements Serializable {
                 }
                 receiveAccount = getAccountByAccountNumber(AccountDao.list(), receiveAccountNumber);
             } while (receiveAccount == null);
-
             amount = Validator.amountInput();
-            if (account instanceof SavingAccount) {
-                return ((SavingAccount) account).transfer(receiveAccount, amount, isPremium());
+            System.out.println("Xac nhan chuyen tien Yes/No : ");
+            String confirm = Validator.confirm();
+            if (confirm.equals("yes")) {
+                if (account instanceof SavingAccount) {
+                    return ((SavingAccount) account).transfer(receiveAccount, amount, isPremium());
+                }
             }
+            return false;
         }
         System.out.println("Khach hang khong co tai khoan nao");
         return false;
     }
 
+    /**
+     * Xác định customer có phải là loại Premium hay không
+     * 1 khách hàng là premium nếu có ít nhất 1 tài khoản (Account) là premium
+     */
     public boolean isPremium() {
-        //1 khách hàng là premium nếu có ít nhất 1 tài khoản (Account) là premium
-        //duyệt list nếu có một account là premium thì isPremium = "Premium"
-        //trả về isPremium
         boolean isPremium = false;
         if (accounts != null && !accounts.isEmpty()) {
             for (Account account : accounts) {
@@ -196,9 +219,11 @@ public class Customer implements Serializable {
         return isPremium;
     }
 
+    /**
+     * Tính tổng tất cả các account balance của khách hàng
+     */
     public double getTotalAccountBalance() {
-        //duyệt list và tính tổng tất cả các account balance của khách hàng
-        //trả về kết quả
+
         double totalBalance = 0;
         if (accounts == null) {
             return 0;

@@ -6,13 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//định nghĩa lớp thao tác với file text
+/**
+ * định nghĩa lớp thao tác với file text
+ */
 public class TextFileService {
-    //định nghĩa dấu phân cách giữa các phần tử trong file.
+    /**
+     * định nghĩa dấu phân cách giữa các phần tử trong file.
+     */
     private static final String COMMA_DELIMITER = ",";
 
     /**
-     * đọc file text. Đầu vào là đường dẫn đến thư mục, đầu ra là danh sách khách hàng.
+     * đọc file text. Đầu vào là đường dẫn đến thư mục, đầu ra là danh sách id, tên khách hàng.
      */
     public static List<List<String>> readFile(String fileName) throws FileNotFoundException {
         List<List<String>> customers = new ArrayList<>();
@@ -22,6 +26,7 @@ public class TextFileService {
                 List<String> customer = new ArrayList<>();
                 try {
                     input = scanner.nextLine();
+                    //tách dòng input ra thành 2 phần, phân biệt nhờ COMMA_DELIMITER
                     String[] data = input.split(COMMA_DELIMITER);
                     customer.add(data[0]);
                     customer.add(data[1]);

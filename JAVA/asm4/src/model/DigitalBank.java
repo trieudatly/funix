@@ -35,7 +35,7 @@ public class DigitalBank extends Bank {
                 customer.displayInformation();
             }
         } else {
-            System.out.println("Khong tim thay khach hang");
+            System.out.println("Chua co khach hang nao trong danh sach");
         }
     }
 
