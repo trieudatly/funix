@@ -46,6 +46,7 @@ public class Customer implements Serializable {
 
     /**
      * Lấy ra account theo accountNumber từ trong danh sách .
+     * nếu không lấy được thì trả về null
      */
     public static Account getAccountByAccountNumber(List<Account> accounts, String accountNumber) {
         if (accounts == null || accounts.isEmpty()) {
@@ -175,6 +176,7 @@ public class Customer implements Serializable {
             Account receiveAccount;
             double amount;
             do {
+                System.out.print("Tai khoan gui");
                 String accountNumber = Validator.accountInput();
                 if (accountNumber.equals("exit")) {
                     return false;
@@ -182,7 +184,7 @@ public class Customer implements Serializable {
                 account = getAccountByAccountNumber(accounts, accountNumber);
             } while (account == null);
             do {
-                System.out.println("Nhap so tai khoan nhan(exit de thoat)");
+                System.out.print("Tai khoan nhan");
                 String receiveAccountNumber = Validator.accountInput();
                 if (receiveAccountNumber.equals("exit")) {
                     return false;

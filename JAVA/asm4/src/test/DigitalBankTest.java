@@ -36,12 +36,12 @@ public class DigitalBankTest {
         List<Customer> customerList = new ArrayList<>();
         customerList.add(customer1);
         customerList.add(customer2);
-        assertTrue(DigitalBank.isCustomerExisted(customerList, "001215000001"));
-        assertTrue(DigitalBank.isCustomerExisted(customerList, "001215000002"));
-        assertFalse(DigitalBank.isCustomerExisted(customerList, "001215000003"));
-        assertFalse(DigitalBank.isCustomerExisted(null, "001215000001"));
-        assertFalse(DigitalBank.isCustomerExisted(customerList, null));
-        assertFalse(DigitalBank.isCustomerExisted(null, null));
+        assertTrue(DigitalBank.isCustomerExisted(customerList, "001215000001"));//customer có tồn tại trong list
+        assertTrue(DigitalBank.isCustomerExisted(customerList, "001215000002"));//customer có tồn tại trong list
+        assertFalse(DigitalBank.isCustomerExisted(customerList, "001215000003"));//customer không tồn tại trong list
+        assertFalse(DigitalBank.isCustomerExisted(null, "001215000001"));//list null
+        assertFalse(DigitalBank.isCustomerExisted(customerList, null));//customer null
+        assertFalse(DigitalBank.isCustomerExisted(null, null));//list và customer null
     }
 
     @Test
@@ -49,10 +49,10 @@ public class DigitalBankTest {
         List<Customer> customerList = new ArrayList<>();
         customerList.add(customer1);
         customerList.add(customer2);
-        assertSame(customer1, DigitalBank.getCustomerById(customerList, "001215000001"));
-        assertSame(customer2, DigitalBank.getCustomerById(customerList, "001215000002"));
-        assertNull(DigitalBank.getCustomerById(customerList, null));
-        assertNull(DigitalBank.getCustomerById(null, "001215000001"));
-        assertNull(DigitalBank.getCustomerById(null, null));
+        assertSame(customer1, DigitalBank.getCustomerById(customerList, "001215000001"));//lấy thành công customer trong list
+        assertSame(customer2, DigitalBank.getCustomerById(customerList, "001215000002"));//lấy thành công customer trong list
+        assertNull(DigitalBank.getCustomerById(customerList, null));//customer null,lấy không thành công, trả về null
+        assertNull(DigitalBank.getCustomerById(null, "001215000001"));//List null,lấy không thành công, trả về null
+        assertNull(DigitalBank.getCustomerById(null, null));//customer và list null,lấy không thành công, trả về null
     }
 }

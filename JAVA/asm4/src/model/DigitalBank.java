@@ -39,6 +39,10 @@ public class DigitalBank extends Bank {
         }
     }
 
+    /**
+     * Yêu cầu nhập ID khách hàng
+     * In ra màn hình toàn bộ giao dịch của khách hàng cụ thể
+     */
     public void showTransactions() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();
@@ -53,7 +57,7 @@ public class DigitalBank extends Bank {
     }
 
     /**
-     * Phương thức sẽ đọc dữ liệu từ file,
+     * Phương thức sẽ đọc dữ liệu từ file text,
      * dữ liệu từ file bao gồm nhiều khách hàng,
      * kiểm tra dữ liệu từng khách hàng có số ID hợp lệ hay không,
      * nếu hợp lệ thì thêm vào danh sách,
@@ -85,6 +89,12 @@ public class DigitalBank extends Bank {
         }
     }
 
+    /**
+     * Kiểm tra dữ liệu khách hàng có số ID đã tồn tại trong hệ thống chưa,
+     * nếu chưa thì thêm vào danh sách,
+     * nếu số ID đã tồn tại thì hiển thị đoạn thông báo.
+     * Sau đó lưu dữ liệu customer vào file.
+     */
     public boolean addCustomer(Customer newCustomer) {
         //nếu phương thức isCustomerExisted trả về true
         //thông báo đã tồn tại customer này trong bank
@@ -94,7 +104,6 @@ public class DigitalBank extends Bank {
             return false;
         } else {
             //nếu customer chưa tồn tại
-            //thêm newCustomer vào list customers
             customers.add(newCustomer);
             CustomerDao.save(customers);
             System.out.println("Khach hang " + newCustomer.getId() + " them thanh cong");
@@ -138,10 +147,12 @@ public class DigitalBank extends Bank {
 
     }
 
-    //Phương thức withdraw(Scanner scanner, String customerId) để rút tiền.
-// Phương thức này cần kiểm tra customerId hợp lệ,
-// sau đó hiển thị các thông tin tài khoản của khách hàng
-// rồi gọi đến phương thức rút tiền của đối tượng customer.
+    /**
+     * Phương thức withdraw để rút tiền.
+     * Phương thức này cần kiểm tra customerId hợp lệ,
+     * sau đó hiển thị các thông tin tài khoản của khách hàng
+     * rồi gọi đến phương thức rút tiền của đối tượng customer.
+     */
     public boolean withdraw() {
         //nhập id khách hàng
         String id = Validator.customerIdInput();

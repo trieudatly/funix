@@ -15,9 +15,11 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         super(accountNumber, balance, customerId);
     }
 
-    //Phương thức withdraw(double amount) kiểm tra điều kiện rút tiền (quy định ở các asm trước),
-    // nếu hợp lệ thì gọi phương thức tạo mới giao dịch và cập nhật số dư của tài khoản,
-    // nếu không hợp lệ thì trả về thông báo.
+    /**
+     * Kiểm tra điều kiện rút tiền (quy định ở các asm trước),
+     * nếu hợp lệ thì gọi phương thức tạo mới giao dịch và cập nhật số dư của tài khoản,
+     * nếu không hợp lệ thì in ra thông báo.
+     */
     @Override
     public boolean withdraw(double amount, boolean isPremium) {
         String dateTime = getDateTime();
@@ -44,13 +46,18 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         return false;
     }
 
+    /**
+     * kiểm tra điều kiện chuyển tiền (giống điều kiện rút tiền),
+     * nếu hợp lệ thì tạo một giao dịch trừ tiền của người gửi và giao dịch cộng tiền cho người nhận,
+     * nếu không hợp lệ thì in ra thông báo.
+     */
     @Override
     public boolean transfer(Account receiveAccount, Double amount, boolean isPremium) {
         String dateTime = getDateTime();
         String accountNumber = this.getAccountNumber();
-        //nếu khoản rút được chấp nhận
-        //tính toán balance còn lại sau khi rút
-        //tạo một transaction mới với thông tin giao dịch thành công
+        //nếu khoản chuyển được chấp nhận
+        //tính toán balance còn lại sau khi chuyển
+        //tạo transaction mới với thông tin giao dịch thành công cho cả tài khoản gửi và nhận
         //dùng log để hiện thông tin giao dịch
         if (isAccepted(amount, isPremium)) {
             double fee = getFee(amount, isPremium);
@@ -73,6 +80,9 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         return false;
     }
 
+    /**
+     * Trả về chuỗi dạng dd/MM/yyyy HH:mm:ss tại thời điểm phương thức được gọi
+     */
     private static String getDateTime() {
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -80,21 +90,24 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         return dateTime;
     }
 
+    /**
+     * Kiểm tra số tiền giao dịch có được chấp nhận không
+     */
     public boolean isAccepted(double amount, boolean isPremium) {
-//khoản rút phải >= 50 000
+        //khoản rút phải >= 50 000
         //là bội số của 10 000
         // < 100 000 000
         //tài khoản phải còn >=50 000 nếu rút thành công
         if (amount % 10000 != 0) {
-            System.out.println("So tien rut phai la boi so cua 10 000");
+            System.out.println("So tien giao dich phai la boi so cua 10 000");
             return false;
         }
         if (amount < ACCOUNT_MIN_WITHDRAW) {
-            System.out.println("So tien rut toi thieu la: " + ACCOUNT_MIN_WITHDRAW);
+            System.out.println("So tien giao dich toi thieu la: " + ACCOUNT_MIN_WITHDRAW);
             return false;
         }
         if (!isPremium() && amount > SAVINGS_ACCOUNT_MAX_WITHDRAW) {
-            System.out.println("So tien toi da co the rut: " + SAVINGS_ACCOUNT_MAX_WITHDRAW);
+            System.out.println("So tien toi da co the giao dich: " + SAVINGS_ACCOUNT_MAX_WITHDRAW);
             return false;
         }
         double newBalance = getBalance() - amount - getFee(amount, isPremium);
@@ -105,6 +118,9 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         return true;
     }
 
+    /**
+     * Phương thức để lấy khoản phí cho giao dịch
+     */
     public double getFee(double amount, boolean isPremium) {
         //tùy theo tài khoản premium hoặc normal tính mức phí tương ứng
         if (isPremium) {
@@ -114,14 +130,9 @@ public class SavingAccount extends Account implements Serializable, IWithdraw, I
         }
     }
 
-    //Phương thức transfers(Account receiveAccount, double amount)
-// kiểm tra điều kiện chuyển tiền (giống điều kiện rút tiền),
-// nếu hợp lệ thì tạo một giao dịch trừ tiền của người gửi và giao dịch cộng tiền cho người nhận,
-// nếu không hợp lệ thì trả về lỗi.
-    public boolean transfers(Account receiveAccount, double amount) {
-        return false;
-    }
-
+    /**
+     * In ra màn hình chi tiết giao dịch
+     */
     @Override
     public void log(String dateTime, TransactionType type, String withdrawAccountNumber, String receiveAccountNumber, double amount, double newBalance, double fee) {
         System.out.println("+------+-----------------------+------+");

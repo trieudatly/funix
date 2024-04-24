@@ -42,13 +42,13 @@ public class CustomerTest {
         accountList.add(account1);
         accountList.add(account2);
         accountList.add(account3);
-        assertTrue(Customer.isAccountExisted(accountList, "123456"));
-        assertTrue(Customer.isAccountExisted(accountList, "123546"));
-        assertTrue(Customer.isAccountExisted(accountList, "654321"));
-        assertFalse(Customer.isAccountExisted(accountList, "098765"));
-        assertFalse(Customer.isAccountExisted(null, "654321"));
-        assertFalse(Customer.isAccountExisted(accountList, null));
-        assertFalse(Customer.isAccountExisted(null, null));
+        assertTrue(Customer.isAccountExisted(accountList, "123456"));//account có tồn tại trong list
+        assertTrue(Customer.isAccountExisted(accountList, "123546"));//account có tồn tại trong list
+        assertTrue(Customer.isAccountExisted(accountList, "654321"));//account có tồn tại trong list
+        assertFalse(Customer.isAccountExisted(accountList, "098765"));//account không tồn tại trong list
+        assertFalse(Customer.isAccountExisted(null, "654321"));// list null
+        assertFalse(Customer.isAccountExisted(accountList, null));//account null
+        assertFalse(Customer.isAccountExisted(null, null));//account và list đều null
     }
 
     @Test
@@ -57,12 +57,12 @@ public class CustomerTest {
         accountList.add(account1);
         accountList.add(account2);
         accountList.add(account3);
-        assertSame(account1, Customer.getAccountByAccountNumber(accountList, "123456"));
-        assertSame(account2, Customer.getAccountByAccountNumber(accountList, "123546"));
-        assertSame(account3, Customer.getAccountByAccountNumber(accountList, "654321"));
-        assertNull(Customer.getAccountByAccountNumber(accountList, null));
-        assertNull(Customer.getAccountByAccountNumber(null, "654321"));
-        assertNull(Customer.getAccountByAccountNumber(null, null));
+        assertSame(account1, Customer.getAccountByAccountNumber(accountList, "123456"));//lấy thành công account trong list
+        assertSame(account2, Customer.getAccountByAccountNumber(accountList, "123546"));//lấy thành công account trong list
+        assertSame(account3, Customer.getAccountByAccountNumber(accountList, "654321"));//lấy thành công account trong list
+        assertNull(Customer.getAccountByAccountNumber(accountList, null));//account = null,không lấy được account trong list, trả về null
+        assertNull(Customer.getAccountByAccountNumber(null, "654321"));//list = null,không lấy được account trong list, trả về null
+        assertNull(Customer.getAccountByAccountNumber(null, null));//account và list null,không lấy được account trong list, trả về null
     }
 
     @Test
@@ -73,7 +73,7 @@ public class CustomerTest {
         List<Account> accountList2 = new ArrayList<>();
         accountList2.add(account2);
         customer2.setAccounts(accountList2);
-        assertFalse(customer1.isPremium());
-        assertTrue(customer2.isPremium());
+        assertFalse(customer1.isPremium());//account1 có số dư 5 000 000 <10 000 000 nên customer1 không phải premium
+        assertTrue(customer2.isPremium());//account2 có số dư 10 000 000 = 10 000 000 nên customer2 là premium
     }
 }
