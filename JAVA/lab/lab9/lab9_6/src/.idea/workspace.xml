@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c782e246-2afa-422e-80e0-c9fe2fdbc7e7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../lab3/lab3_2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/lab3_2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/lab3_3/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/lab3_3/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab3/lab3_4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab3/lab3_4/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_10/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_10/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_2/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_2/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_2/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_2/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_3/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_3/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_3/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_3/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_3/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_3/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_3/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_4/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_4/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_4/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_4/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_4/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_4/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab4/lab4_5/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab4/lab4_5/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab5/lab5_2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab5/lab5_2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab7/lab7_12/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab7/lab7_12/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab7/lab7_8/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab7/lab7_8/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lab7/lab7_8/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lab7/lab7_8/src/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2fbAU3DTxcVNkHxv9xWBNGuik5R" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "preferences.keymap"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c782e246-2afa-422e-80e0-c9fe2fdbc7e7" name="Changes" comment="" />
+      <created>1714059415948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714059415948</updated>
+    </task>
+    <servers />
+  </component>
+</project>

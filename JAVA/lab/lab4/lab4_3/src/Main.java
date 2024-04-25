@@ -3,11 +3,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int score = sc.nextInt();
-        if (score >= 0 && score <= 10) {
-            System.out.println("The score is valid");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        if (a >= b) {
+            System.out.println("a is greater than or equal to b");
         } else {
-            System.out.println("The score is not valid");
+            System.out.println("a is smaller than b");
         }
     }
 }
