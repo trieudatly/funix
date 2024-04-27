@@ -9,17 +9,17 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, List<String>> folderMap = readFileInFolderToMap(".\\2022");
+        Map<String, List<String>> folderMap = readFileInFolderToMap(".\\2022_sorted");
         // show map
         System.out.println("Show folder map");
         Set<String> set = folderMap.keySet();
         for (String key : set) {
             System.out.println(key + " " + folderMap.get(key));
         }
-        //createFolderAndMoveFile(".\\2022",folderMap);
+        createFolderAndMoveFile(".\\2022_sorted",folderMap);
     }
     public static boolean checkFileNameValid(String fileName){
-        Pattern p = Pattern.compile("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])(.txt)$");
+        Pattern p = Pattern.compile("^\\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])(.txt)$");
         Matcher m = p.matcher(fileName);
         return m.matches();
     }

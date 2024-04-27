@@ -57,11 +57,11 @@ public class Main {
         if (bobDices.size() != aliceDices.size()) {
             throw new NumberRollDiceNotEqualException("Number of dice rolls not equal");
         }
-        Integer subBob = sumOfDice(bobDices);
+        Integer sumBob = sumOfDice(bobDices);
         Integer sumAlice = sumOfDice(aliceDices);
-        if (Objects.equals(subBob, sumAlice)) {
+        if (Objects.equals(sumBob, sumAlice)) {
             return null;
-        } else if (subBob > sumAlice) {
+        } else if (sumBob > sumAlice) {
             return "bob";
         } else {
             return "alice";
