@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         final BankAccount account = new BankAccount("12345-678", 1000.00);
         System.out.println(account);
@@ -8,7 +8,7 @@ public class Main {
                 System.out.println("trThread1 running");
                 account.deposit(300);
                 account.withdraw(50);
-                System.out.println(account);
+                //System.out.println(account);
             }
         };
         Thread trThread2 = new Thread(new Runnable() {
@@ -17,10 +17,14 @@ public class Main {
                 System.out.println("trThread2 running");
                 account.deposit(203.75);
                 account.withdraw(100);
-                System.out.println(account);
+                //System.out.println(account);
             }
         });
+
         trThread1.start();
         trThread2.start();
+       trThread1.join();
+        trThread2.join();
+        System.out.println(account);
     }
 }
