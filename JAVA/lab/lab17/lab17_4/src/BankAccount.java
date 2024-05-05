@@ -1,3 +1,4 @@
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -18,7 +19,11 @@ public class BankAccount {
 //        } catch (InterruptedException e) {
 //            throw new RuntimeException(e);
 //        }
-        lock.lock();
+        try {
+            lock.tryLock(1000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            System.out.println("Could not get lock");
+        }
         try {
             double origBalance = balance;
             balance += amount;
@@ -36,7 +41,11 @@ public class BankAccount {
 //        } catch (InterruptedException e) {
 //            throw new RuntimeException(e);
 //        }
-        lock.lock();
+        try {
+            lock.tryLock(1000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            System.out.println("Could not get lock");
+        }
         try {
             double origBalance = balance;
 

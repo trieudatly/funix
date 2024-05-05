@@ -1,0 +1,22 @@
+Có rất nhiều interface trong Java SDK, đôi khi chúng ta có thể sử dụng một 
+biểu thức lambda thay vì tạo một instance mà phải implement interface đó.
+Với một interface cho trước, 
+làm thế nào để bạn có thể biết là có thể sử dụng được biểu thức lambda cho interface đó hay không?
+
+Interface phải là functional interface, nó chỉ có thể chứa 1 phương thức duy nhất, và phương thức này phải được triển khai.
+functional interface có thể chứa nhiều hơn 1 phương thức, nhưng trong đó bắt buộc phải có 1 phương thức có triển khai mặc định.
+Tài liệu về một interface thường sẽ cho biết nó có phải functional interface hay không.
+
+
+Chúng ta có thể sử dụng một biểu thức lambda 
+để biểu diễn một instance cho interface java.io.concurrent.Callable không?
+
+interface Callable chỉ có một phương thức phải được triển khai là phương thức call().
+Ta có thể sử dụng lamda cho interface này.
+
+
+
+Interface java.util.Comparator có phải một function interface hay không?
+
+Comparator là một giao diện chức năng. Mặc dù có chứa hơn 10 phương thức,
+nhưng chỉ có một phương thức phải được triển khai là phương thức compare().

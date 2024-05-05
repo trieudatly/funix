@@ -22,8 +22,25 @@ public class Main {
 
         trThread1.start();
         trThread2.start();
-        trThread1.join();
-        trThread2.join();
+//        trThread1.join();
+//        trThread2.join();
         System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+
+
     }
 }
