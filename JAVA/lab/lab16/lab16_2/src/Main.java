@@ -9,21 +9,22 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, List<String>> folderMap = readFileInFolderToMap(".\\2022_sorted");
+        final String ROOTFOLDER=".\\2022_sorted";
+        Map<String, List<String>> folderMap = readFileInFolderToMap(ROOTFOLDER);
         // show map
         System.out.println("Show folder map");
         Set<String> set = folderMap.keySet();
         for (String key : set) {
             System.out.println(key + " " + folderMap.get(key));
         }
-        createFolderAndMoveFile(".\\2022_sorted",folderMap);
+        createFolderAndMoveFile(ROOTFOLDER,folderMap);
     }
     public static boolean checkFileNameValid(String fileName){
         Pattern p = Pattern.compile("^\\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])(.txt)$");
         Matcher m = p.matcher(fileName);
         return m.matches();
     }
-    public static Map<String, List<String>> readFileInFolderToMap(String rootFolder){
+    public static Map<String, List<String>>    readFileInFolderToMap(String rootFolder){
         Map<String, List<String>> folderMap = new HashMap<>();
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(rootFolder))) {
